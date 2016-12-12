@@ -42,17 +42,11 @@ vector<Computer> MainWindow::tableForComputers()
 
 void MainWindow::on_pushButtonPerson_clicked()
 {
-    //TODO: If setning til að fá person list
-    //Fá fall úr service sem kallar á access
-    // Nota vectorinn til að
-    //for lykkja til að búa til nýja töflu
-    //show table
     tableForPersons();
 }
 
 void MainWindow::on_pushButtonComputer_clicked()
 {
-    //TODO: If setning til að fá computer list
     tableForComputers();
 }
 

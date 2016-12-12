@@ -4,7 +4,7 @@
 Database::Database()
 {
     _db = QSqlDatabase::addDatabase("QSQLITE");
-    QString dbName = "/Users/isabellayr/Desktop/HR/Verklegt1/Verk3/skil3/Db.sqlite"; //eg thurfti ad nota full path til ad fa thetta til ad virka
+    QString dbName = "Db.sqlite"; //For Mac user please use full path to access database
     _db.setDatabaseName(dbName);
     _db.open();
 }
