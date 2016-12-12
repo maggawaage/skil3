@@ -2,8 +2,9 @@
 #define MAINWINDOW_H
 #include "personservice.h"
 #include "computerservice.h"
-#include <QTableWidget>
 #include <QMainWindow>
+#include <QTableWidget>
+//#include <QTableWidgetItem>
 #include <qDebug>
 
 namespace Ui {
@@ -19,17 +20,18 @@ public:
     ~MainWindow();
     vector<Person> tableForPersons();
     vector<Computer> tableForComputers();
+    void displayVector(vector<Person> printPersons, int x);
 
 
 private slots:
-    void on_pushButtonPerson_clicked();
 
-    void on_pushButtonComputer_clicked();
+   // void on_pushButtonPerson_clicked();
+   // void on_pushButtonComputer_clicked();
 
 
 private:
     Ui::MainWindow *ui;
-    QTableWidget* m_TableWidget;
+    //QTableWidget *person_TableWidget;
 
     PersonService _service;
     ComputerService _Cservice;
