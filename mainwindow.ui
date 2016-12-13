@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>500</width>
-    <height>366</height>
+    <width>494</width>
+    <height>466</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -40,7 +40,7 @@
      <string>Show list of computers</string>
     </property>
    </widget>
-   <widget class="QTableWidget" name="PersonsTable">
+   <widget class="QTableWidget" name="personsTable">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -82,10 +82,16 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>500</width>
+     <width>494</width>
      <height>22</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuShow">
+    <property name="title">
+     <string>Show</string>
+    </property>
+   </widget>
+   <addaction name="menuShow"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">

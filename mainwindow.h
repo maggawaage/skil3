@@ -25,13 +25,14 @@ public:
 
 private slots:
 
-   // void on_pushButtonPerson_clicked();
-   // void on_pushButtonComputer_clicked();
+    void on_pushButtonPerson_clicked();
+    //void on_pushButtonComputer_clicked();*/
 
 
 private:
     Ui::MainWindow *ui;
     //QTableWidget *person_TableWidget;
+    vector<Person> currentlyDisplayedPersons;
 
     PersonService _service;
     ComputerService _Cservice;

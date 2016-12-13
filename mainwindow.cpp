@@ -23,14 +23,25 @@ vector<Person> MainWindow::tableForPersons()
     vector<Person> persons;
     persons = _service.getVectorFromDataAccess(persons);
     //TODO: búa til töflu
-    //Name, Gender, BirthYear, DeathYear
-    for(size_t i = 0; i < persons.size(); i++)
+    for(size_t row = 0; row < persons.size(); row++)
     {
-        //TODO: kalla á create table?
-        Person currentPerson = persons.at(i);
-        //ui->PersonsTable->setItem(QString::fromStdString(currentPerson.getName()));
+        ui->personsTable->clearContents();
+        ui->personsTable->setRowCount(persons.size());
+
+        Person currentPerson = persons.at(row);
+        QString name = QString::fromStdString(currentPerson.getName());
+        QString gender = QString::number(currentPerson.getGender());//char úr qstring?
+        QString birthYear = QString::number(currentPerson.getBirthYear());
+        QString deathYear = QString::number(currentPerson.getDeathYear());
+
+        ui->personsTable->setItem(row, 0, new QTableWidgetItem(name));
+        ui->personsTable->setItem(row, 1, new QTableWidgetItem(gender));
+        ui->personsTable->setItem(row, 2, new QTableWidgetItem(birthYear));
+        ui->personsTable->setItem(row, 3, new QTableWidgetItem(deathYear));
 
     }
+
+    currentlyDisplayedPersons = persons;
 
 }
 
@@ -44,16 +55,16 @@ vector<Computer> MainWindow::tableForComputers()
 
 
 
-/*void MainWindow::on_pushButtonPerson_clicked()
+void MainWindow::on_pushButtonPerson_clicked()
 {
     tableForPersons();
 }
 
-void MainWindow::on_pushButtonComputer_clicked()
+/*void MainWindow::on_pushButtonComputer_clicked()
 {
     tableForComputers();
-}
-*/
+}*/
+
 void MainWindow::displayVector(vector<Person> printPersons, int x)
 {
     cout << "\n";
