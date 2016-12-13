@@ -43,3 +43,92 @@ vector<Computer> DataAccess::fillVector(vector<Computer>famousComputers)
     }
     return famousComputers;
 }
+
+void DataAccess::addPerson(string name, char gender, int birthYear, int deathYear)
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.prepare("INSERT INTO Persons (Name, Gender, BirthYear, DeathYear) "
+                  "VALUES (?, ?, ?, ?)");
+
+    query.addBindValue(QString::fromStdString(name));
+    query.addBindValue(gender);
+    query.addBindValue(birthYear);
+    query.addBindValue(deathYear);
+    query.exec();
+}
+
+void DataAccess::addComputer(string name, string type, int buildYear)
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.prepare("INSERT INTO Computers (Name, Type, BuildYear) "
+                  "VALUES (?, ?, ?)");
+
+    query.addBindValue(QString::fromStdString(name));
+    query.addBindValue(QString::fromStdString(type));
+    query.addBindValue(buildYear);
+    query.exec();
+}
+
+void DataAccess::editPersonsName(string trueName, string name)
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.prepare("UPDATE Persons SET Name = :name WHERE Name = :Name;");
+
+    query.bindValue(":name", QString::fromStdString(name));
+    query.bindValue(":Name",QString::fromStdString(trueName));
+    query.exec();
+}
+
+void DataAccess::editComputersName(string trueName, string name)
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.prepare("UPDATE Computers SET Name = :name WHERE Name = :Name;");
+    query.bindValue(":name", QString::fromStdString(name));
+    query.bindValue(":Name",QString::fromStdString(trueName));
+    query.exec();
+}
+
+void DataAccess::editPersonsGender(string trueName, char gender)
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.prepare("UPDATE Persons SET Gender = :Gender WHERE Name = :Name;");
+    query.bindValue(":Gender",gender);
+    query.bindValue(":Name", QString::fromStdString(trueName));
+    query.exec();
+}
+
+void DataAccess::editPersonsBirthYear(string trueName, int birthYear)
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.prepare("UPDATE Persons SET BirthYear = :BirthYear WHERE Name = :Name;");
+    query.bindValue(":BirthYear",birthYear);
+    query.bindValue(":Name", QString::fromStdString(trueName));
+    query.exec();
+}
+
+void DataAccess::editPersonsDeathYear(string trueName, int deathYear)
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.prepare("UPDATE Persons SET DeathYear = :DearthYear WHERE Name = :Name;");
+    query.bindValue(":DeathYear",deathYear);
+    query.bindValue(":Name", QString::fromStdString(trueName));
+    query.exec();
+}
+
+void DataAccess::editComputerType(string trueName, string computerType)
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.prepare("UPDATE Computers SET Type = :type WHERE Name = :Name;");
+    query.bindValue(":type", QString::fromStdString(computerType));
+    query.bindValue(":Name", QString::fromStdString(trueName));
+    query.exec();
+}
+
+void DataAccess::editComputerBuildYear(string trueName, int buildYear)
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.prepare("UPDATE Computers SET BuildYear = :buildYear WHERE Name = :Name;");
+    query.bindValue(":buildYear",buildYear);
+    query.bindValue(":Name", QString::fromStdString(trueName));
+    query.exec();
+}

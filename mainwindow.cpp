@@ -159,6 +159,7 @@ void MainWindow::on_Tabs_tabBarClicked(int index)
      qDebug() << "on tabs bar was clicked" << index << endl;
 }
 
+
 /*
 void MainWindow::on_pushButtonAddPerson_clicked()
 {
