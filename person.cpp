@@ -4,7 +4,7 @@ Person::Person()
 {
 
 }
-Person::Person(string name, int birthYear, char gender, int deathYear)
+Person::Person(string name, char gender, int birthYear, int deathYear)
 {
     _name = name;
     _birthYear = birthYear;

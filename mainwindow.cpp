@@ -19,7 +19,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-vector<Person> MainWindow::tableForPersons()
+vector<Person> MainWindow::displayPersons()
 {
     vector<Person> Persons;
     Persons = _PService.getVectorFromDataAccess(Persons);
@@ -63,7 +63,7 @@ QString MainWindow::showGender(char input)
     return gender;
 }
 
-vector<Computer> MainWindow::tableForComputers()
+vector<Computer> MainWindow::displayComputers()
 {
     vector<Computer> Computers;
     Computers = _CService.getVectorFromDataAccess(Computers);
@@ -89,7 +89,7 @@ vector<Computer> MainWindow::tableForComputers()
 
 }
 
-void MainWindow::displayVector(vector<Person> printPersons, int x)
+void MainWindow::displayPersonsVector(vector<Person> printPersons, int x)
 {
     cout << "\n";
     //Couts ID if you want
@@ -146,11 +146,11 @@ void MainWindow::on_Tabs_tabBarClicked(int index)
 {
     if(index == 0)
     {
-        tableForPersons();
+        displayPersons();
     }
     else if (index == 1)
     {
-        tableForComputers();
+        displayComputers();
     }
     else if(index == 2)
     {
@@ -159,13 +159,11 @@ void MainWindow::on_Tabs_tabBarClicked(int index)
      qDebug() << "on tabs bar was clicked" << index << endl;
 }
 
-
-/*
-void MainWindow::on_pushButtonAddPerson_clicked()
+/*void MainWindow::on_pushButtonAddPerson_clicked()
 {
-    //Ná í uppl úr addpersonsdialog.ui
 
 }
+
 
 void MainWindow::on_pushButtonAddComp_clicked()
 {
@@ -201,5 +199,10 @@ void MainWindow::on_pushButtonComConnection_clicked()
 {
     //TODO:
 }
-*/
 
+
+void MainWindow::on_searchPersons_textChanged(const QString &arg1)
+{
+    string userInput = ui->searchPersons->text().toStdString();
+    vector<Person> persons = _PService.searchPersons
+}*/

@@ -9,7 +9,7 @@ class Person
 {
 public:
     Person();
-    Person(string name, int birthYear, char gender,  int deathYear);
+    Person(string name, char gender, int birthYear, int deathYear);
 
     string getName() const;
     char getGender() const;

@@ -10,7 +10,7 @@ vector<Person> PersonService::getVectorFromDataAccess(vector<Person> person)
     return _access.fillVector(person);
 }
 
-void PersonService::add(string name, char gender, int birthYear, int deathYear)
+void PersonService::addPerson(string name, char gender, int birthYear, int deathYear)
 {
     _access.addPerson(name, gender, birthYear, deathYear);
 }

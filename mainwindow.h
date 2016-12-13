@@ -19,17 +19,16 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    vector<Person> tableForPersons();
-    vector<Computer> tableForComputers();
-    void displayVector(vector<Person> printPersons, int x);
+    vector<Person> displayPersons();
+    vector<Computer> displayComputers();
+    void displayPersonsVector(vector<Person> printPersons, int x);
     QString showGender(char input);
 
 
 
 private slots:
 
-/*
-    void on_pushButtonAddPerson_clicked();
+    /*void on_pushButtonAddPerson_clicked();
 
     void on_pushButtonAddComp_clicked();
 
@@ -43,9 +42,12 @@ private slots:
 
     void on_pushButtonPersConnection_clicked();
 
-    void on_pushButtonComConnection_clicked();*/
+    void on_pushButtonComConnection_clicked();
+
+    void on_searchPersons_textChanged(const QString &arg1);*/
 
     void on_Tabs_tabBarClicked(int index);
+
 
 
 private:

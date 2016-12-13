@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>459</width>
-    <height>540</height>
+    <width>533</width>
+    <height>529</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,7 +21,7 @@
        <enum>QTabWidget::North</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tabPerson">
        <attribute name="title">
@@ -36,7 +36,11 @@
          </widget>
         </item>
         <item row="0" column="5">
-         <widget class="QLineEdit" name="lineEditSearchPerson"/>
+         <widget class="QLineEdit" name="searchPersons">
+          <property name="placeholderText">
+           <string>Search persons ...</string>
+          </property>
+         </widget>
         </item>
         <item row="1" column="0" colspan="6">
          <widget class="QTableWidget" name="personsTable">
@@ -46,6 +50,18 @@
           <property name="styleSheet">
            <string notr="true">color: rgb(180, 180, 180);</string>
           </property>
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectRows</enum>
+          </property>
+          <property name="sortingEnabled">
+           <bool>true</bool>
+          </property>
+          <property name="cornerButtonEnabled">
+           <bool>true</bool>
+          </property>
+          <attribute name="verticalHeaderVisible">
+           <bool>false</bool>
+          </attribute>
           <column>
            <property name="text">
             <string>Name</string>
@@ -121,6 +137,15 @@
           <property name="styleSheet">
            <string notr="true">color: rgb(180, 180, 180);</string>
           </property>
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectRows</enum>
+          </property>
+          <property name="sortingEnabled">
+           <bool>true</bool>
+          </property>
+          <attribute name="verticalHeaderVisible">
+           <bool>false</bool>
+          </attribute>
           <column>
            <property name="text">
             <string>Name</string>
@@ -205,7 +230,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>459</width>
+     <width>533</width>
      <height>22</height>
     </rect>
    </property>

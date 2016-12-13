@@ -10,7 +10,7 @@ vector<Computer> ComputerService::getVectorFromDataAccess(vector<Computer> Compu
     return _access.fillVector(Computers);
 }
 
-void ComputerService::add(string name, string type, int buildYear)
+void ComputerService::addComputer(string name, string type, int buildYear)
 {
     _access.addComputer(name, type, buildYear );
 }
