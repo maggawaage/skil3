@@ -25,7 +25,8 @@ SOURCES += main.cpp\
     computerservice.cpp \
     database.cpp \
     person.cpp \
-    computer.cpp
+    computer.cpp \
+    addpersonsdialog.cpp
 
 HEADERS  += mainwindow.h \
     dataaccess.h \
@@ -33,6 +34,8 @@ HEADERS  += mainwindow.h \
     computerservice.h \
     database.h \
     person.h \
-    computer.h
+    computer.h \
+    addpersonsdialog.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    addpersonsdialog.ui

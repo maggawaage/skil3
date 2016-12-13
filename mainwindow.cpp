@@ -21,16 +21,18 @@ MainWindow::~MainWindow()
 vector<Person> MainWindow::tableForPersons()
 {
     vector<Person> persons;
-    persons = _service.getVectorFromDataAccess(persons);
-    //TODO: búa til töflu
+    persons = _PService.getVectorFromDataAccess(persons);
+    QString gender;
+
+    ui->personsTable->setRowCount(persons.size());
+    ui->personsTable->clearContents();
     for(size_t row = 0; row < persons.size(); row++)
     {
-        ui->personsTable->clearContents();
-        ui->personsTable->setRowCount(persons.size());
 
         Person currentPerson = persons.at(row);
         QString name = QString::fromStdString(currentPerson.getName());
-        QString gender = QString::number(currentPerson.getGender());//char úr qstring?
+        char ge = currentPerson.getGender();
+        gender = showGender(ge);
         QString birthYear = QString::number(currentPerson.getBirthYear());
         QString deathYear = QString::number(currentPerson.getDeathYear());
 
@@ -41,29 +43,32 @@ vector<Person> MainWindow::tableForPersons()
 
     }
 
-    currentlyDisplayedPersons = persons;
+    _currentlyDisplayedPersons = persons;
+    return persons;
 
+}
+
+QString MainWindow::showGender(char input)
+{
+    QString gender;
+    if(input == 'M' || input == 'm')
+    {
+        gender = 'M';
+    }
+    else
+    {
+        gender = 'F';
+    }
+    return gender;
 }
 
 vector<Computer> MainWindow::tableForComputers()
 {
     vector<Computer> computers;
-    computers = _Cservice.getVectorFromDataAccess(computers);
+    computers = _CService.getVectorFromDataAccess(computers);
     //TODO: búa til töflu
     //Name, Type, BuildYear
 }
-
-
-
-void MainWindow::on_pushButtonPerson_clicked()
-{
-    tableForPersons();
-}
-
-/*void MainWindow::on_pushButtonComputer_clicked()
-{
-    tableForComputers();
-}*/
 
 void MainWindow::displayVector(vector<Person> printPersons, int x)
 {
@@ -118,10 +123,20 @@ void MainWindow::displayVector(vector<Person> printPersons, int x)
     }
 }
 
-
-/*void MainWindow::on_pushButtonAddPerson_clicked()
+void MainWindow::on_pushButtonPerson_clicked()
 {
-    //TODO:
+    tableForPersons();
+}
+
+/*void MainWindow::on_pushButtonComputer_clicked()
+{
+    tableForComputers();
+}
+
+void MainWindow::on_pushButtonAddPerson_clicked()
+{
+    //Ná í uppl úr addpersonsdialog.ui
+
 }
 
 void MainWindow::on_pushButtonEditPerson_clicked()
@@ -144,5 +159,15 @@ void MainWindow::on_pushButtonConnectToComp_clicked()
 void MainWindow::on_pushButtonShowConnections_clicked()
 {
 
+}*/
+
+void MainWindow::on_PersonsTable_tabBarClicked()
+{
+    tableForPersons();
 }
-*/
+
+/*
+void MainWindow::on_ComputersTable_tabBarClicked(int index)
+{
+
+}*/

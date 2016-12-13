@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 #include "personservice.h"
 #include "computerservice.h"
+#include "addpersonsdialog.h"
 #include <QMainWindow>
 #include <QTableWidget>
 //#include <QTableWidgetItem>
@@ -21,6 +22,8 @@ public:
     vector<Person> tableForPersons();
     vector<Computer> tableForComputers();
     void displayVector(vector<Person> printPersons, int x);
+    QString showGender(char input);
+
 
 
 private slots:
@@ -39,13 +42,17 @@ private slots:
 
     void on_pushButtonShowConnections_clicked();*/
 
+    void on_PersonsTable_tabBarClicked();
+
+   // void MainWindow::on_ComputersTable_tabBarClicked(int index);
+
 private:
     Ui::MainWindow *ui;
     //QTableWidget *person_TableWidget;
-    vector<Person> currentlyDisplayedPersons;
+    vector<Person> _currentlyDisplayedPersons;
 
-    PersonService _service;
-    ComputerService _Cservice;
+    PersonService _PService;
+    ComputerService _CService;
 };
 
 #endif // MAINWINDOW_H
