@@ -11,8 +11,6 @@ Person::Person(string name, int birthYear, char gender, int deathYear)
     _gender = gender;
     _deathYear = deathYear;
 }
-
-
 string Person::getName() const
 {
     return _name;

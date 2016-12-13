@@ -28,29 +28,30 @@ public:
 
 private slots:
 
-    void on_pushButtonPerson_clicked();
-    /*
-    void on_pushButtonComputer_clicked();
-
+/*
     void on_pushButtonAddPerson_clicked();
+
+    void on_pushButtonAddComp_clicked();
 
     void on_pushButtonEditPerson_clicked();
 
+    void on_pushButtonEditComputer_clicked();
+
     void on_pushButtonDeletePerson_clicked();
 
-    void on_pushButtonConnectToComp_clicked();
+    void on_pushButtonDeleteComputer_clicked();
 
-    void on_pushButtonShowConnections_clicked();*/
+    void on_pushButtonPersConnection_clicked();
 
-    void on_PersonsTable_tabBarClicked();
+    void on_pushButtonComConnection_clicked();*/
 
-   // void MainWindow::on_ComputersTable_tabBarClicked(int index);
+    void on_Tabs_tabBarClicked(int index);
+
 
 private:
     Ui::MainWindow *ui;
-    //QTableWidget *person_TableWidget;
     vector<Person> _currentlyDisplayedPersons;
-
+    vector<Computer> _currentlyDisplayedComputers;
     PersonService _PService;
     ComputerService _CService;
 };

@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include <vector>
 #include <iostream>
+#include <QDebug>
 
 using namespace std;
 
@@ -20,21 +21,21 @@ MainWindow::~MainWindow()
 
 vector<Person> MainWindow::tableForPersons()
 {
-    vector<Person> persons;
-    persons = _PService.getVectorFromDataAccess(persons);
+    vector<Person> Persons;
+    Persons = _PService.getVectorFromDataAccess(Persons);
     QString gender;
 
-    ui->personsTable->setRowCount(persons.size());
+    ui->personsTable->setRowCount(Persons.size());
     ui->personsTable->clearContents();
-    for(size_t row = 0; row < persons.size(); row++)
+    for(size_t row = 0; row < Persons.size(); row++)
     {
 
-        Person currentPerson = persons.at(row);
-        QString name = QString::fromStdString(currentPerson.getName());
-        char ge = currentPerson.getGender();
+        Person CurrentPerson = Persons.at(row);
+        QString name = QString::fromStdString(CurrentPerson.getName());
+        char ge = CurrentPerson.getGender();
         gender = showGender(ge);
-        QString birthYear = QString::number(currentPerson.getBirthYear());
-        QString deathYear = QString::number(currentPerson.getDeathYear());
+        QString birthYear = QString::number(CurrentPerson.getBirthYear());
+        QString deathYear = QString::number(CurrentPerson.getDeathYear());
 
         ui->personsTable->setItem(row, 0, new QTableWidgetItem(name));
         ui->personsTable->setItem(row, 1, new QTableWidgetItem(gender));
@@ -43,8 +44,8 @@ vector<Person> MainWindow::tableForPersons()
 
     }
 
-    _currentlyDisplayedPersons = persons;
-    return persons;
+    _currentlyDisplayedPersons = Persons;
+    return Persons;
 
 }
 
@@ -64,10 +65,28 @@ QString MainWindow::showGender(char input)
 
 vector<Computer> MainWindow::tableForComputers()
 {
-    vector<Computer> computers;
-    computers = _CService.getVectorFromDataAccess(computers);
-    //TODO: búa til töflu
-    //Name, Type, BuildYear
+    vector<Computer> Computers;
+    Computers = _CService.getVectorFromDataAccess(Computers);
+
+    ui->computersTable->setRowCount(Computers.size());
+    ui->computersTable->clearContents();
+    for(size_t row = 0; row < Computers.size(); row++)
+    {
+
+        Computer CurrentComputer = Computers.at(row);
+        QString name = QString::fromStdString(CurrentComputer.getName());
+        QString type = QString::fromStdString(CurrentComputer.getType());
+        QString buildYear = QString::number(CurrentComputer.getBuildYear());
+
+        ui->computersTable->setItem(row, 0, new QTableWidgetItem(name));
+        ui->computersTable->setItem(row, 1, new QTableWidgetItem(type));
+        ui->computersTable->setItem(row, 2, new QTableWidgetItem(buildYear));
+
+    }
+
+    _currentlyDisplayedComputers = Computers;
+    return Computers;
+
 }
 
 void MainWindow::displayVector(vector<Person> printPersons, int x)
@@ -123,23 +142,41 @@ void MainWindow::displayVector(vector<Person> printPersons, int x)
     }
 }
 
-void MainWindow::on_pushButtonPerson_clicked()
+void MainWindow::on_Tabs_tabBarClicked(int index)
 {
-    tableForPersons();
+    if(index == 0)
+    {
+        tableForPersons();
+    }
+    else if (index == 1)
+    {
+        tableForComputers();
+    }
+    else if(index == 2)
+    {
+        //Another tab?
+    }
+     qDebug() << "on tabs bar was clicked" << index << endl;
 }
 
-/*void MainWindow::on_pushButtonComputer_clicked()
-{
-    tableForComputers();
-}
-
+/*
 void MainWindow::on_pushButtonAddPerson_clicked()
 {
     //Ná í uppl úr addpersonsdialog.ui
 
 }
 
+void MainWindow::on_pushButtonAddComp_clicked()
+{
+    //TODO:
+}
+
 void MainWindow::on_pushButtonEditPerson_clicked()
+{
+    //TODO:
+}
+
+void MainWindow::on_pushButtonEditComputer_clicked()
 {
     //TODO:
 }
@@ -149,25 +186,19 @@ void MainWindow::on_pushButtonDeletePerson_clicked()
     //TODO:
 }
 
-
-void MainWindow::on_pushButtonConnectToComp_clicked()
+void MainWindow::on_pushButtonDeleteComputer_clicked()
 {
     //TODO:
 }
 
-
-void MainWindow::on_pushButtonShowConnections_clicked()
+void MainWindow::on_pushButtonPersConnection_clicked()
 {
-
-}*/
-
-void MainWindow::on_PersonsTable_tabBarClicked()
-{
-    tableForPersons();
+    //TODO:
 }
 
-/*
-void MainWindow::on_ComputersTable_tabBarClicked(int index)
+void MainWindow::on_pushButtonComConnection_clicked()
 {
+    //TODO:
+}
+*/
 
-}*/

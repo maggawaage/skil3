@@ -41,6 +41,5 @@ vector<Computer> DataAccess::fillVector(vector<Computer>famousComputers)
         temp.setBuildYear(buildYear.toInt());
         famousComputers.push_back(temp);
     }
-
     return famousComputers;
 }
