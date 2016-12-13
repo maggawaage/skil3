@@ -26,8 +26,18 @@ public:
 private slots:
 
     void on_pushButtonPerson_clicked();
-    //void on_pushButtonComputer_clicked();*/
+    /*
+    void on_pushButtonComputer_clicked();
 
+    void on_pushButtonAddPerson_clicked();
+
+    void on_pushButtonEditPerson_clicked();
+
+    void on_pushButtonDeletePerson_clicked();
+
+    void on_pushButtonConnectToComp_clicked();
+
+    void on_pushButtonShowConnections_clicked();*/
 
 private:
     Ui::MainWindow *ui;

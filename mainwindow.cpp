@@ -118,3 +118,31 @@ void MainWindow::displayVector(vector<Person> printPersons, int x)
     }
 }
 
+
+/*void MainWindow::on_pushButtonAddPerson_clicked()
+{
+    //TODO:
+}
+
+void MainWindow::on_pushButtonEditPerson_clicked()
+{
+    //TODO:
+}
+
+void MainWindow::on_pushButtonDeletePerson_clicked()
+{
+    //TODO:
+}
+
+
+void MainWindow::on_pushButtonConnectToComp_clicked()
+{
+    //TODO:
+}
+
+
+void MainWindow::on_pushButtonShowConnections_clicked()
+{
+
+}
+*/
