@@ -10,9 +10,14 @@ vector<Person> PersonService::getVectorFromDataAccess(vector<Person> person)
     return _access.fillVector(person);
 }
 
-void PersonService::addPerson(string name, char gender, int birthYear, int deathYear)
+bool PersonService::addPerson(string name, char gender, int birthYear, int deathYear)
 {
-    _access.addPerson(name, gender, birthYear, deathYear);
+    while(true)
+    {
+        _access.addPerson(name, gender, birthYear, deathYear);
+        return true;
+    }
+    return false;
 }
 
 void PersonService::editPersonsName(string trueName, string name)

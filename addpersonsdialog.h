@@ -1,5 +1,8 @@
 #ifndef ADDPERSONSDIALOG_H
 #define ADDPERSONSDIALOG_H
+#include "mainwindow.h"
+#include "personservice.h"
+#include "computerservice.h"
 
 #include <QDialog>
 
@@ -20,6 +23,7 @@ private slots:
 
 private:
     Ui::AddPersonsDialog *ui;
+    PersonService _PService;
 };
 
 #endif // ADDPERSONSDIALOG_H

@@ -6,6 +6,7 @@ AddPersonsDialog::AddPersonsDialog(QWidget *parent) :
     ui(new Ui::AddPersonsDialog)
 {
     ui->setupUi(this);
+
 }
 
 AddPersonsDialog::~AddPersonsDialog()
@@ -15,8 +16,48 @@ AddPersonsDialog::~AddPersonsDialog()
 
 void AddPersonsDialog::on_pushButtonAddPerson_clicked()
 {
-    //TODO:
-    /*AddPersonsDialog addperson;
-    int returnAddPersonValue = AddPersonsDialog.exec();
-    */
+    vector<Person> Persons;
+    Persons = _PService.getVectorFromDataAccess(Persons);
+
+    QString name = ui->inputPName->text();
+    QString gender = ui->inputPGender->text();
+    QString birthYear = ui->inputPBirthYear->text();
+    QString deathYear = ui->inputPDeathYear->text();
+
+    if(name.isEmpty())
+    {
+        //errormessage
+        return;
+    }
+    if(gender.isEmpty())
+    {
+        //errormessage
+        return;
+    }
+    if(birthYear.isEmpty())
+    {
+        //errormessage
+        return;
+    }
+    if(deathYear.isEmpty())
+    {
+        //errormessage
+        return;
+    }
+
+    bool success = _PService.addPerson(name.toStdString(), gender.toDouble(), birthYear.toInt(), deathYear.toInt());
+
+    if(success)
+    {
+        ui->inputPName->setText("");
+        ui->inputPGender->setText("");
+        ui->inputPBirthYear->setText("");
+        ui->inputPDeathYear->setText("");
+        //this->done(0);
+    }
+    else
+    {
+        //error message
+        //this->done(-1);
+    }
 }

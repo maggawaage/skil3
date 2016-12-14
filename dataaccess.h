@@ -14,8 +14,8 @@ public:
     DataAccess();
     vector<Person> fillVector(vector<Person>famousComputerphiles);
     vector<Computer> fillVector(vector<Computer>famousComputers);
-    void addPerson(string name, char gender, int birthYear, int deathYear);
-    void addComputer(string name, string type, int buildYear);
+    bool addPerson(string name, char gender, int birthYear, int deathYear);
+    bool addComputer(string name, string type, int buildYear);
     void editPersonsName(string trueName, string name);
     void editComputersName(string trueName, string name);
     void editPersonsGender(string trueName, char gender);

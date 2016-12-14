@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    displayComputers();
 }
 
 MainWindow::~MainWindow()
@@ -159,17 +160,38 @@ void MainWindow::on_Tabs_tabBarClicked(int index)
      qDebug() << "on tabs bar was clicked" << index << endl;
 }
 
-/*void MainWindow::on_pushButtonAddPerson_clicked()
+void MainWindow::on_pushButtonAddPerson_clicked()
 {
+    AddPersonsDialog addPersonsDialog;
+    int addPersonReturnValue = addPersonsDialog.exec();
 
+    if(addPersonReturnValue == 0)
+    {
+        displayPersons();
+    }
+    else
+    {
+        //errormessage
+    }
 }
 
 
 void MainWindow::on_pushButtonAddComp_clicked()
 {
-    //TODO:
+    AddComputersDialog addComputersDialog;
+    int addComputerReturnValue = addComputersDialog.exec();
+
+    if(addComputerReturnValue == 0)
+    {
+        displayComputers();
+    }
+    else
+    {
+        //errormessage
+    }
 }
 
+/*
 void MainWindow::on_pushButtonEditPerson_clicked()
 {
     //TODO:
@@ -206,3 +228,4 @@ void MainWindow::on_searchPersons_textChanged(const QString &arg1)
     string userInput = ui->searchPersons->text().toStdString();
     vector<Person> persons = _PService.searchPersons
 }*/
+

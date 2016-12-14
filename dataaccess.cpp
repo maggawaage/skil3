@@ -44,29 +44,39 @@ vector<Computer> DataAccess::fillVector(vector<Computer>famousComputers)
     return famousComputers;
 }
 
-void DataAccess::addPerson(string name, char gender, int birthYear, int deathYear)
+bool DataAccess::addPerson(string name, char gender, int birthYear, int deathYear)
 {
-    QSqlQuery query = QSqlQuery(_runningDB);
-    query.prepare("INSERT INTO Persons (Name, Gender, BirthYear, DeathYear) "
-                  "VALUES (?, ?, ?, ?)");
+    while(true)
+    {
+        QSqlQuery query = QSqlQuery(_runningDB);
+        query.prepare("INSERT INTO Persons (Name, Gender, BirthYear, DeathYear) "
+                      "VALUES (?, ?, ?, ?)");
 
-    query.addBindValue(QString::fromStdString(name));
-    query.addBindValue(gender);
-    query.addBindValue(birthYear);
-    query.addBindValue(deathYear);
-    query.exec();
+        query.addBindValue(QString::fromStdString(name));
+        query.addBindValue(gender);
+        query.addBindValue(birthYear);
+        query.addBindValue(deathYear);
+        query.exec();
+        return true;
+    }
+    return false;
 }
 
-void DataAccess::addComputer(string name, string type, int buildYear)
+bool DataAccess::addComputer(string name, string type, int buildYear)
 {
-    QSqlQuery query = QSqlQuery(_runningDB);
-    query.prepare("INSERT INTO Computers (Name, Type, BuildYear) "
-                  "VALUES (?, ?, ?)");
+    while(true)
+    {
+        QSqlQuery query = QSqlQuery(_runningDB);
+        query.prepare("INSERT INTO Computers (Name, Type, BuildYear) "
+                      "VALUES (?, ?, ?)");
 
-    query.addBindValue(QString::fromStdString(name));
-    query.addBindValue(QString::fromStdString(type));
-    query.addBindValue(buildYear);
-    query.exec();
+        query.addBindValue(QString::fromStdString(name));
+        query.addBindValue(QString::fromStdString(type));
+        query.addBindValue(buildYear);
+        query.exec();
+        return true;
+    }
+    return false;
 }
 
 void DataAccess::editPersonsName(string trueName, string name)

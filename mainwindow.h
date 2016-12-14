@@ -3,6 +3,7 @@
 #include "personservice.h"
 #include "computerservice.h"
 #include "addpersonsdialog.h"
+#include "addcomputersdialog.h"
 #include <QMainWindow>
 #include <QTableWidget>
 //#include <QTableWidgetItem>
@@ -28,9 +29,9 @@ public:
 
 private slots:
 
-    /*void on_pushButtonAddPerson_clicked();
+    void on_pushButtonAddPerson_clicked();
 
-    void on_pushButtonAddComp_clicked();
+    /*void on_pushButtonAddComp_clicked();
 
     void on_pushButtonEditPerson_clicked();
 
@@ -48,7 +49,7 @@ private slots:
 
     void on_Tabs_tabBarClicked(int index);
 
-
+    void on_pushButtonAddComp_clicked();
 
 private:
     Ui::MainWindow *ui;
