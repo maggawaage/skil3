@@ -50,7 +50,7 @@ vector<Person> MainWindow::displayPersons()
     return Persons;
 
 }
-
+//fengum lanað hjá gunnari kennara
 QString MainWindow::showGender(char input)
 {
     QString gender;
@@ -62,6 +62,7 @@ QString MainWindow::showGender(char input)
     {
         gender = 'F';
     }
+
     return gender;
 }
 

@@ -20,6 +20,16 @@ void PersonsDialog::on_pushButtonAddPerson_clicked()
     Persons = _PService.getVectorFromDataAccess(Persons);
 
     QString name = ui->inputPName->text();
+    //QString gender;
+    /*
+    if(ui->radioButton1->isChecked())
+    {
+        ui->inputPGender->text() = 'F';
+    }
+    else
+    {
+        ui->inputPGender->text() = 'M';
+    }*/
     QString gender = ui->inputPGender->text();
     QString birthYear = ui->inputPBirthYear->text();
     QString deathYear = ui->inputPDeathYear->text();
@@ -27,11 +37,7 @@ void PersonsDialog::on_pushButtonAddPerson_clicked()
     if(name.isEmpty())
     {
         //errormessage
-        return;
-    }
-    if(gender.isEmpty())
-    {
-        //errormessage
+        ui->labelErrorPersonName->setText("<span style='color: red'>Name cannot be empty</span>");
         return;
     }
     if(birthYear.isEmpty())
