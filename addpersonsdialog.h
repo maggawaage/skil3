@@ -15,6 +15,7 @@ class AddPersonsDialog : public QDialog
     Q_OBJECT
 
 public:
+    QString showGender(char input);
     explicit AddPersonsDialog(QWidget *parent = 0);
     ~AddPersonsDialog();
 
