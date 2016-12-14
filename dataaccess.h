@@ -16,13 +16,13 @@ public:
     vector<Computer> fillVector(vector<Computer>famousComputers);
     bool addPerson(string name, char gender, int birthYear, int deathYear);
     bool addComputer(string name, string type, int buildYear);
-    void editPersonsName(string trueName, string name);
-    void editComputersName(string trueName, string name);
-    void editPersonsGender(string trueName, char gender);
-    void editPersonsBirthYear(string trueName, int birthYear);
-    void editPersonsDeathYear(string trueName, int deathYear);
-    void editComputerType(string trueName, string computerType);
-    void editComputerBuildYear(string trueName, int buildYear);
+    void editPersonsName(string currentName, string newName);
+    void editComputersName(string currentName, string newName);
+    void editPersonsGender(string currentName, char gender);
+    void editPersonsBirthYear(string currentName, int birthYear);
+    void editPersonsDeathYear(string currentName, int deathYear);
+    void editComputerType(string currentName, string computerType);
+    void editComputerBuildYear(string currentName, int buildYear);
 
 
 

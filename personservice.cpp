@@ -20,23 +20,23 @@ bool PersonService::addPerson(string name, char gender, int birthYear, int death
     return false;
 }
 
-void PersonService::editPersonsName(string trueName, string name)
+void PersonService::editPersonsName(string currentName, string newName)
 {
-    _access.editPersonsName(trueName, name);
+    _access.editPersonsName(currentName, newName);
 }
 
-void PersonService::editPersonsGender(string trueName, char gender)
+void PersonService::editPersonsGender(string currentName, char gender)
 {
-    _access.editPersonsGender(trueName, gender);
+    _access.editPersonsGender(currentName, gender);
 }
 
-void PersonService::editPersonsBirthYear(string trueName, int birthYear)
+void PersonService::editPersonsBirthYear(string currentName, int birthYear)
 {
-    _access.editPersonsBirthYear(trueName, birthYear);
+    _access.editPersonsBirthYear(currentName, birthYear);
 }
 
-void PersonService::editPersonsDeathYear(string trueName, int deathYear)
+void PersonService::editPersonsDeathYear(string currentName, int deathYear)
 {
-    _access.editPersonsDeathYear(trueName, deathYear);
+    _access.editPersonsDeathYear(currentName, deathYear);
 }
 

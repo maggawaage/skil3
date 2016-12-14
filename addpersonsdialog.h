@@ -2,7 +2,6 @@
 #define ADDPERSONSDIALOG_H
 #include "mainwindow.h"
 #include "personservice.h"
-#include "computerservice.h"
 
 #include <QDialog>
 

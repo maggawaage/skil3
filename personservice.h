@@ -12,10 +12,10 @@ public:
     PersonService();
     vector<Person> getVectorFromDataAccess(vector<Person> Person);
     bool addPerson(string name, char gender, int birthYear, int deathYear);
-    void editPersonsName(string trueName, string name);
-    void editPersonsGender(string trueName, char gender);
-    void editPersonsBirthYear(string trueName, int birthYear);
-    void editPersonsDeathYear(string trueName, int deathYear);
+    void editPersonsName(string currentName, string newName);
+    void editPersonsGender(string currentName, char gender);
+    void editPersonsBirthYear(string currentName, int birthYear);
+    void editPersonsDeathYear(string currentName, int deathYear);
 
 
 private:

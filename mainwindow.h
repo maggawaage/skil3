@@ -4,6 +4,9 @@
 #include "computerservice.h"
 #include "addpersonsdialog.h"
 #include "addcomputersdialog.h"
+#include "editpersonsdialog.h"
+#include "editcomputersdialog.h"
+
 #include <QMainWindow>
 #include <QTableWidget>
 //#include <QTableWidgetItem>
@@ -50,6 +53,8 @@ private slots:
     void on_Tabs_tabBarClicked(int index);
 
     void on_pushButtonAddComp_clicked();
+
+    void on_pushButtonEditPerson_clicked();
 
 private:
     Ui::MainWindow *ui;

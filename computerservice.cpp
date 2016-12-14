@@ -20,17 +20,17 @@ bool ComputerService::addComputer(string name, string type, int buildYear)
     return false;
 }
 
-void ComputerService::editComputersName(string trueName, string name)
+void ComputerService::editComputersName(string currentName, string newName)
 {
-    _access.editComputersName(trueName, name);
+    _access.editComputersName(currentName, newName);
 }
 
-void ComputerService::editComputersType(string trueName, string type)
+void ComputerService::editComputersType(string currentName, string type)
 {
-    _access.editComputerType(trueName, type);
+    _access.editComputerType(currentName, type);
 }
 
-void ComputerService::editComputersBuildYear(string trueName, int buildYear)
+void ComputerService::editComputersBuildYear(string currentName, int buildYear)
 {
-    _access.editComputerBuildYear(trueName, buildYear);
+    _access.editComputerBuildYear(currentName, buildYear);
 }
