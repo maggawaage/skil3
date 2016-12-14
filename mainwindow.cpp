@@ -73,7 +73,8 @@ vector<Computer> MainWindow::displayComputers()
 
     ui->computersTable->setRowCount(Computers.size());
     ui->computersTable->clearContents();
-    ui->computersTable->setColumnWidth(0, 200);
+    ui->computersTable->setColumnWidth(0, 175);
+    ui->computersTable->setColumnWidth(1, 220);
 
     for(size_t row = 0; row < Computers.size(); row++)
     {
@@ -195,11 +196,23 @@ void MainWindow::on_pushButtonAddComp_clicked()
     }
 }
 
-/*
 void MainWindow::on_pushButtonEditPerson_clicked()
 {
-    //TODO:
+    EditPersonsDialog editPersonsDialog;
+    int editPersonReturnValue = editPersonsDialog.exec();
+
+    if(editPersonReturnValue == 0)
+    {
+        displayPersons();
+    }
+    else
+    {
+        //errormessage
+    }
+
 }
+
+/*
 
 void MainWindow::on_pushButtonEditComputer_clicked()
 {
@@ -232,4 +245,6 @@ void MainWindow::on_searchPersons_textChanged(const QString &arg1)
     string userInput = ui->searchPersons->text().toStdString();
     vector<Person> persons = _PService.searchPersons
 }*/
+
+
 
