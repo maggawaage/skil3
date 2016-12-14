@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    displayComputers();
+    displayPersons();
 }
 
 MainWindow::~MainWindow()
@@ -28,6 +28,7 @@ vector<Person> MainWindow::displayPersons()
 
     ui->personsTable->setRowCount(Persons.size());
     ui->personsTable->clearContents();
+    ui->personsTable->setColumnWidth(0, 175);
     for(size_t row = 0; row < Persons.size(); row++)
     {
 
@@ -71,6 +72,8 @@ vector<Computer> MainWindow::displayComputers()
 
     ui->computersTable->setRowCount(Computers.size());
     ui->computersTable->clearContents();
+    ui->computersTable->setColumnWidth(0, 200);
+
     for(size_t row = 0; row < Computers.size(); row++)
     {
 

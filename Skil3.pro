@@ -27,7 +27,9 @@ SOURCES += main.cpp\
     person.cpp \
     computer.cpp \
     addpersonsdialog.cpp \
-    addcomputersdialog.cpp
+    addcomputersdialog.cpp \
+    editpersonsdialog.cpp \
+    editcomputersdialog.cpp
 
 HEADERS  += mainwindow.h \
     dataaccess.h \
@@ -37,8 +39,12 @@ HEADERS  += mainwindow.h \
     person.h \
     computer.h \
     addpersonsdialog.h \
-    addcomputersdialog.h
+    addcomputersdialog.h \
+    editpersonsdialog.h \
+    editcomputersdialog.h
 
 FORMS    += mainwindow.ui \
     addpersonsdialog.ui \
-    addcomputersdialog.ui
+    addcomputersdialog.ui \
+    editpersonsdialog.ui \
+    editcomputersdialog.ui
