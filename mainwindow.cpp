@@ -166,8 +166,8 @@ void MainWindow::on_Tabs_tabBarClicked(int index)
 
 void MainWindow::on_pushButtonAddPerson_clicked()
 {
-    AddPersonsDialog addPersonsDialog;
-    int addPersonReturnValue = addPersonsDialog.exec();
+    PersonsDialog AddPersonsDialog;
+    int addPersonReturnValue = AddPersonsDialog.exec();
 
     if(addPersonReturnValue == 0)
     {
@@ -182,8 +182,8 @@ void MainWindow::on_pushButtonAddPerson_clicked()
 
 void MainWindow::on_pushButtonAddComp_clicked()
 {
-    AddComputersDialog addComputersDialog;
-    int addComputerReturnValue = addComputersDialog.exec();
+    ComputersDialog AddComputersDialog;
+    int addComputerReturnValue = AddComputersDialog.exec();
 
     if(addComputerReturnValue == 0)
     {
@@ -197,7 +197,7 @@ void MainWindow::on_pushButtonAddComp_clicked()
 
 void MainWindow::on_pushButtonEditPerson_clicked()
 {
-    EditPersonsDialog editPersonsDialog;
+    PersonsDialog editPersonsDialog;
     int editPersonReturnValue = editPersonsDialog.exec();
 
     if(editPersonReturnValue == 0)

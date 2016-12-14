@@ -28,20 +28,6 @@
         <string>Persons table</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout">
-        <item row="0" column="3" colspan="2">
-         <widget class="QLabel" name="labelSearchPerson">
-          <property name="text">
-           <string>Search:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="5">
-         <widget class="QLineEdit" name="searchPersons">
-          <property name="placeholderText">
-           <string>Search persons ...</string>
-          </property>
-         </widget>
-        </item>
         <item row="1" column="0" colspan="6">
          <widget class="QTableWidget" name="personsTable">
           <property name="toolTip">
@@ -49,6 +35,9 @@
           </property>
           <property name="styleSheet">
            <string notr="true">color: rgb(180, 180, 180);</string>
+          </property>
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
           </property>
           <property name="selectionBehavior">
            <enum>QAbstractItemView::SelectRows</enum>
@@ -91,6 +80,20 @@
           </property>
          </widget>
         </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="labelSearchPerson">
+          <property name="text">
+           <string>Search:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1" colspan="5">
+         <widget class="QLineEdit" name="searchPersons">
+          <property name="placeholderText">
+           <string>Search persons ...</string>
+          </property>
+         </widget>
+        </item>
         <item row="2" column="1">
          <widget class="QPushButton" name="pushButtonEditPerson">
           <property name="text">
@@ -105,7 +108,7 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="5">
+        <item row="2" column="3">
          <widget class="QPushButton" name="pushButtonPersConnection">
           <property name="text">
            <string>Connections</string>
@@ -126,16 +129,16 @@
           </property>
          </widget>
         </item>
-        <item row="0" column="3">
-         <widget class="QLineEdit" name="lineEditSearchComp"/>
-        </item>
-        <item row="2" column="0" colspan="4">
+        <item row="2" column="0" colspan="5">
          <widget class="QTableWidget" name="computersTable">
           <property name="toolTip">
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
           <property name="styleSheet">
            <string notr="true">color: rgb(180, 180, 180);</string>
+          </property>
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
           </property>
           <property name="selectionBehavior">
            <enum>QAbstractItemView::SelectRows</enum>
@@ -180,6 +183,13 @@
             </font>
            </property>
           </column>
+         </widget>
+        </item>
+        <item row="0" column="1" colspan="4">
+         <widget class="QLineEdit" name="lineEditSearchComp">
+          <property name="placeholderText">
+           <string>Searh computers ...</string>
+          </property>
          </widget>
         </item>
         <item row="0" column="0">

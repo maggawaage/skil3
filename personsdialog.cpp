@@ -1,20 +1,20 @@
-#include "addpersonsdialog.h"
-#include "ui_addpersonsdialog.h"
+#include "personsdialog.h"
+#include "ui_personsdialog.h"
 
-AddPersonsDialog::AddPersonsDialog(QWidget *parent) :
+PersonsDialog::PersonsDialog(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::AddPersonsDialog)
+    ui(new Ui::PersonsDialog)
 {
     ui->setupUi(this);
 
 }
 
-AddPersonsDialog::~AddPersonsDialog()
+PersonsDialog::~PersonsDialog()
 {
     delete ui;
 }
 
-void AddPersonsDialog::on_pushButtonAddPerson_clicked()
+void PersonsDialog::on_pushButtonAddPerson_clicked()
 {
     vector<Person> Persons;
     Persons = _PService.getVectorFromDataAccess(Persons);
@@ -60,4 +60,9 @@ void AddPersonsDialog::on_pushButtonAddPerson_clicked()
         //error message
         //this->done(-1);
     }
+}
+
+void PersonsDialog::on_pushButtonEditPerson_clicked()
+{
+    //TODO:
 }

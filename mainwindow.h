@@ -2,10 +2,9 @@
 #define MAINWINDOW_H
 #include "personservice.h"
 #include "computerservice.h"
-#include "addpersonsdialog.h"
-#include "addcomputersdialog.h"
-#include "editpersonsdialog.h"
-#include "editcomputersdialog.h"
+#include "personsdialog.h"
+#include "computersdialog.h"
+
 
 #include <QMainWindow>
 #include <QTableWidget>

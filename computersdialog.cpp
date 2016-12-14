@@ -1,19 +1,19 @@
-#include "addcomputersdialog.h"
-#include "ui_addcomputersdialog.h"
+#include "computersdialog.h"
+#include "ui_computersdialog.h"
 
-AddComputersDialog::AddComputersDialog(QWidget *parent) :
+ComputersDialog::ComputersDialog(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::AddComputersDialog)
+    ui(new Ui::ComputersDialog)
 {
     ui->setupUi(this);
 }
 
-AddComputersDialog::~AddComputersDialog()
+ComputersDialog::~ComputersDialog()
 {
     delete ui;
 }
 
-void AddComputersDialog::on_pushButtonAddComputer_clicked()
+void ComputersDialog::on_pushButtonAddComputer_clicked()
 {
     //TODO:
     vector<Computer> Computers;
