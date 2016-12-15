@@ -90,7 +90,6 @@ vector<Person> MainWindow::displayPersons(string string)
 
 }
 
-//fengum lanað hjá gunnari kennara
 QString MainWindow::showGender(char input)
 {
     QString gender;
@@ -101,12 +100,6 @@ QString MainWindow::showGender(char input)
     else if(input == 'F' || input == 'f')
     {
         gender = 'F';
-    }
-    else
-    {
-       // qDebug() << "error";
-        qDebug() << input << endl;
-        //error
     }
     return gender;
 }
@@ -227,19 +220,20 @@ void MainWindow::displayPersonsVector(vector<Person> printPersons, int x)
 
 void MainWindow::on_Tabs_tabBarClicked(int index)
 {
+    //Person
     if(index == 0)
     {
         displayPersons();
+        ui->pushButtonComConnection->setDisabled(true);
+        ui->pushButtonDeleteComputer->setDisabled(true);
     }
+    //Computer
     else if (index == 1)
     {
         displayComputers();
+        ui->pushButtonPersConnection->setDisabled(true);
+        ui->pushButtonDeletePerson->setDisabled(true);
     }
-    else if(index == 2)
-    {
-        //Another tab?
-    }
-     qDebug() << "on tabs bar was clicked" << index << endl;
 }
 
 void MainWindow::on_personsTable_clicked(const QModelIndex &index)

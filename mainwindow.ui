@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>533</width>
-    <height>529</height>
+    <width>850</width>
+    <height>1200</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>850</width>
+    <height>1200</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
@@ -25,7 +31,7 @@
        <enum>QTabWidget::North</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tabPerson">
        <attribute name="title">
@@ -117,6 +123,9 @@
         </item>
         <item>
          <widget class="QPushButton" name="pushButtonPersConnection">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="text">
            <string>Connections</string>
           </property>
@@ -218,8 +227,11 @@
         </item>
         <item>
          <widget class="QPushButton" name="pushButtonComConnection">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="text">
-           <string>Connection</string>
+           <string>Connections</string>
           </property>
          </widget>
         </item>
@@ -243,8 +255,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>533</width>
-     <height>22</height>
+     <width>850</width>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuShow">
@@ -262,8 +274,6 @@
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources>
-  <include location="resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

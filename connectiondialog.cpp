@@ -36,12 +36,6 @@ void ConnectionDialog::PersonOrComputer(int type, string name)
     }
 }
 
-//eyða
-void ConnectionDialog::test(QString name)
-{
-    qDebug() << name;
-}
-
 void ConnectionDialog::tableIfShowComputers(string personName)
 {
     vector<Computer> LinkedComputers;
@@ -82,13 +76,11 @@ void ConnectionDialog::tableIfShowPersons(string computerName)
         QString name = QString::fromStdString(CurrentPerson.getName());
         char ge = CurrentPerson.getGender();
         QString gender = showGender(ge);
-        test(gender);
         QString birthYear = QString::number(CurrentPerson.getBirthYear());
         QString deathYear = QString::number(CurrentPerson.getDeathYear());
 
         ui->linkedTable->setItem(row, 0, new QTableWidgetItem(name));
         ui->linkedTable->setItem(row, 1, new QTableWidgetItem(gender));
-        qDebug() << "gender" << gender;
         ui->linkedTable->setItem(row, 2, new QTableWidgetItem(birthYear));
         ui->linkedTable->setItem(row, 3, new QTableWidgetItem(deathYear));
     }
