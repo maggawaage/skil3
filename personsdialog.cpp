@@ -132,6 +132,12 @@ bool PersonsDialog::onlyNumbers(QString string)
 void PersonsDialog::on_pushButtonEditPerson_clicked()
 {
     //Uppfæra upplýsingar sem notandi breytti
+    vector<Person> Persons;
+    Persons = _PService.getVectorFromDataAccess(Persons);
+    string newName, currentName;
+
+    _PService.editPersonsName(currentName, newName);
+
 }
 
 char PersonsDialog::convertQstringToChar(QString str)

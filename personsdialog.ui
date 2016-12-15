@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>347</width>
-    <height>309</height>
+    <height>410</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -114,6 +114,12 @@ font: 18pt &quot;.SF NS Text&quot;;</string>
     <widget class="QPushButton" name="pushButtonEditPerson">
      <property name="text">
       <string>Confirm edit</string>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+     <property name="checked">
+      <bool>false</bool>
      </property>
     </widget>
    </item>
