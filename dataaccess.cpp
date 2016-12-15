@@ -177,7 +177,7 @@ vector<Person> DataAccess::parsePersonLine(QSqlQuery& query)
         char gender = query.value("Gender").toString().toDouble();
         int birthYear = query.value("BirthYear").toUInt();
         int deathYear = query.value("DeathYear").toUInt();
-        readToVec.push_back(Person(name, birthYear, gender, deathYear));
+        readToVec.push_back(Person(name, gender, birthYear, deathYear));
     }
     return readToVec;
 }
