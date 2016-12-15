@@ -18,7 +18,7 @@ public:
     void editPersonsDeathYear(string currentName, int deathYear);
     vector<Person> SearchName(vector <Person> list, string searchName);
 
-
+    static vector<Person> Search(vector <Person> list, string searchString);
 
 private:
     DataAccess _access;

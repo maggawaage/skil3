@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="resources.qrc">
+   <iconset>
     <normaloff>:/icons/Addicon.png</normaloff>:/icons/Addicon.png</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">

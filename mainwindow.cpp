@@ -50,6 +50,40 @@ vector<Person> MainWindow::displayPersons()
 
 }
 
+vector<Person> MainWindow::displayPersons(string string)
+{
+    vector<Person> Persons;
+    Persons = _PService.getVectorFromDataAccess(Persons);
+
+    Persons = PersonService::Search(Persons, string);
+
+    QString gender;
+
+    ui->personsTable->setRowCount(Persons.size());
+    ui->personsTable->clearContents();
+    ui->personsTable->setColumnWidth(0, 175);
+    for(size_t row = 0; row < Persons.size(); row++)
+    {
+
+        Person CurrentPerson = Persons.at(row);
+        QString name = QString::fromStdString(CurrentPerson.getName());
+        char ge = CurrentPerson.getGender();
+        gender = showGender(ge);
+        QString birthYear = QString::number(CurrentPerson.getBirthYear());
+        QString deathYear = QString::number(CurrentPerson.getDeathYear());
+
+        ui->personsTable->setItem(row, 0, new QTableWidgetItem(name));
+        ui->personsTable->setItem(row, 1, new QTableWidgetItem(gender));
+        ui->personsTable->setItem(row, 2, new QTableWidgetItem(birthYear));
+        ui->personsTable->setItem(row, 3, new QTableWidgetItem(deathYear));
+
+    }
+
+    _currentlyDisplayedPersons = Persons;
+    return Persons;
+
+}
+
 //fengum lanað hjá gunnari kennara
 QString MainWindow::showGender(char input)
 {
@@ -99,6 +133,38 @@ vector<Computer> MainWindow::displayComputers()
     return Computers;
 
 }
+
+vector<Computer> MainWindow::displayComputers(string string)
+{
+    vector<Computer> Computers;
+    Computers = _CService.getVectorFromDataAccess(Computers);
+
+    Computers = ComputerService::Search(Computers, string);
+
+    ui->computersTable->setRowCount(Computers.size());
+    ui->computersTable->clearContents();
+    ui->computersTable->setColumnWidth(0, 175);
+    ui->computersTable->setColumnWidth(1, 220);
+
+    for(size_t row = 0; row < Computers.size(); row++)
+    {
+
+        Computer CurrentComputer = Computers.at(row);
+        QString name = QString::fromStdString(CurrentComputer.getName());
+        QString type = QString::fromStdString(CurrentComputer.getType());
+        QString buildYear = QString::number(CurrentComputer.getBuildYear());
+
+        ui->computersTable->setItem(row, 0, new QTableWidgetItem(name));
+        ui->computersTable->setItem(row, 1, new QTableWidgetItem(type));
+        ui->computersTable->setItem(row, 2, new QTableWidgetItem(buildYear));
+
+    }
+
+    _currentlyDisplayedComputers = Computers;
+    return Computers;
+
+}
+
 
 void MainWindow::displayPersonsVector(vector<Person> printPersons, int x)
 {
@@ -291,3 +357,19 @@ void MainWindow::on_inputSearchPersons_textChanged(const QString &arg1)
 }
 
 */
+
+
+
+void MainWindow::on_inputSearchComp_textChanged(const QString &arg1)
+{
+    string a = arg1.toStdString();
+
+    displayComputers(a);
+}
+
+void MainWindow::on_inputSearchPersons_textChanged(const QString &arg1)
+{
+    string a = arg1.toStdString();
+
+    displayPersons(a);
+}

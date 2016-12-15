@@ -16,6 +16,8 @@ public:
     void editComputersType(string currentName, string type);
     void editComputersBuildYear(string currentName, int buildYear);
 
+    static vector<Computer> Search(vector <Computer> list, string searchString);
+
 private:
     DataAccess _access;
 

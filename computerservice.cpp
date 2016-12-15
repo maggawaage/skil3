@@ -34,3 +34,30 @@ void ComputerService::editComputersBuildYear(string currentName, int buildYear)
 {
     _access.editComputerBuildYear(currentName, buildYear);
 }
+
+vector<Computer> ComputerService::Search(vector <Computer> list, string searchString)
+{
+    vector <Computer> newList;
+
+    transform(searchString.begin(), searchString.end(), searchString.begin(), ::tolower);
+
+    for (size_t i = 0; i < list.size(); i++)
+    {
+        string name = list[i].getName();
+        transform(name.begin(), name.end(), name.begin(), ::tolower);
+
+        string type = list[i].getType();
+        transform(type.begin(), type.end(), type.begin(), ::tolower);
+
+        if (
+            ((name).find(searchString) != string::npos) ||
+            ((type).find(searchString) != string::npos) ||
+            (to_string(list[i].getBuildYear()).find(searchString) != string::npos)
+            )
+        {
+            newList.push_back(list[i]);
+        }
+    }
+
+    return newList;
+}

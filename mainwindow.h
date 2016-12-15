@@ -23,10 +23,11 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     vector<Person> displayPersons();
+    vector<Person> displayPersons(string string);
     vector<Computer> displayComputers();
+    vector<Computer> displayComputers(string string);
     void displayPersonsVector(vector<Person> printPersons, int x);
     QString showGender(char input);
-
 
 
 private slots:
@@ -54,6 +55,10 @@ private slots:
     void on_pushButtonComConnection_clicked();
 
     void on_inputSearchPersons_textChanged(const QString &arg1);*/
+
+    void on_inputSearchComp_textChanged(const QString &arg1);
+
+    void on_inputSearchPersons_textChanged(const QString &arg1);
 
 private:
     Ui::MainWindow *ui;
