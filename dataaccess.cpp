@@ -46,7 +46,7 @@ vector<Computer> DataAccess::fillVector(vector<Computer>famousComputers)
 
 bool DataAccess::addPerson(string name, char gender, int birthYear, int deathYear)
 {
-    qDebug() << gender;
+    qDebug() << "I am ad Data level" << gender;
 
   // while(true)
  //   {

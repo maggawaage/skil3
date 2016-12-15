@@ -104,7 +104,7 @@ QString MainWindow::showGender(char input)
     }
     else
     {
-        qDebug() << "error";
+       // qDebug() << "error";
         qDebug() << input << endl;
         //error
     }

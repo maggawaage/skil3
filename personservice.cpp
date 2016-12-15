@@ -12,12 +12,8 @@ vector<Person> PersonService::getVectorFromDataAccess(vector<Person> person)
 
 bool PersonService::addPerson(string name, char gender, int birthYear, int deathYear)
 {
-    while(true)
-    {
-        _access.addPerson(name, gender, birthYear, deathYear);
-        return true;
-    }
-    return false;
+    qDebug() << "I am at service layer: " << gender;
+     return _access.addPerson(name, gender, birthYear, deathYear);
 }
 
 void PersonService::editPersonsName(string currentName, string newName)

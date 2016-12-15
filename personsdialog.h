@@ -36,6 +36,7 @@ private slots:
 private:
     Ui::PersonsDialog *ui;
     PersonService _PService;
+    char convertQstringToChar(QString str);
 };
 
 #endif // PERSONSDIALOG_H
