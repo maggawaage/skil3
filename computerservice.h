@@ -18,6 +18,10 @@ public:
 
     static vector<Computer> Search(vector <Computer> list, string searchString);
 
+    //LINKS
+    vector<Person> getPersonsConnectedToComputer(string computerName);
+    void deleteConnectionComputer(string name);
+
 private:
     DataAccess _access;
 

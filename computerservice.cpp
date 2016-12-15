@@ -61,3 +61,16 @@ vector<Computer> ComputerService::Search(vector <Computer> list, string searchSt
 
     return newList;
 }
+
+///LINKS
+vector<Person> ComputerService::getPersonsConnectedToComputer(string computerName)
+{
+    int id=_access.getComputerIdByName(computerName);
+    return _access.getPersonsConnectedToComputers(id);
+}
+
+void ComputerService::deleteConnectionComputer(string name)
+{
+    int id =_access.getComputerIdByName(name);
+    _access.deleteConnectionComputer(id);
+}
