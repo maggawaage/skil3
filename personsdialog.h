@@ -31,6 +31,8 @@ public:
 private slots:
     void on_pushButtonAddPerson_clicked();
 
+    void on_pushButtonEditPerson_clicked();
+
 private:
     Ui::PersonsDialog *ui;
     PersonService _PService;

@@ -6,6 +6,12 @@
 
 using namespace std;
 
+//TODO LIST:
+//Fá gender til að virka
+//Fá edit fall til að uppfærast í gagnagrunni
+//Virkja edit takka
+//Fá connect föll til að virka
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -240,9 +246,8 @@ void MainWindow::on_personsTable_doubleClicked(const QModelIndex &index)
     editPersonsDialog.exec();
 
     //displayPersons();
-    /*gera í personsdialog::
-    int editPersonReturnValue = editPersonsDialog.exec();
-    ui->pushButtonEditPerson->setEnabled(true);*/
+    //gera í personsdialog
+    //kalla á takkafallið?
 
 }
 
@@ -260,6 +265,8 @@ void MainWindow::on_computersTable_doubleClicked(const QModelIndex &index)
 
     editComputersDialog.setComputer(computer);
     editComputersDialog.exec();
+
+    //kalla á takkafallið ?
 
 
 }

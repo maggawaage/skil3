@@ -128,3 +128,8 @@ bool PersonsDialog::onlyNumbers(QString string)
     return true;
 
 }
+
+void PersonsDialog::on_pushButtonEditPerson_clicked()
+{
+    //Uppfæra upplýsingar sem notandi breytti
+}

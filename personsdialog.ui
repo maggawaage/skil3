@@ -84,12 +84,12 @@
     <rect>
      <x>10</x>
      <y>150</y>
-     <width>59</width>
+     <width>81</width>
      <height>16</height>
     </rect>
    </property>
    <property name="text">
-    <string>BirthYear:</string>
+    <string>Birth year:</string>
    </property>
   </widget>
   <widget class="QLabel" name="labelDeathYear">
@@ -102,7 +102,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>DeathYear:</string>
+    <string>Death year:</string>
    </property>
   </widget>
   <widget class="QLabel" name="label">
@@ -164,8 +164,8 @@ font: 18pt &quot;.SF NS Text&quot;;</string>
   <widget class="QLabel" name="labelErrorPersonBY">
    <property name="geometry">
     <rect>
-     <x>79</x>
-     <y>140</y>
+     <x>80</x>
+     <y>150</y>
      <width>251</width>
      <height>20</height>
     </rect>
