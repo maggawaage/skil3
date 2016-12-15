@@ -36,6 +36,12 @@ void PersonsDialog::on_pushButtonAddPerson_clicked()
     ui->labelErrorPersonName->setText("");
     ui->labelErrorPersonBY->setText("");
     ui->labelErrorPersonDY->setText("");
+    if(checkIfSame(name.toStdString(), convertQstringToChar(gender), birthYear.toInt(), deathYear.toInt()))
+    {
+        //errormessage
+        ui->labelErrorPersonName->setText("<span style='color: red'>This person already exists</span>");
+        return;
+    }
     if(name.isEmpty())
     {
         //errormessage
@@ -66,6 +72,9 @@ void PersonsDialog::on_pushButtonAddPerson_clicked()
         ui->labelErrorPersonDY->setText("<span style='color: red'>You can only enter numbers</span>");
         return;
     }
+
+    //bæta við bool falli sem tjekkar hvort allt se eins
+
 
     bool success = _PService.addPerson(name.toStdString(), convertQstringToChar(gender), birthYear.toInt(), deathYear.toInt());
 
@@ -132,4 +141,21 @@ char PersonsDialog::convertQstringToChar(QString str)
     string stdString = str.toStdString();
     char charStr = stdString[0];
     return charStr;
+}
+bool PersonsDialog::checkIfSame(string name, char gender, int bY, int dY)
+{
+    vector<Person> Persons;
+    Persons = _PService.getVectorFromDataAccess(Persons);
+    for(size_t i = 0; i < Persons.size(); i++)
+    {
+        if( ( name == Persons.at(i).getName()     ) &
+            ( gender == Persons.at(i).getGender() ) &
+            ( bY == Persons.at(i).getBirthYear()  ) &
+            ( dY == Persons.at(i).getDeathYear()  )  )
+        {
+            return true;
+        }
+    }
+    return false;
+
 }

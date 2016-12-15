@@ -46,22 +46,15 @@ vector<Computer> DataAccess::fillVector(vector<Computer>famousComputers)
 
 bool DataAccess::addPerson(string name, char gender, int birthYear, int deathYear)
 {
-    qDebug() << "I am ad Data level" << gender;
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.prepare("INSERT INTO Persons (Name, Gender, BirthYear, DeathYear) "
+                     "VALUES (?, ?, ?, ?)");
 
-  // while(true)
- //   {
-        QSqlQuery query = QSqlQuery(_runningDB);
-        query.prepare("INSERT INTO Persons (Name, Gender, BirthYear, DeathYear) "
-                      "VALUES (?, ?, ?, ?)");
-
-        query.addBindValue(QString::fromStdString(name));
-        query.addBindValue(gender);
-        query.addBindValue(birthYear);
-        query.addBindValue(deathYear);
-        return query.exec();
-        //return true;
-  //  }
-   // return false;
+       query.addBindValue(QString::fromStdString(name));
+       query.addBindValue(gender);
+       query.addBindValue(birthYear);
+       query.addBindValue(deathYear);
+       return query.exec();
 }
 
 bool DataAccess::addComputer(string name, string type, int buildYear)

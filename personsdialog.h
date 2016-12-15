@@ -27,6 +27,7 @@ public:
     bool onlyNumbers(QString string);
     QString showGender(char input);
     void setPerson(Person person);
+    bool checkIfSame(string name, char gender, int bY, int dY);
 
 private slots:
     void on_pushButtonAddPerson_clicked();

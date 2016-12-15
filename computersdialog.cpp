@@ -22,6 +22,12 @@ void ComputersDialog::on_pushButtonAddComputer_clicked()
     QString type = ui->inputCType->text();
     QString buildYear = ui->inputCBuildYear->text();
 
+    if(checkIfSame(name.toStdString(), type.toStdString(), buildYear.toInt()))
+    {
+        //errormessage
+        ui->labelErrorComputerName->setText("<span style='color: red'>This computer already exists</span>");
+        return;
+    }
     if(name.isEmpty())
     {
         //errormessage
@@ -80,4 +86,20 @@ void ComputersDialog::setComputer(Computer computer)
     ui->inputCName->setText(name);
     ui->inputCType->setText(type);
     ui->inputCBuildYear->setText(buildYear);
+}
+bool ComputersDialog::checkIfSame(string name, string type, int bY)
+{
+    vector<Computer> Computers;
+    Computers = _CService.getVectorFromDataAccess(Computers);
+    for(size_t i = 0; i < Computers.size(); i++)
+    {
+        if( ( name == Computers.at(i).getName()     ) &
+            ( type == Computers.at(i).getType()     ) &
+            ( bY == Computers.at(i).getBuildYear()  ))
+        {
+            return true;
+        }
+    }
+    return false;
+
 }
