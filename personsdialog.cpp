@@ -100,3 +100,8 @@ void PersonsDialog::setPerson(Person person)
     //færa if else hér til að tékka villur
 
 }
+
+void PersonsDialog::on_pushButtonEditPerson_clicked()
+{
+    //
+}

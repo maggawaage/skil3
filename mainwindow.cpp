@@ -219,6 +219,10 @@ void MainWindow::on_pushButtonAddComp_clicked()
 void MainWindow::on_personsTable_doubleClicked(const QModelIndex &index)
 {
     PersonsDialog editPersonsDialog;
+    vector<Person> Persons;
+    Persons = _PService.getVectorFromDataAccess(Persons);
+    //ui->personsTable->clearContents();
+
     //ui->personsTable->selectionModel()->selection().indexes().at(0)
     //QModelIndex index = ui->personsTable->selectionModel()->selection().indexes().at(0);
     Person person;
@@ -235,6 +239,7 @@ void MainWindow::on_personsTable_doubleClicked(const QModelIndex &index)
     editPersonsDialog.setPerson(person);
     editPersonsDialog.exec();
 
+    //displayPersons();
     /*gera í personsdialog::
     int editPersonReturnValue = editPersonsDialog.exec();
     ui->pushButtonEditPerson->setEnabled(true);*/
@@ -255,6 +260,8 @@ void MainWindow::on_computersTable_doubleClicked(const QModelIndex &index)
 
     editComputersDialog.setComputer(computer);
     editComputersDialog.exec();
+
+
 }
 
 /*
