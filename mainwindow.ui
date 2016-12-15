@@ -31,7 +31,7 @@
        <enum>QTabWidget::North</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tabPerson">
        <attribute name="title">
@@ -123,6 +123,9 @@
         </item>
         <item>
          <widget class="QPushButton" name="pushButtonPersConnection">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="text">
            <string>Connections</string>
           </property>
@@ -224,8 +227,11 @@
         </item>
         <item>
          <widget class="QPushButton" name="pushButtonComConnection">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="text">
-           <string>Connection</string>
+           <string>Connections</string>
           </property>
          </widget>
         </item>

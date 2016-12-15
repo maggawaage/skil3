@@ -220,13 +220,19 @@ void MainWindow::displayPersonsVector(vector<Person> printPersons, int x)
 
 void MainWindow::on_Tabs_tabBarClicked(int index)
 {
+    //Person
     if(index == 0)
     {
         displayPersons();
+        ui->pushButtonComConnection->setDisabled(true);
+        ui->pushButtonDeleteComputer->setDisabled(true);
     }
+    //Computer
     else if (index == 1)
     {
         displayComputers();
+        ui->pushButtonPersConnection->setDisabled(true);
+        ui->pushButtonDeletePerson->setDisabled(true);
     }
 }
 
