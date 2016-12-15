@@ -137,3 +137,106 @@ void DataAccess::editComputerBuildYear(string currentName, int buildYear)
     query.bindValue(":Name", QString::fromStdString(currentName));
     query.exec();
 }
+
+//LINKS
+int DataAccess::getPersonIdByName(string name)
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.prepare("SELECT P.ID FROM Persons P WHERE P.Name = :Name;");
+    query.bindValue(":Name", QString::fromStdString(name));
+    query.exec();
+    query.first();
+    int id = query.value(0).toInt();
+    return id;
+}
+
+int DataAccess::getComputerIdByName(string name)
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.prepare("SELECT C.ID FROM Computers C WHERE C.Name = :Name");
+    query.bindValue(":Name", QString::fromStdString(name));
+    query.exec();
+    query.first();
+    int id = query.value(0).toInt();
+    return id;
+}
+
+vector<Person> DataAccess::parsePersonLine(QSqlQuery& query)
+{
+    vector<Person> readToVec;
+    while(query.next())
+    {
+        string name = query.value("Name").toString().toStdString();
+        char gender = query.value("Gender").toString().toDouble();
+        int birthYear = query.value("BirthYear").toUInt();
+        int deathYear = query.value("DeathYear").toUInt();
+        readToVec.push_back(Person(name, birthYear, gender, deathYear));
+    }
+    return readToVec;
+}
+
+vector<Computer> DataAccess::parseComputerLine(QSqlQuery& query)
+{
+    vector<Computer> readToVec;
+    while(query.next())
+    {
+        string name = query.value("Name").toString().toStdString();
+        string type = query.value("Type").toString().toStdString();
+        int buildYear = query.value("BuildYear").toUInt();
+        readToVec.push_back(Computer(name, type, buildYear));
+    }
+    return readToVec;
+}
+
+vector<Person> DataAccess::getPersonsConnectedToComputers(int id)
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.prepare("SELECT P.ID, P.Name, P.Gender, P.BirthYear, P.DeathYear FROM Persons P INNER JOIN CID_PID_LINK L ON L.Person_ID = P.ID WHERE L.Computer_ID = :id;");
+    query.bindValue(":id", id);
+    query.exec();
+    return parsePersonLine(query);
+}
+
+vector<Computer> DataAccess::getComputersConnectedToPersons(int id)
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.prepare("SELECT C.ID, C.Name, C.Type, C.BuildYear FROM Computers C INNER JOIN CID_PID_LINK L ON L.Computer_ID = C.ID WHERE L.Person_ID = :id;");
+    query.bindValue(":id", id);
+    query.exec();
+    return parseComputerLine(query);
+}
+//
+void DataAccess::deleteConnectionComputer(int ComputerID)
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.prepare("DELETE FROM CID_PID_LINK  WHERE Computer_ID=:CID");
+    query.bindValue(":CID", ComputerID);
+    query.exec();
+}
+
+void DataAccess::deleteConnectionPerson(int PersonID)
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.prepare("DELETE FROM CID_PID_LINK  WHERE Person_ID=:PID");
+    query.bindValue(":PID", PersonID);
+    query.exec();
+}
+
+void DataAccess::deleteConnection(int PersonID, int ComputerID)
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.prepare("DELETE FROM CID_PID_LINK  WHERE Person_ID=:PID AND Computer_ID=:CID");
+    query.bindValue(":PID", PersonID);
+    query.bindValue(":CID", ComputerID);
+    query.exec();
+}
+
+void DataAccess::linkPersonToComputer(int PersonID, int ComputerID)
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.prepare("INSERT INTO CID_PID_LINK (Person_ID, Computer_ID) "
+                  "VALUES (?, ?)");
+    query.addBindValue(PersonID);
+    query.addBindValue(ComputerID);
+    query.exec();
+}

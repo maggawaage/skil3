@@ -63,3 +63,29 @@ vector<Person> PersonService::Search(vector <Person> list, string searchString)
     return newList;
 }
 
+//LINKS
+vector<Computer> PersonService::getComputersConnectedToPerson(string personName)
+{
+    int id =_access.getPersonIdByName(personName);
+    return _access.getComputersConnectedToPersons(id);
+}
+
+void PersonService::deleteConnectionPerson(string name)
+{
+    int id =_access.getPersonIdByName(name);
+    _access.deleteConnectionPerson(id);
+}
+
+void PersonService::deleteConnection(string pName, string cName)
+{
+    int pID =_access.getPersonIdByName(pName);
+    int cID =_access.getComputerIdByName(cName);
+    _access.deleteConnection(pID, cID);
+}
+
+void PersonService::linkPersonToComputer(string pName, string cName)
+{
+    int pID =_access.getPersonIdByName(pName);
+    int cID =_access.getComputerIdByName(cName);
+    _access.linkPersonToComputer(pID, cID);
+}

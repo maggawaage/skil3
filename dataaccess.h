@@ -24,6 +24,18 @@ public:
     void editComputerType(string currentName, string computerType);
     void editComputerBuildYear(string currentName, int buildYear);
 
+    //LINKS
+    int getComputerIdByName(string name);
+    int getPersonIdByName(string name);
+    vector<Person> parsePersonLine(QSqlQuery& query);
+    vector<Computer> parseComputerLine(QSqlQuery& query);
+    vector<Computer> getComputersConnectedToPersons(int id);
+    vector<Person> getPersonsConnectedToComputers(int id);
+    void deleteConnectionComputer(int ComputerID);
+    void deleteConnectionPerson(int PersonID);
+    void deleteConnection(int PersonID, int ComputerID);
+    void linkPersonToComputer(int PersonID, int ComputerID);
+
 
 
 

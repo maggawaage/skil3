@@ -246,12 +246,14 @@ void MainWindow::on_personsTable_clicked(const QModelIndex &index)
 {
     //ui->pushButtonEditPerson->setEnabled(true);
     ui->pushButtonDeletePerson->setEnabled(true);
+    ui->pushButtonPersConnection->setEnabled(true);
 }
 
 void MainWindow::on_computersTable_clicked(const QModelIndex &index)
 {
     //ui->pushButtonEditComputer->setEnabled(true);
     ui->pushButtonDeleteComputer->setEnabled(true);
+    ui->pushButtonComConnection->setEnabled(true);
 }
 
 void MainWindow::on_pushButtonAddPerson_clicked()
@@ -347,16 +349,27 @@ void MainWindow::on_pushButtonDeleteComputer_clicked()
 {
     //TODO:
 }
-
+*/
 void MainWindow::on_pushButtonPersConnection_clicked()
 {
-    //TODO:
+    int currentPersonIndex = ui->personsTable->currentIndex().row();
+    string currentPersonIndexName = _currentlyDisplayedPersons.at(currentPersonIndex).getName();
+
+    _Connection.PersonOrComputer(1, currentPersonIndexName);
+    _Connection.setModal(true);
+    _Connection.exec();
 }
 
 void MainWindow::on_pushButtonComConnection_clicked()
 {
-    //TODO:
+    int currentComputerIndex = ui->computersTable->currentIndex().row();
+    string currentComputerIndexName = _currentlyDisplayedComputers.at(currentComputerIndex).getName();
+
+    _Connection.PersonOrComputer(0, currentComputerIndexName);
+    _Connection.setModal(true);
+    _Connection.exec();
 }
+/*
 
 void MainWindow::on_inputSearchPersons_textChanged(const QString &arg1)
 {
@@ -364,7 +377,6 @@ void MainWindow::on_inputSearchPersons_textChanged(const QString &arg1)
 }
 
 */
-
 
 
 void MainWindow::on_inputSearchComp_textChanged(const QString &arg1)
