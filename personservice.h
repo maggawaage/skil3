@@ -20,6 +20,8 @@ public:
 
     static vector<Person> Search(vector <Person> list, string searchString);
 
+    static void deletePerson(int id);
+
 private:
     DataAccess _access;
 

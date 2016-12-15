@@ -23,8 +23,8 @@ public:
     void editPersonsDeathYear(string currentName, int deathYear);
     void editComputerType(string currentName, string computerType);
     void editComputerBuildYear(string currentName, int buildYear);
-
-
+    void deletePerson(int id);
+    void deleteComputer(int id);
 
 
 private:

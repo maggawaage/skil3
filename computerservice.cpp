@@ -53,11 +53,18 @@ vector<Computer> ComputerService::Search(vector <Computer> list, string searchSt
             ((name).find(searchString) != string::npos) ||
             ((type).find(searchString) != string::npos) ||
             (to_string(list[i].getBuildYear()).find(searchString) != string::npos)
-            )
+           )
         {
             newList.push_back(list[i]);
         }
     }
 
     return newList;
+}
+
+void ComputerService::deleteComputer(int id)
+{
+    _access.deleteComputer(id);
+
+    qDebug() << "2";
 }

@@ -18,6 +18,8 @@ public:
 
     static vector<Computer> Search(vector <Computer> list, string searchString);
 
+    void deleteComputer(int id);
+
 private:
     DataAccess _access;
 

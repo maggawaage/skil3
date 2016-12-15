@@ -25,7 +25,7 @@
        <enum>QTabWidget::North</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tabPerson">
        <attribute name="title">
@@ -251,6 +251,8 @@
     <property name="title">
      <string>Git link</string>
     </property>
+    <addaction name="separator"/>
+    <addaction name="actionGo_to_link"/>
    </widget>
    <widget class="QMenu" name="menuAbout">
     <property name="title">
@@ -260,6 +262,11 @@
    <addaction name="menuAbout"/>
    <addaction name="menuShow"/>
   </widget>
+  <action name="actionGo_to_link">
+   <property name="text">
+    <string>Go to link</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>

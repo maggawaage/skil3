@@ -380,3 +380,34 @@ void MainWindow::on_inputSearchPersons_textChanged(const QString &arg1)
 
     displayPersons(a);
 }
+
+
+void MainWindow::on_actionGo_to_link_triggered(bool checked)
+{
+    qDebug() << "adkfjaldkf";
+
+    #ifdef _WIN32
+    {
+    system ("start https://github.com/maggawaage/skil2");
+    }
+    #else //In any other OS
+    {
+        system ("open https://github.com/maggawaage/skil2");
+    }
+    #endif
+}
+
+void MainWindow::on_pushButtonDeletePerson_clicked()
+{
+    // PersonService::deletePerson(string trueName);
+}
+
+void MainWindow::on_pushButtonDeleteComputer_clicked()
+{
+    int currentComputerIndex = ui->computersTable->currentIndex().row();
+    _CService.deleteComputer(currentComputerIndex);
+
+    // ui->computersTable->clear();
+
+    // displayComputers();
+}

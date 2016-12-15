@@ -68,3 +68,11 @@ vector<Person> PersonService::Search(vector <Person> list, string searchString)
     return newList;
 }
 
+void PersonService::deletePerson(int id)
+{
+    DataAccess _access;
+    _access.deletePerson(id);
+}
+
+
+
