@@ -15,6 +15,7 @@ class ComputersDialog : public QDialog
 public:
     explicit ComputersDialog(QWidget *parent = 0);
     ~ComputersDialog();
+    bool onlyNumbers(QString string);
 
 private slots:
     void on_pushButtonAddComputer_clicked();

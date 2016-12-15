@@ -58,9 +58,14 @@ QString MainWindow::showGender(char input)
     {
         gender = 'M';
     }
-    else
+    else if(input == 'F' || input == 'f')
     {
         gender = 'F';
+    }
+    else
+    {
+        qDebug() << "error";
+        qDebug() << input << endl;
     }
 
     return gender;
