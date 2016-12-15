@@ -26,16 +26,25 @@ void ComputersDialog::on_pushButtonAddComputer_clicked()
     if(name.isEmpty())
     {
         //errormessage
+        ui->labelErrorComputerName->setText("<span style='color: red'>Name cannot be empty</span>");
         return;
     }
     if(type.isEmpty())
     {
         //errormessage
+        ui->labelErrorComputerType->setText("<span style='color: red'>Type cannot be empty</span>");
         return;
     }
     if(buildYear.isEmpty())
     {
         //errormessage
+        ui->labelErrorComputerBY->setText("<span style='color: red'>Build year cannot be empty</span>");
+        return;
+    }
+    else if(!onlyNumbers(buildYear))
+    {
+        //errormessage
+        ui->labelErrorComputerBY->setText("<span style='color: red'>You can only enter numbers</span>");
         return;
     }
 
@@ -54,6 +63,15 @@ void ComputersDialog::on_pushButtonAddComputer_clicked()
         //this->done(-1);
     }
 }
+bool ComputersDialog::onlyNumbers(QString string)
+{
+    for(int i = 0; i < string.size(); i++)
+    {
+        if(string[i].isDigit())
+            return false;
+    }
+    return true;
+}
 
 void ComputersDialog::setComputer(Computer computer)
 {
@@ -65,5 +83,3 @@ void ComputersDialog::setComputer(Computer computer)
     ui->inputCType->setText(type);
     ui->inputCBuildYear->setText(buildYear);
 }
-
-

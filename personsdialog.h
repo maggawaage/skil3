@@ -2,6 +2,10 @@
 #define PERSONSDIALOG_H
 #include "mainwindow.h"
 #include "personservice.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <ctype.h>
+#include <QChar>
 
 #include <QDialog>
 #include <QTableWidget>
@@ -20,13 +24,12 @@ class PersonsDialog : public QDialog
 public:
     explicit PersonsDialog(QWidget *parent = 0);
     ~PersonsDialog();
+    bool onlyNumbers(QString string);
     QString showGender(char input);
     void setPerson(Person person);
 
 private slots:
     void on_pushButtonAddPerson_clicked();
-    
-    void on_pushButtonEditPerson_clicked();
 
 private:
     Ui::PersonsDialog *ui;

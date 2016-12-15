@@ -49,6 +49,7 @@ vector<Person> MainWindow::displayPersons()
     return Persons;
 
 }
+
 //fengum lanað hjá gunnari kennara
 QString MainWindow::showGender(char input)
 {
@@ -63,9 +64,10 @@ QString MainWindow::showGender(char input)
     }
     else
     {
+        qDebug() << "error";
+        qDebug() << input << endl;
         //error
     }
-
     return gender;
 }
 
@@ -180,7 +182,6 @@ void MainWindow::on_computersTable_clicked(const QModelIndex &index)
     ui->pushButtonDeleteComputer->setEnabled(true);
 }
 
-
 void MainWindow::on_pushButtonAddPerson_clicked()
 {
     PersonsDialog AddPersonsDialog;
@@ -197,7 +198,6 @@ void MainWindow::on_pushButtonAddPerson_clicked()
         //qDebug() << "error";
     }
 }
-
 
 void MainWindow::on_pushButtonAddComp_clicked()
 {

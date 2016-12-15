@@ -18,20 +18,22 @@ void PersonsDialog::on_pushButtonAddPerson_clicked()
 {
     vector<Person> Persons;
     Persons = _PService.getVectorFromDataAccess(Persons);
+    QString name = ui->inputPName->text();
 
-   QString name = ui->inputPName->text();
-    //QString gender;
-    /*
-    if(ui->radioButton1->isChecked())
+    QString gender;
+    if(ui->radioButtonFemale->isChecked())
     {
-        ui->inputPGender->text() = 'F';
+        ui->radioButtonFemale->text() = 'F';
+        gender = 'F';
+        qDebug() << "hello";
     }
     else
     {
-        ui->inputPGender->text() = 'M';
-    }*/
-
-    QString gender = ui->inputPGender->text();
+        ui->radioButtonMale->text() = 'M';
+        gender = 'M';
+        qDebug() << "world";
+    }
+    //QString gender = ui->inputPGender->text();
     QString birthYear = ui->inputPBirthYear->text();
     QString deathYear = ui->inputPDeathYear->text();
 
@@ -44,14 +46,28 @@ void PersonsDialog::on_pushButtonAddPerson_clicked()
     if(birthYear.isEmpty())
     {
         //errormessage
+        ui->labelErrorPersonBY->setText("<span style='color: red'>Birth year cannot be empty</span>");
+        return;
+    }
+    else if(!onlyNumbers(birthYear))
+    {
+        //errormessage
+        ui->labelErrorPersonBY->setText("<span style='color: red'>You can only enter numbers</span>");
         return;
     }
     if(deathYear.isEmpty())
     {
         //errormessage
+        ui->labelErrorPersonDY->setText("<span style='color: red'>Death year cannot be empty</span>");
         return;
     }
-
+    else if(!onlyNumbers(deathYear))
+    {
+        //errormessage
+        ui->labelErrorPersonDY->setText("<span style='color: red'>You can only enter numbers</span>");
+        return;
+    }
+    qDebug() << gender;
     bool success = _PService.addPerson(name.toStdString(), gender.toDouble(), birthYear.toInt(), deathYear.toInt());
 
     if(success)
@@ -101,7 +117,14 @@ void PersonsDialog::setPerson(Person person)
 
 }
 
-void PersonsDialog::on_pushButtonEditPerson_clicked()
+
+bool PersonsDialog::onlyNumbers(QString string)
 {
-    //
+    for(int i = 0; i < string.size(); i++)
+    {
+        if(string[i].isDigit())
+            return false;
+    }
+    return true;
+
 }
