@@ -90,7 +90,6 @@ vector<Person> MainWindow::displayPersons(string string)
 
 }
 
-//fengum lanað hjá gunnari kennara
 QString MainWindow::showGender(char input)
 {
     QString gender;
@@ -101,12 +100,6 @@ QString MainWindow::showGender(char input)
     else if(input == 'F' || input == 'f')
     {
         gender = 'F';
-    }
-    else
-    {
-        qDebug() << "error";
-        qDebug() << input << endl;
-        //error
     }
     return gender;
 }
@@ -227,31 +220,34 @@ void MainWindow::displayPersonsVector(vector<Person> printPersons, int x)
 
 void MainWindow::on_Tabs_tabBarClicked(int index)
 {
+    //Person
     if(index == 0)
     {
         displayPersons();
+        ui->pushButtonComConnection->setDisabled(true);
+        ui->pushButtonDeleteComputer->setDisabled(true);
     }
+    //Computer
     else if (index == 1)
     {
         displayComputers();
+        ui->pushButtonPersConnection->setDisabled(true);
+        ui->pushButtonDeletePerson->setDisabled(true);
     }
-    else if(index == 2)
-    {
-        //Another tab?
-    }
-     qDebug() << "on tabs bar was clicked" << index << endl;
 }
 
 void MainWindow::on_personsTable_clicked(const QModelIndex &index)
 {
     //ui->pushButtonEditPerson->setEnabled(true);
     ui->pushButtonDeletePerson->setEnabled(true);
+    ui->pushButtonPersConnection->setEnabled(true);
 }
 
 void MainWindow::on_computersTable_clicked(const QModelIndex &index)
 {
     //ui->pushButtonEditComputer->setEnabled(true);
     ui->pushButtonDeleteComputer->setEnabled(true);
+    ui->pushButtonComConnection->setEnabled(true);
 }
 
 void MainWindow::on_pushButtonAddPerson_clicked()
@@ -347,16 +343,27 @@ void MainWindow::on_pushButtonDeleteComputer_clicked()
 {
     //TODO:
 }
-
+*/
 void MainWindow::on_pushButtonPersConnection_clicked()
 {
-    //TODO:
+    int currentPersonIndex = ui->personsTable->currentIndex().row();
+    string currentPersonIndexName = _currentlyDisplayedPersons.at(currentPersonIndex).getName();
+
+    _Connection.PersonOrComputer(1, currentPersonIndexName);
+    _Connection.setModal(true);
+    _Connection.exec();
 }
 
 void MainWindow::on_pushButtonComConnection_clicked()
 {
-    //TODO:
+    int currentComputerIndex = ui->computersTable->currentIndex().row();
+    string currentComputerIndexName = _currentlyDisplayedComputers.at(currentComputerIndex).getName();
+
+    _Connection.PersonOrComputer(0, currentComputerIndexName);
+    _Connection.setModal(true);
+    _Connection.exec();
 }
+/*
 
 void MainWindow::on_inputSearchPersons_textChanged(const QString &arg1)
 {
@@ -364,7 +371,6 @@ void MainWindow::on_inputSearchPersons_textChanged(const QString &arg1)
 }
 
 */
-
 
 
 void MainWindow::on_inputSearchComp_textChanged(const QString &arg1)

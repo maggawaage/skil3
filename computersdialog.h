@@ -18,6 +18,7 @@ public:
     bool onlyNumbers(QString string);
 
     void setComputer(Computer computer);
+    bool checkIfSame(string name, string type, int bY);
 
 private slots:
     void on_pushButtonAddComputer_clicked();

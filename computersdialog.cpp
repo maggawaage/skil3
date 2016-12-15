@@ -18,11 +18,16 @@ void ComputersDialog::on_pushButtonAddComputer_clicked()
     //TODO:
     vector<Computer> Computers;
     Computers = _CService.getVectorFromDataAccess(Computers);
-
     QString name = ui->inputCName->text();
     QString type = ui->inputCType->text();
     QString buildYear = ui->inputCBuildYear->text();
 
+    if(checkIfSame(name.toStdString(), type.toStdString(), buildYear.toInt()))
+    {
+        //errormessage
+        ui->labelErrorComputerName->setText("<span style='color: red'>This computer already exists</span>");
+        return;
+    }
     if(name.isEmpty())
     {
         //errormessage
@@ -55,7 +60,7 @@ void ComputersDialog::on_pushButtonAddComputer_clicked()
         ui->inputCName->setText("");
         ui->inputCType->setText("");
         ui->inputCBuildYear->setText("");
-        //this->done(0);
+        this->done(0);
     }
     else
     {
@@ -67,7 +72,7 @@ bool ComputersDialog::onlyNumbers(QString string)
 {
     for(int i = 0; i < string.size(); i++)
     {
-        if(string[i].isDigit())
+        if(!(string[i].isDigit()))
             return false;
     }
     return true;
@@ -78,8 +83,23 @@ void ComputersDialog::setComputer(Computer computer)
     QString name = QString::fromStdString(computer.getName());
     QString type = QString::fromStdString(computer.getType());
     QString buildYear = QString::number(computer.getBuildYear());
-    //qDebug() << name;
     ui->inputCName->setText(name);
     ui->inputCType->setText(type);
     ui->inputCBuildYear->setText(buildYear);
+}
+bool ComputersDialog::checkIfSame(string name, string type, int bY)
+{
+    vector<Computer> Computers;
+    Computers = _CService.getVectorFromDataAccess(Computers);
+    for(size_t i = 0; i < Computers.size(); i++)
+    {
+        if( ( name == Computers.at(i).getName()     ) &
+            ( type == Computers.at(i).getType()     ) &
+            ( bY == Computers.at(i).getBuildYear()  ))
+        {
+            return true;
+        }
+    }
+    return false;
+
 }

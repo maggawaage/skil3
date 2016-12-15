@@ -1,5 +1,6 @@
 #include "personsdialog.h"
 #include "ui_personsdialog.h"
+#include <iostream>
 
 PersonsDialog::PersonsDialog(QWidget *parent) :
     QDialog(parent),
@@ -19,24 +20,28 @@ void PersonsDialog::on_pushButtonAddPerson_clicked()
     vector<Person> Persons;
     Persons = _PService.getVectorFromDataAccess(Persons);
     QString name = ui->inputPName->text();
-
     QString gender;
     if(ui->radioButtonFemale->isChecked())
     {
         ui->radioButtonFemale->text() = 'F';
         gender = 'F';
-        qDebug() << "hello";
     }
     else
     {
         ui->radioButtonMale->text() = 'M';
         gender = 'M';
-        qDebug() << "world";
     }
-    //QString gender = ui->inputPGender->text();
     QString birthYear = ui->inputPBirthYear->text();
     QString deathYear = ui->inputPDeathYear->text();
-
+    ui->labelErrorPersonName->setText("");
+    ui->labelErrorPersonBY->setText("");
+    ui->labelErrorPersonDY->setText("");
+    if(checkIfSame(name.toStdString(), convertQstringToChar(gender), birthYear.toInt(), deathYear.toInt()))
+    {
+        //errormessage
+        ui->labelErrorPersonName->setText("<span style='color: red'>This person already exists</span>");
+        return;
+    }
     if(name.isEmpty())
     {
         //errormessage
@@ -67,16 +72,17 @@ void PersonsDialog::on_pushButtonAddPerson_clicked()
         ui->labelErrorPersonDY->setText("<span style='color: red'>You can only enter numbers</span>");
         return;
     }
-    qDebug() << gender;
-    bool success = _PService.addPerson(name.toStdString(), gender.toDouble(), birthYear.toInt(), deathYear.toInt());
+
+    //bæta við bool falli sem tjekkar hvort allt se eins
+
+
+    bool success = _PService.addPerson(name.toStdString(), convertQstringToChar(gender), birthYear.toInt(), deathYear.toInt());
 
     if(success)
     {
         ui->inputPName->setText("");
-        ui->inputPGender->setText("");
         ui->inputPBirthYear->setText("");
         ui->inputPDeathYear->setText("");
-
         this->done(0);
     }
     else
@@ -100,7 +106,6 @@ QString PersonsDialog::showGender(char input)
 
     return gender;
 }
-
 void PersonsDialog::setPerson(Person person)
 {
     QString name = QString::fromStdString(person.getName());
@@ -108,28 +113,55 @@ void PersonsDialog::setPerson(Person person)
     QString gender = showGender(ge);
     QString birthYear = QString::number(person.getBirthYear());
     QString deathYear = QString::number(person.getDeathYear());
-    //qDebug() << name;
     ui->inputPName->setText(name);
-    ui->inputPGender->setText(gender);
     ui->inputPBirthYear->setText(birthYear);
     ui->inputPDeathYear->setText(deathYear);
     //færa if else hér til að tékka villur
 
 }
-
-
 bool PersonsDialog::onlyNumbers(QString string)
 {
     for(int i = 0; i < string.size(); i++)
     {
-        if(string[i].isDigit())
+        if(!(string[i].isDigit()))
             return false;
     }
     return true;
-
 }
 
 void PersonsDialog::on_pushButtonEditPerson_clicked()
 {
     //Uppfæra upplýsingar sem notandi breytti
+    vector<Person> Persons;
+    Persons = _PService.getVectorFromDataAccess(Persons);
+    string newName, currentName;
+
+    _PService.editPersonsName(currentName, newName);
+
+}
+
+char PersonsDialog::convertQstringToChar(QString str)
+{
+    //We did not find any easy way to convert a Qstring to char,
+    //so we convert it first to std string, and then to char.
+    string stdString = str.toStdString();
+    char charStr = stdString[0];
+    return charStr;
+}
+bool PersonsDialog::checkIfSame(string name, char gender, int bY, int dY)
+{
+    vector<Person> Persons;
+    Persons = _PService.getVectorFromDataAccess(Persons);
+    for(size_t i = 0; i < Persons.size(); i++)
+    {
+        if( ( name == Persons.at(i).getName()     ) &
+            ( gender == Persons.at(i).getGender() ) &
+            ( bY == Persons.at(i).getBirthYear()  ) &
+            ( dY == Persons.at(i).getDeathYear()  )  )
+        {
+            return true;
+        }
+    }
+    return false;
+
 }

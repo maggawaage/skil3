@@ -26,6 +26,20 @@ public:
     void deletePerson(int id);
     void deleteComputer(int id);
 
+    //LINKS
+    int getComputerIdByName(string name);
+    int getPersonIdByName(string name);
+    vector<Person> parsePersonLine(QSqlQuery& query);
+    vector<Computer> parseComputerLine(QSqlQuery& query);
+    vector<Computer> getComputersConnectedToPersons(int id);
+    vector<Person> getPersonsConnectedToComputers(int id);
+    void deleteConnectionComputer(int ComputerID);
+    void deleteConnectionPerson(int PersonID);
+    void deleteConnection(int PersonID, int ComputerID);
+    void linkPersonToComputer(int PersonID, int ComputerID);
+
+
+
 
 private:
     QSqlDatabase _runningDB;

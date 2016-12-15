@@ -22,6 +22,13 @@ public:
 
     static void deletePerson(int id);
 
+    //LINKS
+    vector<Computer> getComputersConnectedToPerson(string personName);
+    void deleteConnectionPerson(string name);
+    void deleteConnection(string pName, string cName);
+    void linkPersonToComputer(string pName, string cName);
+
+
 private:
     DataAccess _access;
 

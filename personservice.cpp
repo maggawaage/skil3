@@ -12,12 +12,7 @@ vector<Person> PersonService::getVectorFromDataAccess(vector<Person> person)
 
 bool PersonService::addPerson(string name, char gender, int birthYear, int deathYear)
 {
-    while(true)
-    {
-        _access.addPerson(name, gender, birthYear, deathYear);
-        return true;
-    }
-    return false;
+     return _access.addPerson(name, gender, birthYear, deathYear);
 }
 
 void PersonService::editPersonsName(string currentName, string newName)
@@ -74,5 +69,30 @@ void PersonService::deletePerson(int id)
     _access.deletePerson(id);
 }
 
+//LINKS
+vector<Computer> PersonService::getComputersConnectedToPerson(string personName)
+{
+    int id =_access.getPersonIdByName(personName);
+    return _access.getComputersConnectedToPersons(id);
+}
 
+void PersonService::deleteConnectionPerson(string name)
+{
+    int id =_access.getPersonIdByName(name);
+    _access.deleteConnectionPerson(id);
+}
+
+void PersonService::deleteConnection(string pName, string cName)
+{
+    int pID =_access.getPersonIdByName(pName);
+    int cID =_access.getComputerIdByName(cName);
+    _access.deleteConnection(pID, cID);
+}
+
+void PersonService::linkPersonToComputer(string pName, string cName)
+{
+    int pID =_access.getPersonIdByName(pName);
+    int cID =_access.getComputerIdByName(cName);
+    _access.linkPersonToComputer(pID, cID);
+}
 

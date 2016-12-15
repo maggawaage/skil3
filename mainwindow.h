@@ -3,6 +3,7 @@
 #include "personservice.h"
 #include "computerservice.h"
 #include "personsdialog.h"
+#include "connectiondialog.h"
 #include "computersdialog.h"
 
 
@@ -66,12 +67,19 @@ private slots:
 
     void on_pushButtonDeleteComputer_clicked();
 
+    //Link
+    void on_pushButtonPersConnection_clicked();
+
+    void on_pushButtonComConnection_clicked();
+
+
 private:
     Ui::MainWindow *ui;
     vector<Person> _currentlyDisplayedPersons;
     vector<Computer> _currentlyDisplayedComputers;
     PersonService _PService;
     ComputerService _CService;
+    ConnectionDialog _Connection;
 };
 
 #endif // MAINWINDOW_H
