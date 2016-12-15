@@ -18,10 +18,9 @@ void PersonsDialog::on_pushButtonAddPerson_clicked()
 {
     vector<Person> Persons;
     Persons = _PService.getVectorFromDataAccess(Persons);
-
     QString name = ui->inputPName->text();
-    QString gender;
 
+    QString gender;
     if(ui->radioButtonFemale->isChecked())
     {
         ui->radioButtonFemale->text() = 'F';
@@ -77,7 +76,8 @@ void PersonsDialog::on_pushButtonAddPerson_clicked()
         ui->inputPGender->setText("");
         ui->inputPBirthYear->setText("");
         ui->inputPDeathYear->setText("");
-        //this->done(0);
+
+        this->done(0);
     }
     else
     {
@@ -86,9 +86,35 @@ void PersonsDialog::on_pushButtonAddPerson_clicked()
     }
 }
 
-void PersonsDialog::on_pushButtonEditPerson_clicked()
+QString PersonsDialog::showGender(char input)
 {
-    //TODO:
+    QString gender;
+    if(input == 'M' || input == 'm')
+    {
+        gender = 'M';
+    }
+    else
+    {
+        gender = 'F';
+    }
+
+    return gender;
+}
+
+void PersonsDialog::setPerson(Person person)
+{
+    QString name = QString::fromStdString(person.getName());
+    char ge = person.getGender();
+    QString gender = showGender(ge);
+    QString birthYear = QString::number(person.getBirthYear());
+    QString deathYear = QString::number(person.getDeathYear());
+    //qDebug() << name;
+    ui->inputPName->setText(name);
+    ui->inputPGender->setText(gender);
+    ui->inputPBirthYear->setText(birthYear);
+    ui->inputPDeathYear->setText(deathYear);
+    //færa if else hér til að tékka villur
+
 }
 
 bool PersonsDialog::onlyNumbers(QString string)
@@ -99,5 +125,4 @@ bool PersonsDialog::onlyNumbers(QString string)
             return false;
     }
     return true;
-
 }

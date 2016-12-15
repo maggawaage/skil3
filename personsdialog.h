@@ -8,6 +8,10 @@
 #include <QChar>
 
 #include <QDialog>
+#include <QTableWidget>
+#include <QLineEdit>
+
+#include <QAbstractItemView>
 
 namespace Ui {
 class PersonsDialog;
@@ -21,11 +25,11 @@ public:
     explicit PersonsDialog(QWidget *parent = 0);
     ~PersonsDialog();
     bool onlyNumbers(QString string);
+    QString showGender(char input);
+    void setPerson(Person person);
 
 private slots:
     void on_pushButtonAddPerson_clicked();
-
-    void on_pushButtonEditPerson_clicked();
     
 private:
     Ui::PersonsDialog *ui;

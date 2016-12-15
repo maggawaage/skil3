@@ -17,8 +17,11 @@ public:
     ~ComputersDialog();
     bool onlyNumbers(QString string);
 
+    void setComputer(Computer computer);
+
 private slots:
     void on_pushButtonAddComputer_clicked();
+
 
 private:
     Ui::ComputersDialog *ui;

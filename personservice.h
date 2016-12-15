@@ -16,6 +16,8 @@ public:
     void editPersonsGender(string currentName, char gender);
     void editPersonsBirthYear(string currentName, int birthYear);
     void editPersonsDeathYear(string currentName, int deathYear);
+    vector<Person> SearchName(vector <Person> list, string searchName);
+
 
 
 private:

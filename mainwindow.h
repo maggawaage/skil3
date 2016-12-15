@@ -31,29 +31,29 @@ public:
 
 private slots:
 
+    void on_personsTable_clicked(const QModelIndex &index);
+
+    void on_computersTable_clicked(const QModelIndex &index);
+
+    void on_Tabs_tabBarClicked(int index);
+
     void on_pushButtonAddPerson_clicked();
 
-    /*void on_pushButtonAddComp_clicked();
+    void on_pushButtonAddComp_clicked();
 
-    void on_pushButtonEditPerson_clicked();
+    void on_personsTable_doubleClicked(const QModelIndex &index);
 
-    void on_pushButtonEditComputer_clicked();
+    void on_computersTable_doubleClicked(const QModelIndex &index);
 
-    void on_pushButtonDeletePerson_clicked();
+    //void on_pushButtonDeletePerson_clicked();
 
-    void on_pushButtonDeleteComputer_clicked();
+    /*void on_pushButtonDeleteComputer_clicked();
 
     void on_pushButtonPersConnection_clicked();
 
     void on_pushButtonComConnection_clicked();
 
-    void on_searchPersons_textChanged(const QString &arg1);*/
-
-    void on_Tabs_tabBarClicked(int index);
-
-    void on_pushButtonAddComp_clicked();
-
-    void on_pushButtonEditPerson_clicked();
+    void on_inputSearchPersons_textChanged(const QString &arg1);*/
 
 private:
     Ui::MainWindow *ui;

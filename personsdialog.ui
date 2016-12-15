@@ -83,7 +83,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>140</y>
+     <y>150</y>
      <width>59</width>
      <height>16</height>
     </rect>
@@ -132,7 +132,7 @@ font: 18pt &quot;.SF NS Text&quot;;</string>
     </rect>
    </property>
    <property name="text">
-    <string>Add or edit person</string>
+    <string>Confirm</string>
    </property>
   </widget>
   <widget class="QLabel" name="labelErrorPersonName">

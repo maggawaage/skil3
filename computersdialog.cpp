@@ -71,5 +71,15 @@ bool ComputersDialog::onlyNumbers(QString string)
             return false;
     }
     return true;
+}
 
+void ComputersDialog::setComputer(Computer computer)
+{
+    QString name = QString::fromStdString(computer.getName());
+    QString type = QString::fromStdString(computer.getType());
+    QString buildYear = QString::number(computer.getBuildYear());
+    //qDebug() << name;
+    ui->inputCName->setText(name);
+    ui->inputCType->setText(type);
+    ui->inputCBuildYear->setText(buildYear);
 }

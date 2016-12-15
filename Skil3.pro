@@ -42,3 +42,6 @@ HEADERS  += mainwindow.h \
 FORMS    += mainwindow.ui \
     personsdialog.ui \
     computersdialog.ui
+
+RESOURCES += \
+    resources.qrc
