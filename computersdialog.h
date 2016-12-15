@@ -16,8 +16,11 @@ public:
     explicit ComputersDialog(QWidget *parent = 0);
     ~ComputersDialog();
 
+    void setComputer(Computer computer);
+
 private slots:
     void on_pushButtonAddComputer_clicked();
+
 
 private:
     Ui::ComputersDialog *ui;

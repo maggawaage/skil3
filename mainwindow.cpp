@@ -43,7 +43,6 @@ vector<Person> MainWindow::displayPersons()
         ui->personsTable->setItem(row, 1, new QTableWidgetItem(gender));
         ui->personsTable->setItem(row, 2, new QTableWidgetItem(birthYear));
         ui->personsTable->setItem(row, 3, new QTableWidgetItem(deathYear));
-
     }
 
     _currentlyDisplayedPersons = Persons;
@@ -58,9 +57,13 @@ QString MainWindow::showGender(char input)
     {
         gender = 'M';
     }
-    else
+    else if(input == 'F' || input == 'f')
     {
         gender = 'F';
+    }
+    else
+    {
+        //error
     }
 
     return gender;
@@ -73,8 +76,8 @@ vector<Computer> MainWindow::displayComputers()
 
     ui->computersTable->setRowCount(Computers.size());
     ui->computersTable->clearContents();
-    ui->computersTable->setColumnWidth(0, 175);
-    ui->computersTable->setColumnWidth(1, 220);
+    ui->computersTable->setColumnWidth(0, 170);
+    ui->computersTable->setColumnWidth(1, 210);
 
     for(size_t row = 0; row < Computers.size(); row++)
     {
@@ -165,6 +168,19 @@ void MainWindow::on_Tabs_tabBarClicked(int index)
      qDebug() << "on tabs bar was clicked" << index << endl;
 }
 
+void MainWindow::on_personsTable_clicked(const QModelIndex &index)
+{
+    //ui->pushButtonEditPerson->setEnabled(true);
+    ui->pushButtonDeletePerson->setEnabled(true);
+}
+
+void MainWindow::on_computersTable_clicked(const QModelIndex &index)
+{
+    //ui->pushButtonEditComputer->setEnabled(true);
+    ui->pushButtonDeleteComputer->setEnabled(true);
+}
+
+
 void MainWindow::on_pushButtonAddPerson_clicked()
 {
     PersonsDialog AddPersonsDialog;
@@ -172,11 +188,13 @@ void MainWindow::on_pushButtonAddPerson_clicked()
 
     if(addPersonReturnValue == 0)
     {
+        ui->inputSearchPersons->setText("");
         displayPersons();
+        ui->statusBar->showMessage("Successfully added a person!", 2000);
     }
     else
     {
-        //errormessage
+        //qDebug() << "error";
     }
 }
 
@@ -188,7 +206,9 @@ void MainWindow::on_pushButtonAddComp_clicked()
 
     if(addComputerReturnValue == 0)
     {
+        ui->inputSearchComp->setText("");
         displayComputers();
+        ui->statusBar->showMessage("Successfully added a computer!", 2000);
     }
     else
     {
@@ -196,29 +216,48 @@ void MainWindow::on_pushButtonAddComp_clicked()
     }
 }
 
-void MainWindow::on_pushButtonEditPerson_clicked()
+void MainWindow::on_personsTable_doubleClicked(const QModelIndex &index)
 {
     PersonsDialog editPersonsDialog;
+    //ui->personsTable->selectionModel()->selection().indexes().at(0)
+    //QModelIndex index = ui->personsTable->selectionModel()->selection().indexes().at(0);
+    Person person;
+    string name = ui->personsTable->item(index.row(),0)->text().toStdString();
+    char gender = ui->personsTable->item(index.row(),1)->text().toDouble();
+    int birthYear = ui->personsTable->item(index.row(),2)->text().toInt();
+    int deathYear = ui->personsTable->item(index.row(),3)->text().toInt();
+
+    person.setName(name);
+    person.setGender(gender);
+    person.setBirthYear(birthYear);
+    person.setDeathYear(deathYear);
+
+    editPersonsDialog.setPerson(person);
+    editPersonsDialog.exec();
+
+    /*gera í personsdialog::
     int editPersonReturnValue = editPersonsDialog.exec();
+    ui->pushButtonEditPerson->setEnabled(true);*/
 
-    if(editPersonReturnValue == 0)
-    {
-        displayPersons();
-    }
-    else
-    {
-        //errormessage
-    }
+}
 
+void MainWindow::on_computersTable_doubleClicked(const QModelIndex &index)
+{
+    ComputersDialog editComputersDialog;
+    Computer computer;
+    string name = ui->computersTable->item(index.row(),0)->text().toStdString();
+    string type = ui->computersTable->item(index.row(),1)->text().toStdString();
+    int buildYear = ui->computersTable->item(index.row(),2)->text().toInt();
+
+    computer.setName(name);
+    computer.setType(type);
+    computer.setBuildYear(buildYear);
+
+    editComputersDialog.setComputer(computer);
+    editComputersDialog.exec();
 }
 
 /*
-
-void MainWindow::on_pushButtonEditComputer_clicked()
-{
-    //TODO:
-}
-
 void MainWindow::on_pushButtonDeletePerson_clicked()
 {
     //TODO:
@@ -239,12 +278,9 @@ void MainWindow::on_pushButtonComConnection_clicked()
     //TODO:
 }
 
-
-void MainWindow::on_searchPersons_textChanged(const QString &arg1)
+void MainWindow::on_inputSearchPersons_textChanged(const QString &arg1)
 {
-    string userInput = ui->searchPersons->text().toStdString();
-    vector<Person> persons = _PService.searchPersons
-}*/
+   //TODO:
+}
 
-
-
+*/

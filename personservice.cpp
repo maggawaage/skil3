@@ -40,3 +40,18 @@ void PersonService::editPersonsDeathYear(string currentName, int deathYear)
     _access.editPersonsDeathYear(currentName, deathYear);
 }
 
+vector<Person> PersonService::SearchName(vector <Person> list, string searchName)
+{
+    vector <Person> newList;
+
+    for (size_t i = 0; i < list.size(); i++)
+    {
+        if (list[i].getName().find(searchName) != string::npos)
+        {
+            newList.push_back(list[i]);
+        }
+    }
+
+    return newList;
+}
+

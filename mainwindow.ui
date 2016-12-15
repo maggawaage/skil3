@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="resources.qrc">
+    <normaloff>:/icons/Addicon.png</normaloff>:/icons/Addicon.png</iconset>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout_3">
     <item row="0" column="0">
@@ -27,8 +31,28 @@
        <attribute name="title">
         <string>Persons table</string>
        </attribute>
-       <layout class="QGridLayout" name="gridLayout">
-        <item row="1" column="0" colspan="6">
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QLabel" name="labelSearchPerson">
+          <property name="text">
+           <string>Search:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="inputSearchPersons">
+          <property name="statusTip">
+           <string/>
+          </property>
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="placeholderText">
+           <string>Search persons ...</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QTableWidget" name="personsTable">
           <property name="toolTip">
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -74,42 +98,24 @@
           </column>
          </widget>
         </item>
-        <item row="2" column="0">
+        <item>
          <widget class="QPushButton" name="pushButtonAddPerson">
           <property name="text">
            <string>Add</string>
           </property>
          </widget>
         </item>
-        <item row="0" column="0">
-         <widget class="QLabel" name="labelSearchPerson">
-          <property name="text">
-           <string>Search:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1" colspan="5">
-         <widget class="QLineEdit" name="searchPersons">
-          <property name="placeholderText">
-           <string>Search persons ...</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QPushButton" name="pushButtonEditPerson">
-          <property name="text">
-           <string>Edit</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="2">
+        <item>
          <widget class="QPushButton" name="pushButtonDeletePerson">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="text">
            <string>Delete</string>
           </property>
          </widget>
         </item>
-        <item row="2" column="3">
+        <item>
          <widget class="QPushButton" name="pushButtonPersConnection">
           <property name="text">
            <string>Connections</string>
@@ -122,15 +128,22 @@
        <attribute name="title">
         <string>Computers table</string>
        </attribute>
-       <layout class="QGridLayout" name="gridLayout_2">
-        <item row="3" column="0">
-         <widget class="QPushButton" name="pushButtonAddComp">
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QLabel" name="labelSearchComp">
           <property name="text">
-           <string>Add</string>
+           <string>Search:</string>
           </property>
          </widget>
         </item>
-        <item row="2" column="0" colspan="5">
+        <item>
+         <widget class="QLineEdit" name="inputSearchComp">
+          <property name="placeholderText">
+           <string>Searh computers ...</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QTableWidget" name="computersTable">
           <property name="toolTip">
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -186,35 +199,24 @@
           </column>
          </widget>
         </item>
-        <item row="0" column="1" colspan="4">
-         <widget class="QLineEdit" name="lineEditSearchComp">
-          <property name="placeholderText">
-           <string>Searh computers ...</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0">
-         <widget class="QLabel" name="labelSearchComp">
+        <item>
+         <widget class="QPushButton" name="pushButtonAddComp">
           <property name="text">
-           <string>Search:</string>
+           <string>Add</string>
           </property>
          </widget>
         </item>
-        <item row="3" column="1">
-         <widget class="QPushButton" name="pushButtonEditComputer">
-          <property name="text">
-           <string>Edit</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="2">
+        <item>
          <widget class="QPushButton" name="pushButtonDeleteComputer">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="text">
            <string>Delete</string>
           </property>
          </widget>
         </item>
-        <item row="3" column="3">
+        <item>
          <widget class="QPushButton" name="pushButtonComConnection">
           <property name="text">
            <string>Connection</string>
@@ -260,6 +262,8 @@
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

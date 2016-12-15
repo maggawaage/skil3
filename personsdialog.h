@@ -4,6 +4,10 @@
 #include "personservice.h"
 
 #include <QDialog>
+#include <QTableWidget>
+#include <QLineEdit>
+
+#include <QAbstractItemView>
 
 namespace Ui {
 class PersonsDialog;
@@ -16,11 +20,11 @@ class PersonsDialog : public QDialog
 public:
     explicit PersonsDialog(QWidget *parent = 0);
     ~PersonsDialog();
+    QString showGender(char input);
+    void setPerson(Person person);
 
 private slots:
     void on_pushButtonAddPerson_clicked();
-
-    void on_pushButtonEditPerson_clicked();
     
 private:
     Ui::PersonsDialog *ui;
