@@ -20,8 +20,8 @@
    <string>MainWindow</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>:/icons/Addicon.png</normaloff>:/icons/Addicon.png</iconset>
+   <iconset resource="resources.qrc">
+    <normaloff>:/images/Link.png</normaloff>:/images/Link.png</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout_3">
@@ -259,7 +259,7 @@
      <x>0</x>
      <y>0</y>
      <width>563</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuShow">
@@ -284,6 +284,8 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

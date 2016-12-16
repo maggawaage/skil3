@@ -378,6 +378,8 @@ void MainWindow::on_inputSearchPersons_textChanged(const QString &arg1)
 void MainWindow::on_inputSearchComp_textChanged(const QString &arg1)
 {
     string a = arg1.toStdString();
+    ui->pushButtonComConnection->setDisabled(true);
+    ui->pushButtonDeleteComputer->setDisabled(true);
 
     displayComputers(a);
 }
@@ -385,6 +387,8 @@ void MainWindow::on_inputSearchComp_textChanged(const QString &arg1)
 void MainWindow::on_inputSearchPersons_textChanged(const QString &arg1)
 {
     string a = arg1.toStdString();
+    ui->pushButtonPersConnection->setDisabled(true);
+    ui->pushButtonDeletePerson->setDisabled(true);
 
     displayPersons(a);
 }
@@ -394,11 +398,11 @@ void MainWindow::on_actionGo_to_link_triggered()
 {
     #ifdef _WIN32
     {
-    system ("start https://github.com/maggawaage/skil2");
+    system ("start https://github.com/maggawaage/skil3");
     }
     #else //In any other OS
     {
-        system ("open https://github.com/maggawaage/skil2");
+        system ("open https://github.com/maggawaage/skil3");
     }
     #endif
 }
@@ -412,6 +416,8 @@ void MainWindow::on_pushButtonDeletePerson_clicked()
 
     ui->personsTable->clear();
     displayPersons();
+    ui->pushButtonPersConnection->setDisabled(true);
+    ui->pushButtonDeletePerson->setDisabled(true);
 }
 
 void MainWindow::on_pushButtonDeleteComputer_clicked()
@@ -423,4 +429,6 @@ void MainWindow::on_pushButtonDeleteComputer_clicked()
 
     ui->computersTable->clear();
     displayComputers();
+    ui->pushButtonComConnection->setDisabled(true);
+    ui->pushButtonDeleteComputer->setDisabled(true);
 }
