@@ -22,10 +22,8 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    vector<Person> displayPersons();
-    vector<Person> displaySearchPersons(string string);
-    vector<Computer> displayComputers();
-    vector<Computer> displaySearchComputers(string string);
+    vector<Person> displayPersons(string string);
+    vector<Computer> displayComputers(string string);
     QString showGender(char input);
 
 private slots:
