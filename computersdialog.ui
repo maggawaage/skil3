@@ -6,173 +6,103 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>453</width>
-    <height>370</height>
+    <width>450</width>
+    <height>375</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QLabel" name="labelErrorComputerType">
-   <property name="geometry">
-    <rect>
-     <x>80</x>
-     <y>171</y>
-     <width>16</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QLabel" name="labelErrorComputerName">
-   <property name="geometry">
-    <rect>
-     <x>60</x>
-     <y>81</y>
-     <width>16</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>12</x>
-     <y>12</y>
-     <width>81</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">font: 13pt &quot;American Typewriter&quot;;
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0" colspan="3">
+    <widget class="QLabel" name="label">
+     <property name="styleSheet">
+      <string notr="true">font: 13pt &quot;American Typewriter&quot;;
 font: 18pt &quot;.SF NS Text&quot;;</string>
-   </property>
-   <property name="text">
-    <string>Computer</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="labelCName">
-   <property name="geometry">
-    <rect>
-     <x>12</x>
-     <y>59</y>
-     <width>40</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Name:</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="labelErrorComputerBY">
-   <property name="geometry">
-    <rect>
-     <x>12</x>
-     <y>106</y>
-     <width>16</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="inputCName">
-   <property name="geometry">
-    <rect>
-     <x>12</x>
-     <y>153</y>
-     <width>125</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QLabel" name="labelType">
-   <property name="geometry">
-    <rect>
-     <x>12</x>
-     <y>184</y>
-     <width>34</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Type:</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="inputCType">
-   <property name="geometry">
-    <rect>
-     <x>12</x>
-     <y>231</y>
-     <width>125</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QLabel" name="labelBuildYear">
-   <property name="geometry">
-    <rect>
-     <x>12</x>
-     <y>262</y>
-     <width>64</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Build year:</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="inputCBuildYear">
-   <property name="geometry">
-    <rect>
-     <x>12</x>
-     <y>309</y>
-     <width>125</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButtonAddComputer">
-   <property name="geometry">
-    <rect>
-     <x>6</x>
-     <y>334</y>
-     <width>171</width>
-     <height>32</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Add computer</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButtonEditComputer">
-   <property name="geometry">
-    <rect>
-     <x>230</x>
-     <y>340</y>
-     <width>151</width>
-     <height>32</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Edit computer</string>
-   </property>
-  </widget>
+     </property>
+     <property name="text">
+      <string>Computer</string>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="0">
+    <widget class="QLineEdit" name="inputCBuildYear">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLineEdit" name="inputCName">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="0">
+    <widget class="QLabel" name="labelBuildYear">
+     <property name="text">
+      <string>Build year:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="14" column="0">
+    <widget class="QPushButton" name="pushButtonEditComputer">
+     <property name="text">
+      <string>Edit computer</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="labelCName">
+     <property name="text">
+      <string>Name:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="13" column="2" rowspan="2">
+    <widget class="QLabel" name="labelErrorComputerType">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="labelType">
+     <property name="text">
+      <string>Type:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="13" column="0">
+    <widget class="QPushButton" name="pushButtonAddComputer">
+     <property name="text">
+      <string>Add computer</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <widget class="QLineEdit" name="inputCType">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="1">
+    <widget class="QLabel" name="labelErrorComputerBY">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QLabel" name="labelErrorComputerName">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>

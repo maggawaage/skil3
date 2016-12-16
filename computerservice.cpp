@@ -62,7 +62,6 @@ vector<Computer> ComputerService::Search(vector <Computer> list, string searchSt
     return newList;
 }
 
-
 void ComputerService::deleteComputer(int id)
 {
     _access.deleteComputer(id);

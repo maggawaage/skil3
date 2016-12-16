@@ -80,9 +80,9 @@ vector<Computer> ComputersDialog::on_pushButtonEditComputer_clicked()
 
     string currentName = tempEditName.toStdString();
 
-    bool success =  (_CService.editComputersName(currentName, newName.toStdString()),
-    _CService.editComputersType(currentName, type.toStdString()),
-    _CService.editComputersBuildYear(currentName, buildYear.toInt()));
+    bool success =  (_CService.editComputersType(currentName, type.toStdString()),
+    _CService.editComputersBuildYear(currentName, buildYear.toInt()),
+    _CService.editComputersName(currentName, newName.toStdString()));
 
     if(success)
     {
@@ -94,8 +94,6 @@ vector<Computer> ComputersDialog::on_pushButtonEditComputer_clicked()
 
     return Computers;
 }
-
-
 
 bool ComputersDialog::onlyNumbers(QString string)
 {

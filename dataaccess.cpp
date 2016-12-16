@@ -86,6 +86,7 @@ bool DataAccess::addComputer(string name, string type, int buildYear)
     }
     return false;
 }
+
 bool DataAccess::editPersonsName(string currentName, string newName)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
@@ -95,6 +96,7 @@ bool DataAccess::editPersonsName(string currentName, string newName)
     query.bindValue(":Name",QString::fromStdString(currentName));
     return query.exec();
 }
+
 bool DataAccess::editComputersName(string currentName, string newName)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
@@ -125,7 +127,7 @@ bool  DataAccess::editPersonsBirthYear(string currentName, int birthYear)
 bool DataAccess::editPersonsDeathYear(string currentName, int deathYear)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
-    query.prepare("UPDATE Persons SET DeathYear = :DearthYear WHERE Name = :Name;");
+    query.prepare("UPDATE Persons SET DeathYear = :DeathYear WHERE Name = :Name;");
     query.bindValue(":DeathYear",deathYear);
     query.bindValue(":Name", QString::fromStdString(currentName));
     return query.exec();
@@ -148,7 +150,6 @@ bool DataAccess::editComputerBuildYear(string currentName, int buildYear)
     query.bindValue(":Name", QString::fromStdString(currentName));
     return query.exec();
 }
-
 
 void DataAccess::deleteComputer(int id)
 {

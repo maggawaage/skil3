@@ -38,7 +38,7 @@ void PersonsDialog::on_pushButtonAddPerson_clicked()
     ui->labelErrorPersonBY->setText("");
     ui->labelErrorPersonDY->setText("");
 
-    if(deathYear < birthYear)
+    if(deathYear < birthYear && deathYear != 0)
     {
         //errormessage
         ui->labelErrorPersonDY->setText("<span style='color: red'>You cannot die before you are born</span>");
@@ -151,13 +151,11 @@ vector<Person> PersonsDialog::on_pushButtonEditPerson_clicked()
     QString birthYear = ui->inputPBirthYear->text();
     QString deathYear = ui->inputPDeathYear->text();
 
-
     string currentName = tempEditName.toStdString();
-
-    bool success =  (_PService.editPersonsName(currentName, newName.toStdString()),
-    _PService.editPersonsGender(currentName, convertQstringToChar(gender)),
+    bool success =  ( _PService.editPersonsGender(currentName, convertQstringToChar(gender)),
     _PService.editPersonsBirthYear(currentName, birthYear.toInt()),
-    _PService.editPersonsDeathYear(currentName, deathYear.toInt()));
+    _PService.editPersonsDeathYear(currentName, deathYear.toInt()),
+    _PService.editPersonsName(currentName, newName.toStdString()));
 
     if(success)
     {
@@ -196,8 +194,3 @@ bool PersonsDialog::checkIfSame(string name, char gender, int bY, int dY)
     return false;
 }
 
-/*void PersonsDialog::on_pushButtonEditPerson_objectNameChanged(const QString &objectName)
-{
-    ui->pushButtonEditPerson->setEnabled(true);
-
-}*/
