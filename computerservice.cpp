@@ -66,19 +66,15 @@ vector<Computer> ComputerService::Search(vector <Computer> list, string searchSt
 void ComputerService::deleteComputer(int id)
 {
     _access.deleteComputer(id);
-
-    qDebug() << "2";
 }
 
 ///LINKS
-vector<Person> ComputerService::getPersonsConnectedToComputer(string computerName)
+vector<Person> ComputerService::getPersonsConnectedToComputer(int id)
 {
-    int id=_access.getComputerIdByName(computerName);
     return _access.getPersonsConnectedToComputers(id);
 }
 
-void ComputerService::deleteConnectionComputer(string name)
+void ComputerService::deleteConnectionComputer(int id)
 {
-    int id =_access.getComputerIdByName(name);
     _access.deleteConnectionComputer(id);
 }

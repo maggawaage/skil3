@@ -20,8 +20,8 @@ public:
     void deleteComputer(int id);
 
     //LINKS
-    vector<Person> getPersonsConnectedToComputer(string computerName);
-    void deleteConnectionComputer(string name);
+    vector<Person> getPersonsConnectedToComputer(int id);
+    void deleteConnectionComputer(int id);
 
 private:
     DataAccess _access;

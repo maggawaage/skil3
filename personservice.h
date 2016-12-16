@@ -20,13 +20,13 @@ public:
 
     static vector<Person> Search(vector <Person> list, string searchString);
 
-    static void deletePerson(int id);
+    void deletePerson(int id);
 
     //LINKS
-    vector<Computer> getComputersConnectedToPerson(string personName);
-    void deleteConnectionPerson(string name);
-    void deleteConnection(string pName, string cName);
-    void linkPersonToComputer(string pName, string cName);
+    vector<Computer> getComputersConnectedToPerson(int personId);
+    void deleteConnectionPerson(int id);
+    void deleteConnection(int pId, int cId);
+    void linkPersonToComputer(int pId, int cId);
 
 
 private:

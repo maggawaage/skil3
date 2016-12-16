@@ -4,12 +4,18 @@ Person::Person()
 {
 
 }
-Person::Person(string name, char gender, int birthYear, int deathYear)
+Person::Person(int id, string name, char gender, int birthYear, int deathYear)
 {
+    _id = id;
     _name = name;
     _birthYear = birthYear;
     _gender = gender;
     _deathYear = deathYear;
+}
+
+int Person::getId() const
+{
+    return _id;
 }
 string Person::getName() const
 {
@@ -26,6 +32,10 @@ int Person::getBirthYear() const
 int Person::getDeathYear() const
 {
     return _deathYear;
+}
+void Person::setId(int id)
+{
+    _id = id;
 }
 void Person::setName(string name)
 {

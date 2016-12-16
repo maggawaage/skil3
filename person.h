@@ -9,13 +9,15 @@ class Person
 {
 public:
     Person();
-    Person(string name, char gender, int birthYear, int deathYear);
+    Person(int id, string name, char gender, int birthYear, int deathYear);
 
+    int getId() const;
     string getName() const;
     char getGender() const;
     int getBirthYear() const;
     int getDeathYear() const;
 
+    void setId(int id);
     void setName(string name);
     void setGender(char gender);
     void setBirthYear(int birthYear);
@@ -23,9 +25,10 @@ public:
     static bool checkIfSame(vector<Person> Persons, string name);
 
 private:
+    int _id;
     string _name;
-    int _birthYear;
     char _gender;
+    int _birthYear;
     int _deathYear;
 };
 

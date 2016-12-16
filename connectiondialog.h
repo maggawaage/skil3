@@ -18,13 +18,13 @@ class ConnectionDialog : public QDialog
 public:
     explicit ConnectionDialog(QWidget *parent = 0);
     ~ConnectionDialog();
-    void PersonOrComputer(int type, string name);
-    void tableIfShowComputers(string personName);
-    void tableIfShowPersons(string computerName);
-    void unlinkTableIfShowPersons(string computerName);
-    void unlinkTableIfShowComputers(string computerName);
+    void PersonOrComputer(int type, int id);
+    void tableIfShowComputers(int personId);
+    void tableIfShowPersons(int computerId);
+    void unlinkTableIfShowPersons(int computerId);
+    void unlinkTableIfShowComputers(int computerId);
     QString showGender(char input);
-     void test(QString name);
+     void test(QString id);
 
 private slots:
 
@@ -46,7 +46,7 @@ private:
     vector<Computer> _currentlyLinkedComputers;
     vector<Person> _currentlyUnLinkedPersons;
     vector<Computer> _currentlyUnLinkedComputers;
-    string _currentName;
+    int _currentId;
     PersonService _PService;
     ComputerService _CService;
 

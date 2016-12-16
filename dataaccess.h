@@ -16,6 +16,7 @@ public:
     vector<Computer> fillVector(vector<Computer>famousComputers);
     bool addPerson(string name, char gender, int birthYear, int deathYear);
     bool addComputer(string name, string type, int buildYear);
+    //laga að id í stað currentNa,e
     void editPersonsName(string currentName, string newName);
     void editComputersName(string currentName, string newName);
     void editPersonsGender(string currentName, char gender);

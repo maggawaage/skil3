@@ -15,6 +15,7 @@ bool PersonService::addPerson(string name, char gender, int birthYear, int death
      return _access.addPerson(name, gender, birthYear, deathYear);
 }
 
+//Edit
 void PersonService::editPersonsName(string currentName, string newName)
 {
     _access.editPersonsName(currentName, newName);
@@ -35,6 +36,7 @@ void PersonService::editPersonsDeathYear(string currentName, int deathYear)
     _access.editPersonsDeathYear(currentName, deathYear);
 }
 
+//Search
 vector<Person> PersonService::Search(vector <Person> list, string searchString)
 {
     vector <Person> newList;
@@ -63,36 +65,30 @@ vector<Person> PersonService::Search(vector <Person> list, string searchString)
     return newList;
 }
 
+//Delete
 void PersonService::deletePerson(int id)
 {
-    DataAccess _access;
     _access.deletePerson(id);
 }
 
 //LINKS
-vector<Computer> PersonService::getComputersConnectedToPerson(string personName)
+vector<Computer> PersonService::getComputersConnectedToPerson(int personId)
 {
-    int id =_access.getPersonIdByName(personName);
-    return _access.getComputersConnectedToPersons(id);
+    return _access.getComputersConnectedToPersons(personId);
 }
 
-void PersonService::deleteConnectionPerson(string name)
+void PersonService::deleteConnectionPerson(int id)
 {
-    int id =_access.getPersonIdByName(name);
     _access.deleteConnectionPerson(id);
 }
 
-void PersonService::deleteConnection(string pName, string cName)
+void PersonService::deleteConnection(int pId, int cId)
 {
-    int pID =_access.getPersonIdByName(pName);
-    int cID =_access.getComputerIdByName(cName);
-    _access.deleteConnection(pID, cID);
+    _access.deleteConnection(pId, cId);
 }
 
-void PersonService::linkPersonToComputer(string pName, string cName)
+void PersonService::linkPersonToComputer(int pId, int cId)
 {
-    int pID =_access.getPersonIdByName(pName);
-    int cID =_access.getComputerIdByName(cName);
-    _access.linkPersonToComputer(pID, cID);
+    _access.linkPersonToComputer(pId, cId);
 }
 

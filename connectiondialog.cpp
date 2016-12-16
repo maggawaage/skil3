@@ -20,27 +20,27 @@ ConnectionDialog::~ConnectionDialog()
     delete ui;
 }
 
-void ConnectionDialog::PersonOrComputer(int type, string name)
+void ConnectionDialog::PersonOrComputer(int type, int id)
 {
     if(type==0)
     {
-        tableIfShowPersons(name);
-        unlinkTableIfShowPersons(name);
+        tableIfShowPersons(id);
+        unlinkTableIfShowPersons(id);
         _PersonOrComputer=0;
     }
     if (type==1)
     {
-        tableIfShowComputers(name);
-        unlinkTableIfShowComputers(name);
+        tableIfShowComputers(id);
+        unlinkTableIfShowComputers(id);
         _PersonOrComputer=1;
     }
 }
 
-void ConnectionDialog::tableIfShowComputers(string personName)
+void ConnectionDialog::tableIfShowComputers(int id)
 {
     vector<Computer> LinkedComputers;
     //LinkedComputers.clear();
-    LinkedComputers = _PService.getComputersConnectedToPerson(personName);
+    LinkedComputers = _PService.getComputersConnectedToPerson(id);
 
     ui->linkedTable->setRowCount((int)LinkedComputers.size());
     ui->linkedTable->clearContents();
@@ -59,14 +59,14 @@ void ConnectionDialog::tableIfShowComputers(string personName)
 
     }
      _currentlyLinkedComputers = LinkedComputers;
-    _currentName=personName;
+   _currentId=id;
 }
 
-void ConnectionDialog::tableIfShowPersons(string computerName)
+void ConnectionDialog::tableIfShowPersons(int id)
 {
     vector<Person> LinkedPersons;
     //LinkedPersons.clear();
-    LinkedPersons = _CService.getPersonsConnectedToComputer(computerName);
+    LinkedPersons = _CService.getPersonsConnectedToComputer(id);
 
     ui->linkedTable->setRowCount((int)LinkedPersons.size());
     ui->linkedTable->clearContents();
@@ -85,14 +85,14 @@ void ConnectionDialog::tableIfShowPersons(string computerName)
         ui->linkedTable->setItem(row, 3, new QTableWidgetItem(deathYear));
     }
    _currentlyLinkedPersons = LinkedPersons;
-   _currentName=computerName;
+   _currentId=id;
 }
 
-void ConnectionDialog::unlinkTableIfShowComputers(string personName)
+void ConnectionDialog::unlinkTableIfShowComputers(int id)
 {
     vector<Computer> LinkedComputers;
     //LinkedComputers.clear();
-    LinkedComputers = _PService.getComputersConnectedToPerson(personName);
+    LinkedComputers = _PService.getComputersConnectedToPerson(id);
     vector<Computer> UnLinkedComputers;
     //UnLinkedComputers.clear();
     UnLinkedComputers =_CService.getVectorFromDataAccess(UnLinkedComputers);
@@ -128,11 +128,11 @@ void ConnectionDialog::unlinkTableIfShowComputers(string personName)
     _currentlyUnLinkedComputers = UnLinkedComputers;
 }
 
-void ConnectionDialog::unlinkTableIfShowPersons(string  computerName)
+void ConnectionDialog::unlinkTableIfShowPersons(int id)
 {
     vector<Person> LinkedPersons;
     //LinkedPersons.clear();
-    LinkedPersons = _CService.getPersonsConnectedToComputer(computerName);
+    LinkedPersons = _CService.getPersonsConnectedToComputer(id);
     vector<Person> UnLinkedPersons;
    // UnLinkedPersons.clear();
     UnLinkedPersons=_PService.getVectorFromDataAccess(UnLinkedPersons);
@@ -207,30 +207,30 @@ void ConnectionDialog::on_linkButton_clicked()
     if(_PersonOrComputer == 1)
     {
     int currentUnLinkIndex = ui->unLinkedTable->currentIndex().row();
-    string cName = _currentlyUnLinkedComputers.at(currentUnLinkIndex).getName();
+    int cId = _currentlyUnLinkedComputers.at(currentUnLinkIndex).getId();
 
-    string pName = _currentName;
-     _PService.linkPersonToComputer(pName, cName);
+    int pId = _currentId;
+     _PService.linkPersonToComputer(pId, cId);
 
      ui->linkedTable->clear();
-     tableIfShowComputers(pName);
+     tableIfShowComputers(pId);
      ui->unLinkedTable->clear();
-     unlinkTableIfShowComputers(pName);
+     unlinkTableIfShowComputers(pId);
      ui->linkButton->setDisabled(true);
     }
 
     if(_PersonOrComputer == 0)
     {
     int currentUnLinkIndex = ui->unLinkedTable->currentIndex().row();
-    string pName = _currentlyUnLinkedPersons.at(currentUnLinkIndex).getName();
+    int pId = _currentlyUnLinkedPersons.at(currentUnLinkIndex).getId();
 
-    string cName = _currentName;
-     _PService.linkPersonToComputer(pName, cName);
+    int cId = _currentId;
+     _PService.linkPersonToComputer(pId, cId);
 
      ui->linkedTable->clear();
-     tableIfShowPersons(cName);
+     tableIfShowPersons(cId);
      ui->unLinkedTable->clear();
-     unlinkTableIfShowPersons(cName);
+     unlinkTableIfShowPersons(cId);
      ui->linkButton->setDisabled(true);
     }
 }
@@ -240,30 +240,30 @@ void ConnectionDialog::on_unlinkButton_clicked()
     if(_PersonOrComputer == 1)
     {
     int currentLinkIndex = ui->linkedTable->currentIndex().row();
-    string cName = _currentlyLinkedComputers.at(currentLinkIndex).getName();
+    int cId = _currentlyLinkedComputers.at(currentLinkIndex).getId();
 
-    string pName = _currentName;
-     _PService.deleteConnection(pName, cName);
+    int pId = _currentId;
+     _PService.deleteConnection(pId, cId);
 
      ui->linkedTable->clear();
-     tableIfShowComputers(pName);
+     tableIfShowComputers(pId);
      ui->unLinkedTable->clear();
-     unlinkTableIfShowComputers(pName);
+     unlinkTableIfShowComputers(pId);
      ui->unlinkButton->setDisabled(true);
     }
 
     if(_PersonOrComputer == 0)
     {
     int currentLinkIndex = ui->linkedTable->currentIndex().row();
-    string pName = _currentlyLinkedPersons.at(currentLinkIndex).getName();
+    int pId = _currentlyLinkedPersons.at(currentLinkIndex).getId();
 
-    string cName = _currentName;
-     _PService.deleteConnection(pName, cName);
+    int cId = _currentId;
+     _PService.deleteConnection(pId, cId);
 
      ui->linkedTable->clear();
-     tableIfShowPersons(cName);
+     tableIfShowPersons(cId);
      ui->unLinkedTable->clear();
-     unlinkTableIfShowPersons(cName);
+     unlinkTableIfShowPersons(cId);
      ui->unlinkButton->setDisabled(true);
     }
 }

@@ -10,8 +10,6 @@ using namespace std;
 //Fá gender til að virka
 //Fá edit fall til að uppfærast í gagnagrunni
 //Virkja edit takka
-//Fá connect föll til að virka
-
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -32,23 +30,24 @@ vector<Person> MainWindow::displayPersons()
     Persons = _PService.getVectorFromDataAccess(Persons);
     QString gender;
 
-    ui->personsTable->setRowCount(Persons.size());
+    ui->personsTable->setRowCount((int)Persons.size());
     ui->personsTable->clearContents();
     ui->personsTable->setColumnWidth(0, 175);
     for(size_t row = 0; row < Persons.size(); row++)
     {
 
         Person CurrentPerson = Persons.at(row);
+        //QString Id = QString::number(CurrentPerson.getId());
         QString name = QString::fromStdString(CurrentPerson.getName());
         char ge = CurrentPerson.getGender();
         gender = showGender(ge);
         QString birthYear = QString::number(CurrentPerson.getBirthYear());
         QString deathYear = QString::number(CurrentPerson.getDeathYear());
 
-        ui->personsTable->setItem(row, 0, new QTableWidgetItem(name));
-        ui->personsTable->setItem(row, 1, new QTableWidgetItem(gender));
-        ui->personsTable->setItem(row, 2, new QTableWidgetItem(birthYear));
-        ui->personsTable->setItem(row, 3, new QTableWidgetItem(deathYear));
+        ui->personsTable->setItem((int)row, 0, new QTableWidgetItem(name));
+        ui->personsTable->setItem((int)row, 1, new QTableWidgetItem(gender));
+        ui->personsTable->setItem((int)row, 2, new QTableWidgetItem(birthYear));
+        ui->personsTable->setItem((int)row, 3, new QTableWidgetItem(deathYear));
     }
 
     _currentlyDisplayedPersons = Persons;
@@ -65,23 +64,24 @@ vector<Person> MainWindow::displayPersons(string string)
 
     QString gender;
 
-    ui->personsTable->setRowCount(Persons.size());
+    ui->personsTable->setRowCount((int)Persons.size());
     ui->personsTable->clearContents();
     ui->personsTable->setColumnWidth(0, 175);
     for(size_t row = 0; row < Persons.size(); row++)
     {
 
         Person CurrentPerson = Persons.at(row);
+        //QString Id = QString::number(CurrentPerson.getId());
         QString name = QString::fromStdString(CurrentPerson.getName());
         char ge = CurrentPerson.getGender();
         gender = showGender(ge);
         QString birthYear = QString::number(CurrentPerson.getBirthYear());
         QString deathYear = QString::number(CurrentPerson.getDeathYear());
 
-        ui->personsTable->setItem(row, 0, new QTableWidgetItem(name));
-        ui->personsTable->setItem(row, 1, new QTableWidgetItem(gender));
-        ui->personsTable->setItem(row, 2, new QTableWidgetItem(birthYear));
-        ui->personsTable->setItem(row, 3, new QTableWidgetItem(deathYear));
+        ui->personsTable->setItem((int)row, 0, new QTableWidgetItem(name));
+        ui->personsTable->setItem((int)row, 1, new QTableWidgetItem(gender));
+        ui->personsTable->setItem((int)row, 2, new QTableWidgetItem(birthYear));
+        ui->personsTable->setItem((int)row, 3, new QTableWidgetItem(deathYear));
 
     }
 
@@ -109,7 +109,7 @@ vector<Computer> MainWindow::displayComputers()
     vector<Computer> Computers;
     Computers = _CService.getVectorFromDataAccess(Computers);
 
-    ui->computersTable->setRowCount(Computers.size());
+    ui->computersTable->setRowCount((int)Computers.size());
     ui->computersTable->clearContents();
     ui->computersTable->setColumnWidth(0, 170);
     ui->computersTable->setColumnWidth(1, 210);
@@ -118,13 +118,14 @@ vector<Computer> MainWindow::displayComputers()
     {
 
         Computer CurrentComputer = Computers.at(row);
+        //QString Id = QString::number(CurrentComputer.getId());
         QString name = QString::fromStdString(CurrentComputer.getName());
         QString type = QString::fromStdString(CurrentComputer.getType());
         QString buildYear = QString::number(CurrentComputer.getBuildYear());
 
-        ui->computersTable->setItem(row, 0, new QTableWidgetItem(name));
-        ui->computersTable->setItem(row, 1, new QTableWidgetItem(type));
-        ui->computersTable->setItem(row, 2, new QTableWidgetItem(buildYear));
+        ui->computersTable->setItem((int)row, 0, new QTableWidgetItem(name));
+        ui->computersTable->setItem((int)row, 1, new QTableWidgetItem(type));
+        ui->computersTable->setItem((int)row, 2, new QTableWidgetItem(buildYear));
 
     }
 
@@ -140,7 +141,7 @@ vector<Computer> MainWindow::displayComputers(string string)
 
     Computers = ComputerService::Search(Computers, string);
 
-    ui->computersTable->setRowCount(Computers.size());
+    ui->computersTable->setRowCount((int)Computers.size());
     ui->computersTable->clearContents();
     ui->computersTable->setColumnWidth(0, 175);
     ui->computersTable->setColumnWidth(1, 220);
@@ -149,13 +150,14 @@ vector<Computer> MainWindow::displayComputers(string string)
     {
 
         Computer CurrentComputer = Computers.at(row);
+        //QString Id = QString::number(CurrentComputer.getId());
         QString name = QString::fromStdString(CurrentComputer.getName());
         QString type = QString::fromStdString(CurrentComputer.getType());
         QString buildYear = QString::number(CurrentComputer.getBuildYear());
 
-        ui->computersTable->setItem(row, 0, new QTableWidgetItem(name));
-        ui->computersTable->setItem(row, 1, new QTableWidgetItem(type));
-        ui->computersTable->setItem(row, 2, new QTableWidgetItem(buildYear));
+        ui->computersTable->setItem((int)row, 0, new QTableWidgetItem(name));
+        ui->computersTable->setItem((int)row, 1, new QTableWidgetItem(type));
+        ui->computersTable->setItem((int)row, 2, new QTableWidgetItem(buildYear));
 
     }
 
@@ -347,9 +349,9 @@ void MainWindow::on_pushButtonDeleteComputer_clicked()
 void MainWindow::on_pushButtonPersConnection_clicked()
 {
     int currentPersonIndex = ui->personsTable->currentIndex().row();
-    string currentPersonIndexName = _currentlyDisplayedPersons.at(currentPersonIndex).getName();
+    int currentPersonIndexId = _currentlyDisplayedPersons.at(currentPersonIndex).getId();
 
-    _Connection.PersonOrComputer(1, currentPersonIndexName);
+    _Connection.PersonOrComputer(1, currentPersonIndexId);
     _Connection.setModal(true);
     _Connection.exec();
 }
@@ -357,9 +359,9 @@ void MainWindow::on_pushButtonPersConnection_clicked()
 void MainWindow::on_pushButtonComConnection_clicked()
 {
     int currentComputerIndex = ui->computersTable->currentIndex().row();
-    string currentComputerIndexName = _currentlyDisplayedComputers.at(currentComputerIndex).getName();
+    int currentComputerIndexId = _currentlyDisplayedComputers.at(currentComputerIndex).getId();
 
-    _Connection.PersonOrComputer(0, currentComputerIndexName);
+    _Connection.PersonOrComputer(0, currentComputerIndexId);
     _Connection.setModal(true);
     _Connection.exec();
 }
@@ -388,10 +390,8 @@ void MainWindow::on_inputSearchPersons_textChanged(const QString &arg1)
 }
 
 
-void MainWindow::on_actionGo_to_link_triggered(bool checked)
+void MainWindow::on_actionGo_to_link_triggered()
 {
-    qDebug() << "adkfjaldkf";
-
     #ifdef _WIN32
     {
     system ("start https://github.com/maggawaage/skil2");
@@ -405,15 +405,22 @@ void MainWindow::on_actionGo_to_link_triggered(bool checked)
 
 void MainWindow::on_pushButtonDeletePerson_clicked()
 {
-    // PersonService::deletePerson(string trueName);
+    int currentPersonIndex = ui->personsTable->currentIndex().row();
+    int currentPeronIndexID = _currentlyDisplayedPersons.at(currentPersonIndex).getId();
+    _PService.deletePerson(currentPeronIndexID);
+    _PService.deleteConnectionPerson(currentPeronIndexID);
+
+    ui->personsTable->clear();
+    displayPersons();
 }
 
 void MainWindow::on_pushButtonDeleteComputer_clicked()
 {
     int currentComputerIndex = ui->computersTable->currentIndex().row();
-    _CService.deleteComputer(currentComputerIndex);
+    int currentComputerIndexID = _currentlyDisplayedComputers.at(currentComputerIndex).getId();
+    _CService.deleteComputer(currentComputerIndexID);
+    _CService.deleteConnectionComputer(currentComputerIndexID);
 
-    // ui->computersTable->clear();
-
-    // displayComputers();
+    ui->computersTable->clear();
+    displayComputers();
 }

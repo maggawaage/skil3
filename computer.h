@@ -9,12 +9,14 @@ class Computer
 {
 public:
     Computer();
-    Computer(string name, string type, int buildYear);
+    Computer(int id, string name, string type, int buildYear);
 
+    int getId() const;
     string getName() const;
     string getType() const;
     int getBuildYear() const;
 
+    void setId(int Id);
     void setName(string name);
     void setType(string type);
     void setBuildYear(int buildYear);
@@ -23,6 +25,7 @@ public:
 
 
 private:
+    int _id;
     string _name;
     string _type;
     int _buildYear;

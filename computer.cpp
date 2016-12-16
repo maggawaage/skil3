@@ -4,11 +4,18 @@ Computer::Computer()
 {
 
 }
-Computer::Computer(string name, string type, int buildYear)
+Computer::Computer(int id, string name, string type, int buildYear)
 {
+    _id = id;
     _name = name;
     _type = type;
     _buildYear = buildYear;
+}
+
+
+int Computer::getId() const
+{
+    return _id;
 }
 
 string Computer::getName() const
@@ -24,6 +31,11 @@ string Computer::getType() const
 int Computer::getBuildYear() const
 {
     return _buildYear;
+}
+
+void Computer::setId(int id)
+{
+    _id = id;
 }
 
 void Computer::setName(string name)

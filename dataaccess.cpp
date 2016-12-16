@@ -8,18 +8,20 @@ DataAccess::DataAccess()
 vector<Person> DataAccess::fillVector(vector<Person>famousComputerphiles)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
-    query.prepare("SELECT Name, Gender, BirthYear, DeathYear FROM Persons;");
+    query.prepare("SELECT ID, Name, Gender, BirthYear, DeathYear FROM Persons;");
     query.exec();
     while (query.next())
     {
         Person temp;
-        QString name = query.value(0).toString();
+        QString id = query.value(0).toString();
+        temp.setId(id.toInt());
+        QString name = query.value(1).toString();
         temp.setName(name.toStdString());
-        QString gender = query.value(1).toString();
+        QString gender = query.value(2).toString();
         temp.setGender(gender.toDouble());
-        QString birthYear = query.value(2).toString();
+        QString birthYear = query.value(3).toString();
         temp.setBirthYear(birthYear.toInt());
-        QString deathYear = query.value(3).toString();
+        QString deathYear = query.value(4).toString();
         temp.setDeathYear(deathYear.toInt());
         famousComputerphiles.push_back(temp);
     }
@@ -29,15 +31,17 @@ vector<Person> DataAccess::fillVector(vector<Person>famousComputerphiles)
 vector<Computer> DataAccess::fillVector(vector<Computer>famousComputers)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
-    query.exec("SELECT Name, Type, BuildYear FROM Computers;");
+    query.exec("SELECT ID, Name, Type, BuildYear FROM Computers;");
     while (query.next())
     {
         Computer temp;
-        QString name = query.value(0).toString();
+        QString id = query.value(0).toString();
+        temp.setId(id.toInt());
+        QString name = query.value(1).toString();
         temp.setName(name.toStdString());
-        QString type = query.value(1).toString();
+        QString type = query.value(2).toString();
         temp.setType(type.toStdString());
-        QString buildYear = query.value(2).toString();
+        QString buildYear = query.value(3).toString();
         temp.setBuildYear(buildYear.toInt());
         famousComputers.push_back(temp);
     }
@@ -57,11 +61,12 @@ bool DataAccess::addPerson(string name, char gender, int birthYear, int deathYea
        return query.exec();
 }
 
-void DataAccess::deletePerson(int myID)
+void DataAccess::deletePerson(int id)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
-    query.prepare("DELETE FROM Persons WHERE ID = :myID;");
-    query.bindValue(":myID", myID);
+    query.prepare("DELETE FROM Persons WHERE ID = :Id");
+    qDebug() << id;
+    query.bindValue(":Id", id);
     query.exec();
 }
 
@@ -147,49 +152,28 @@ void DataAccess::editComputerBuildYear(string currentName, int buildYear)
 }
 
 
-void DataAccess::deleteComputer(int myID)
+void DataAccess::deleteComputer(int id)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
-    query.prepare("DELETE FROM Computers WHERE ID = :myID");
-    query.bindValue(":myID", myID);
+    query.prepare("DELETE FROM Computers WHERE ID = :Id");
+    qDebug() << id;
+    query.bindValue(":Id", id);
     query.exec();
-
-    qDebug() << myID;
 }
 
 //LINKS
-int DataAccess::getPersonIdByName(string name)
-{
-    QSqlQuery query = QSqlQuery(_runningDB);
-    query.prepare("SELECT P.ID FROM Persons P WHERE P.Name = :Name;");
-    query.bindValue(":Name", QString::fromStdString(name));
-    query.exec();
-    query.first();
-    int id = query.value(0).toInt();
-    return id;
-}
-
-int DataAccess::getComputerIdByName(string name)
-{
-    QSqlQuery query = QSqlQuery(_runningDB);
-    query.prepare("SELECT C.ID FROM Computers C WHERE C.Name = :Name");
-    query.bindValue(":Name", QString::fromStdString(name));
-    query.exec();
-    query.first();
-    int id = query.value(0).toInt();
-    return id;
-}
 
 vector<Person> DataAccess::parsePersonLine(QSqlQuery& query)
 {
     vector<Person> readToVec;
     while(query.next())
     {
+        int id = query.value("ID").toUInt();
         string name = query.value("Name").toString().toStdString();
         char gender = query.value("Gender").toString().toDouble();
         int birthYear = query.value("BirthYear").toUInt();
         int deathYear = query.value("DeathYear").toUInt();
-        readToVec.push_back(Person(name, gender, birthYear, deathYear));
+        readToVec.push_back(Person(id, name, gender, birthYear, deathYear));
     }
     return readToVec;
 }
@@ -199,10 +183,11 @@ vector<Computer> DataAccess::parseComputerLine(QSqlQuery& query)
     vector<Computer> readToVec;
     while(query.next())
     {
+        int id = query.value("ID").toUInt();
         string name = query.value("Name").toString().toStdString();
         string type = query.value("Type").toString().toStdString();
         int buildYear = query.value("BuildYear").toUInt();
-        readToVec.push_back(Computer(name, type, buildYear));
+        readToVec.push_back(Computer(id, name, type, buildYear));
     }
     return readToVec;
 }

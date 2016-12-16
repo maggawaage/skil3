@@ -61,7 +61,7 @@ private slots:
 
     void on_inputSearchPersons_textChanged(const QString &arg1);
 
-    void on_actionGo_to_link_triggered(bool checked);
+    void on_actionGo_to_link_triggered();
 
     void on_pushButtonDeletePerson_clicked();
 
