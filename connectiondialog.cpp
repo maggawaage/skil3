@@ -39,7 +39,7 @@ void ConnectionDialog::PersonOrComputer(int type, string name)
 void ConnectionDialog::tableIfShowComputers(string personName)
 {
     vector<Computer> LinkedComputers;
-    LinkedComputers.clear();
+    //LinkedComputers.clear();
     LinkedComputers = _PService.getComputersConnectedToPerson(personName);
 
     ui->linkedTable->setRowCount((int)LinkedComputers.size());
@@ -65,7 +65,7 @@ void ConnectionDialog::tableIfShowComputers(string personName)
 void ConnectionDialog::tableIfShowPersons(string computerName)
 {
     vector<Person> LinkedPersons;
-    LinkedPersons.clear();
+    //LinkedPersons.clear();
     LinkedPersons = _CService.getPersonsConnectedToComputer(computerName);
 
     ui->linkedTable->setRowCount((int)LinkedPersons.size());
@@ -91,10 +91,10 @@ void ConnectionDialog::tableIfShowPersons(string computerName)
 void ConnectionDialog::unlinkTableIfShowComputers(string personName)
 {
     vector<Computer> LinkedComputers;
-    LinkedComputers.clear();
+    //LinkedComputers.clear();
     LinkedComputers = _PService.getComputersConnectedToPerson(personName);
     vector<Computer> UnLinkedComputers;
-    UnLinkedComputers.clear();
+    //UnLinkedComputers.clear();
     UnLinkedComputers =_CService.getVectorFromDataAccess(UnLinkedComputers);
 
     for (int i = 0; i < LinkedComputers.size() ; i++)
@@ -131,20 +131,21 @@ void ConnectionDialog::unlinkTableIfShowComputers(string personName)
 void ConnectionDialog::unlinkTableIfShowPersons(string  computerName)
 {
     vector<Person> LinkedPersons;
-    LinkedPersons.clear();
+    //LinkedPersons.clear();
     LinkedPersons = _CService.getPersonsConnectedToComputer(computerName);
     vector<Person> UnLinkedPersons;
-    UnLinkedPersons.clear();
+   // UnLinkedPersons.clear();
     UnLinkedPersons=_PService.getVectorFromDataAccess(UnLinkedPersons);
 
+    qDebug() << "e";
     for (int i = 0; i < LinkedPersons.size() ; i++)
     {
         for(int j = 0; j < UnLinkedPersons.size() ; j++)
         {
-            if( ( LinkedPersons.at(i).getName() == UnLinkedPersons.at(i).getName() ) &
-                ( LinkedPersons.at(i).getGender() == UnLinkedPersons.at(i).getGender() )  &
-                ( LinkedPersons.at(i).getBirthYear() == UnLinkedPersons.at(i).getBirthYear() )  &
-                ( LinkedPersons.at(i).getDeathYear() == UnLinkedPersons.at(i).getDeathYear() ) )
+            if( ( LinkedPersons.at(i).getName() == UnLinkedPersons.at(j).getName() ) &
+                ( LinkedPersons.at(i).getGender() == UnLinkedPersons.at(j).getGender() )  &
+                ( LinkedPersons.at(i).getBirthYear() == UnLinkedPersons.at(j).getBirthYear() )  &
+                ( LinkedPersons.at(i).getDeathYear() == UnLinkedPersons.at(j).getDeathYear() ) )
             {
                 UnLinkedPersons.erase (UnLinkedPersons.begin()+j);
             }
