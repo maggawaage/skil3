@@ -28,7 +28,7 @@ private slots:
 private:
     Ui::ComputersDialog *ui;
     ComputerService _CService;
-    QString tempEditID;
+    QString tempEditName;
 };
 
 #endif // COMPUTERSDIALOG_H

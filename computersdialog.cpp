@@ -78,11 +78,11 @@ vector<Computer> ComputersDialog::on_pushButtonEditComputer_clicked()
     QString type = ui->inputCType->text();
     QString buildYear = ui->inputCBuildYear->text();
 
-    int currentId = tempEditID.toInt();
+    string currentName = tempEditName.toStdString();
 
-    bool success =  (_CService.editComputersType(currentId, type.toStdString()),
-    _CService.editComputersBuildYear(currentId, buildYear.toInt()),
-    _CService.editComputersName(currentId, newName.toStdString()));
+    bool success =  (_CService.editComputersType(currentName, type.toStdString()),
+    _CService.editComputersBuildYear(currentName, buildYear.toInt()),
+    _CService.editComputersName(currentName, newName.toStdString()));
 
     if(success)
     {
@@ -107,9 +107,8 @@ bool ComputersDialog::onlyNumbers(QString string)
 
 void ComputersDialog::setComputer(Computer computer)
 {
-    QString id = QString::number(computer.getId());
     QString name = QString::fromStdString(computer.getName());
-    tempEditID = id;
+    tempEditName = name;
     QString type = QString::fromStdString(computer.getType());
     QString buildYear = QString::number(computer.getBuildYear());
     ui->inputCName->setText(name);
@@ -134,4 +133,3 @@ bool ComputersDialog::checkIfSame(string name, string type, int bY)
     return false;
 
 }
-

@@ -20,19 +20,19 @@ bool ComputerService::addComputer(string name, string type, int buildYear)
     return false;
 }
 
-bool ComputerService::editComputersName(int id, string newName)
+bool ComputerService::editComputersName(string currentName, string newName)
 {
-    return _access.editComputersName(id, newName);
+    return _access.editComputersName(currentName, newName);
 }
 
-bool ComputerService::editComputersType(int id, string type)
+bool ComputerService::editComputersType(string currentName, string type)
 {
-    return _access.editComputerType(id, type);
+    return _access.editComputerType(currentName, type);
 }
 
-bool ComputerService::editComputersBuildYear(int id, int buildYear)
+bool ComputerService::editComputersBuildYear(string currentName, int buildYear)
 {
-    return _access.editComputerBuildYear(id, buildYear);
+    return _access.editComputerBuildYear(currentName, buildYear);
 }
 
 vector<Computer> ComputerService::Search(vector <Computer> list, string searchString)

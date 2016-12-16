@@ -16,24 +16,24 @@ bool PersonService::addPerson(string name, char gender, int birthYear, int death
 }
 
 //Edit
-bool PersonService::editPersonsName(int id, string newName)
+bool PersonService::editPersonsName(string currentName, string newName)
 {
-    return _access.editPersonsName(id, newName);
+    return _access.editPersonsName(currentName, newName);
 }
 
-bool PersonService::editPersonsGender(int id, char gender)
+bool PersonService::editPersonsGender(string currentName, char gender)
 {
-    return _access.editPersonsGender(id, gender);
+    return _access.editPersonsGender(currentName, gender);
 }
 
-bool PersonService::editPersonsBirthYear(int id, int birthYear)
+bool PersonService::editPersonsBirthYear(string currentName, int birthYear)
 {
-    return _access.editPersonsBirthYear(id, birthYear);
+    return _access.editPersonsBirthYear(currentName, birthYear);
 }
 
-bool PersonService::editPersonsDeathYear(int id, int deathYear)
+bool PersonService::editPersonsDeathYear(string currentName, int deathYear)
 {
-    return _access.editPersonsDeathYear(id, deathYear);
+    return _access.editPersonsDeathYear(currentName, deathYear);
 }
 
 //Search

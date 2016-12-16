@@ -39,7 +39,7 @@ private:
     Ui::PersonsDialog *ui;
     PersonService _PService;
     char convertQstringToChar(QString str);
-    QString tempEditID;
+    QString tempEditName;
 };
 
 #endif // PERSONSDIALOG_H

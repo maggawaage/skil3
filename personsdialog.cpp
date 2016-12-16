@@ -7,13 +7,13 @@ PersonsDialog::PersonsDialog(QWidget *parent) :
     ui(new Ui::PersonsDialog)
 {
     ui->setupUi(this);
+
 }
 
 PersonsDialog::~PersonsDialog()
 {
     delete ui;
 }
-
 
 void PersonsDialog::on_pushButtonAddPerson_clicked()
 {
@@ -109,9 +109,8 @@ QString PersonsDialog::showGender(char input)
 
 void PersonsDialog::setPerson(Person person)
 {
-    QString id = QString::number(person.getId());
     QString name = QString::fromStdString(person.getName());
-    tempEditID = id;
+    tempEditName = name;
     char ge = person.getGender();
     QString gender = showGender(ge);
     QString birthYear = QString::number(person.getBirthYear());
@@ -152,12 +151,11 @@ vector<Person> PersonsDialog::on_pushButtonEditPerson_clicked()
     QString birthYear = ui->inputPBirthYear->text();
     QString deathYear = ui->inputPDeathYear->text();
 
-    int currentId = tempEditID.toInt();
-
-    bool success =  ( _PService.editPersonsGender(currentId, convertQstringToChar(gender)),
-    _PService.editPersonsBirthYear(currentId, birthYear.toInt()),
-    _PService.editPersonsDeathYear(currentId, deathYear.toInt()),
-    _PService.editPersonsName(currentId, newName.toStdString()));
+    string currentName = tempEditName.toStdString();
+    bool success =  ( _PService.editPersonsGender(currentName, convertQstringToChar(gender)),
+    _PService.editPersonsBirthYear(currentName, birthYear.toInt()),
+    _PService.editPersonsDeathYear(currentName, deathYear.toInt()),
+    _PService.editPersonsName(currentName, newName.toStdString()));
 
     if(success)
     {
