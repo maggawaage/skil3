@@ -57,6 +57,14 @@ bool DataAccess::addPerson(string name, char gender, int birthYear, int deathYea
        return query.exec();
 }
 
+void DataAccess::deletePerson(int myID)
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.prepare("DELETE FROM Persons WHERE ID = :myID;");
+    query.bindValue(":myID", myID);
+    query.exec();
+}
+
 bool DataAccess::addComputer(string name, string type, int buildYear)
 {
     while(true)
@@ -136,6 +144,17 @@ void DataAccess::editComputerBuildYear(string currentName, int buildYear)
     query.bindValue(":buildYear",buildYear);
     query.bindValue(":Name", QString::fromStdString(currentName));
     query.exec();
+}
+
+
+void DataAccess::deleteComputer(int myID)
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.prepare("DELETE FROM Computers WHERE ID = :myID");
+    query.bindValue(":myID", myID);
+    query.exec();
+
+    qDebug() << myID;
 }
 
 //LINKS

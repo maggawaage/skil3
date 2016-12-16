@@ -63,6 +63,12 @@ vector<Person> PersonService::Search(vector <Person> list, string searchString)
     return newList;
 }
 
+void PersonService::deletePerson(int id)
+{
+    DataAccess _access;
+    _access.deletePerson(id);
+}
+
 //LINKS
 vector<Computer> PersonService::getComputersConnectedToPerson(string personName)
 {
@@ -89,3 +95,4 @@ void PersonService::linkPersonToComputer(string pName, string cName)
     int cID =_access.getComputerIdByName(cName);
     _access.linkPersonToComputer(pID, cID);
 }
+

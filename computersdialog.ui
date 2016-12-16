@@ -79,9 +79,9 @@ font: 18pt &quot;.SF NS Text&quot;;</string>
    <property name="geometry">
     <rect>
      <x>80</x>
-     <y>150</y>
+     <y>171</y>
      <width>291</width>
-     <height>16</height>
+     <height>20</height>
     </rect>
    </property>
    <property name="text">
@@ -105,9 +105,9 @@ font: 18pt &quot;.SF NS Text&quot;;</string>
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>61</y>
+     <y>81</y>
      <width>311</width>
-     <height>20</height>
+     <height>21</height>
     </rect>
    </property>
    <property name="text">

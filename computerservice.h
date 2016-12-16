@@ -17,6 +17,7 @@ public:
     void editComputersBuildYear(string currentName, int buildYear);
 
     static vector<Computer> Search(vector <Computer> list, string searchString);
+    void deleteComputer(int id);
 
     //LINKS
     vector<Person> getPersonsConnectedToComputer(string computerName);

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>850</width>
-    <height>1200</height>
+    <width>563</width>
+    <height>457</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -258,14 +258,16 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>850</width>
-     <height>21</height>
+     <width>563</width>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuShow">
     <property name="title">
      <string>Git link</string>
     </property>
+    <addaction name="separator"/>
+    <addaction name="actionGo_to_link"/>
    </widget>
    <widget class="QMenu" name="menuAbout">
     <property name="title">
@@ -275,6 +277,11 @@
    <addaction name="menuAbout"/>
    <addaction name="menuShow"/>
   </widget>
+  <action name="actionGo_to_link">
+   <property name="text">
+    <string>Go to link</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
