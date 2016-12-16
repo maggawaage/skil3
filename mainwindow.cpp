@@ -55,7 +55,7 @@ vector<Person> MainWindow::displayPersons()
 
 }
 
-vector<Person> MainWindow::displayPersons(string string)
+vector<Person> MainWindow::displaySearchPersons(string string)
 {
     vector<Person> Persons;
     Persons = _PService.getVectorFromDataAccess(Persons);
@@ -134,7 +134,7 @@ vector<Computer> MainWindow::displayComputers()
 
 }
 
-vector<Computer> MainWindow::displayComputers(string string)
+vector<Computer> MainWindow::displaySearchComputers(string string)
 {
     vector<Computer> Computers;
     Computers = _CService.getVectorFromDataAccess(Computers);
@@ -379,14 +379,14 @@ void MainWindow::on_inputSearchComp_textChanged(const QString &arg1)
 {
     string a = arg1.toStdString();
 
-    displayComputers(a);
+    displaySearchComputers(a);
 }
 
 void MainWindow::on_inputSearchPersons_textChanged(const QString &arg1)
 {
     string a = arg1.toStdString();
 
-    displayPersons(a);
+    displaySearchPersons(a);
 }
 
 

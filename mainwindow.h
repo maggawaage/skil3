@@ -24,9 +24,9 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     vector<Person> displayPersons();
-    vector<Person> displayPersons(string string);
+    vector<Person> displaySearchPersons(string string);
     vector<Computer> displayComputers();
-    vector<Computer> displayComputers(string string);
+    vector<Computer> displaySearchComputers(string string);
     void displayPersonsVector(vector<Person> printPersons, int x);
     QString showGender(char input);
 
