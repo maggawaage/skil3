@@ -20,19 +20,19 @@ bool ComputerService::addComputer(string name, string type, int buildYear)
     return false;
 }
 
-void ComputerService::editComputersName(string currentName, string newName)
+bool ComputerService::editComputersName(int id, string newName)
 {
-    _access.editComputersName(currentName, newName);
+    return _access.editComputersName(id, newName);
 }
 
-void ComputerService::editComputersType(string currentName, string type)
+bool ComputerService::editComputersType(int id, string type)
 {
-    _access.editComputerType(currentName, type);
+    return _access.editComputerType(id, type);
 }
 
-void ComputerService::editComputersBuildYear(string currentName, int buildYear)
+bool ComputerService::editComputersBuildYear(int id, int buildYear)
 {
-    _access.editComputerBuildYear(currentName, buildYear);
+    return _access.editComputerBuildYear(id, buildYear);
 }
 
 vector<Computer> ComputerService::Search(vector <Computer> list, string searchString)
@@ -61,7 +61,6 @@ vector<Computer> ComputerService::Search(vector <Computer> list, string searchSt
 
     return newList;
 }
-
 
 void ComputerService::deleteComputer(int id)
 {

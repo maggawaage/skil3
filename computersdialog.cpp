@@ -68,6 +68,33 @@ void ComputersDialog::on_pushButtonAddComputer_clicked()
         //this->done(-1);
     }
 }
+
+vector<Computer> ComputersDialog::on_pushButtonEditComputer_clicked()
+{
+    vector<Computer> Computers;
+    Computers = _CService.getVectorFromDataAccess(Computers);
+
+    QString newName = ui->inputCName->text();
+    QString type = ui->inputCType->text();
+    QString buildYear = ui->inputCBuildYear->text();
+
+    int currentId = tempEditID.toInt();
+
+    bool success =  (_CService.editComputersType(currentId, type.toStdString()),
+    _CService.editComputersBuildYear(currentId, buildYear.toInt()),
+    _CService.editComputersName(currentId, newName.toStdString()));
+
+    if(success)
+    {
+        ui->inputCName->setText("");
+        ui->inputCType->setText("");
+        ui->inputCBuildYear->setText("");
+        this->done(0);
+    }
+
+    return Computers;
+}
+
 bool ComputersDialog::onlyNumbers(QString string)
 {
     for(int i = 0; i < string.size(); i++)
@@ -80,13 +107,17 @@ bool ComputersDialog::onlyNumbers(QString string)
 
 void ComputersDialog::setComputer(Computer computer)
 {
+    QString id = QString::number(computer.getId());
     QString name = QString::fromStdString(computer.getName());
+    tempEditID = id;
     QString type = QString::fromStdString(computer.getType());
     QString buildYear = QString::number(computer.getBuildYear());
     ui->inputCName->setText(name);
     ui->inputCType->setText(type);
     ui->inputCBuildYear->setText(buildYear);
+
 }
+
 bool ComputersDialog::checkIfSame(string name, string type, int bY)
 {
     vector<Computer> Computers;
@@ -103,3 +134,4 @@ bool ComputersDialog::checkIfSame(string name, string type, int bY)
     return false;
 
 }
+

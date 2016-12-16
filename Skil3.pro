@@ -28,7 +28,8 @@ SOURCES += main.cpp\
     computer.cpp \
     personsdialog.cpp \
     computersdialog.cpp \
-    connectiondialog.cpp
+    connectiondialog.cpp \
+    about.cpp
 
 HEADERS  += mainwindow.h \
     dataaccess.h \
@@ -39,12 +40,14 @@ HEADERS  += mainwindow.h \
     computer.h \
     personsdialog.h \
     computersdialog.h \
-    connectiondialog.h
+    connectiondialog.h \
+    about.h
 
 FORMS    += mainwindow.ui \
     personsdialog.ui \
     computersdialog.ui \
-    connectiondialog.ui
+    connectiondialog.ui \
+    about.ui
 
 RESOURCES += \
     resources.qrc

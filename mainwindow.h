@@ -5,12 +5,12 @@
 #include "personsdialog.h"
 #include "connectiondialog.h"
 #include "computersdialog.h"
-
+#include "about.h"
 
 #include <QMainWindow>
 #include <QTableWidget>
-//#include <QTableWidgetItem>
 #include <qDebug>
+#include <QTableWidgetItem>
 
 namespace Ui {
 class MainWindow;
@@ -23,13 +23,9 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    vector<Person> displayPersons();
     vector<Person> displayPersons(string string);
-    vector<Computer> displayComputers();
     vector<Computer> displayComputers(string string);
-    void displayPersonsVector(vector<Person> printPersons, int x);
     QString showGender(char input);
-
 
 private slots:
 
@@ -47,19 +43,9 @@ private slots:
 
     void on_computersTable_doubleClicked(const QModelIndex &index);
 
-    //void on_pushButtonDeletePerson_clicked();
-
-    /*void on_pushButtonDeleteComputer_clicked();
-
-    void on_pushButtonPersConnection_clicked();
-
-    void on_pushButtonComConnection_clicked();
-
-    void on_inputSearchPersons_textChanged(const QString &arg1);*/
+    void on_inputSearchPersons_textChanged(const QString &arg1);
 
     void on_inputSearchComp_textChanged(const QString &arg1);
-
-    void on_inputSearchPersons_textChanged(const QString &arg1);
 
     void on_actionGo_to_link_triggered();
 
@@ -67,11 +53,12 @@ private slots:
 
     void on_pushButtonDeleteComputer_clicked();
 
-    //Link
     void on_pushButtonPersConnection_clicked();
 
     void on_pushButtonComConnection_clicked();
 
+
+    void on_actionAbout_Program_triggered(bool checked);
 
 private:
     Ui::MainWindow *ui;
@@ -80,6 +67,7 @@ private:
     PersonService _PService;
     ComputerService _CService;
     ConnectionDialog _Connection;
+    About _About;
 };
 
 #endif // MAINWINDOW_H

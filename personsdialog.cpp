@@ -7,13 +7,13 @@ PersonsDialog::PersonsDialog(QWidget *parent) :
     ui(new Ui::PersonsDialog)
 {
     ui->setupUi(this);
-
 }
 
 PersonsDialog::~PersonsDialog()
 {
     delete ui;
 }
+
 
 void PersonsDialog::on_pushButtonAddPerson_clicked()
 {
@@ -31,11 +31,19 @@ void PersonsDialog::on_pushButtonAddPerson_clicked()
         ui->radioButtonMale->text() = 'M';
         gender = 'M';
     }
+
     QString birthYear = ui->inputPBirthYear->text();
     QString deathYear = ui->inputPDeathYear->text();
     ui->labelErrorPersonName->setText("");
     ui->labelErrorPersonBY->setText("");
     ui->labelErrorPersonDY->setText("");
+
+    if(deathYear < birthYear && deathYear != 0)
+    {
+        //errormessage
+        ui->labelErrorPersonDY->setText("<span style='color: red'>You cannot die before you are born</span>");
+        return;
+    }
     if(checkIfSame(name.toStdString(), convertQstringToChar(gender), birthYear.toInt(), deathYear.toInt()))
     {
         //errormessage
@@ -73,9 +81,6 @@ void PersonsDialog::on_pushButtonAddPerson_clicked()
         return;
     }
 
-    //bæta við bool falli sem tjekkar hvort allt se eins
-
-
     bool success = _PService.addPerson(name.toStdString(), convertQstringToChar(gender), birthYear.toInt(), deathYear.toInt());
 
     if(success)
@@ -84,11 +89,6 @@ void PersonsDialog::on_pushButtonAddPerson_clicked()
         ui->inputPBirthYear->setText("");
         ui->inputPDeathYear->setText("");
         this->done(0);
-    }
-    else
-    {
-        //error message
-        //this->done(-1);
     }
 }
 
@@ -106,9 +106,12 @@ QString PersonsDialog::showGender(char input)
 
     return gender;
 }
+
 void PersonsDialog::setPerson(Person person)
 {
+    QString id = QString::number(person.getId());
     QString name = QString::fromStdString(person.getName());
+    tempEditID = id;
     char ge = person.getGender();
     QString gender = showGender(ge);
     QString birthYear = QString::number(person.getBirthYear());
@@ -116,9 +119,8 @@ void PersonsDialog::setPerson(Person person)
     ui->inputPName->setText(name);
     ui->inputPBirthYear->setText(birthYear);
     ui->inputPDeathYear->setText(deathYear);
-    //færa if else hér til að tékka villur
-
 }
+
 bool PersonsDialog::onlyNumbers(QString string)
 {
     for(int i = 0; i < string.size(); i++)
@@ -129,15 +131,43 @@ bool PersonsDialog::onlyNumbers(QString string)
     return true;
 }
 
-void PersonsDialog::on_pushButtonEditPerson_clicked()
+vector<Person> PersonsDialog::on_pushButtonEditPerson_clicked()
 {
     //Uppfæra upplýsingar sem notandi breytti
     vector<Person> Persons;
     Persons = _PService.getVectorFromDataAccess(Persons);
-    string newName, currentName;
 
-    _PService.editPersonsName(currentName, newName);
+    QString newName = ui->inputPName->text();
+    QString gender;
+    if(ui->radioButtonFemale->isChecked())
+    {
+        ui->radioButtonFemale->text() = 'F';
+        gender = 'F';
+    }
+    else
+    {
+        ui->radioButtonMale->text() = 'M';
+        gender = 'M';
+    }
+    QString birthYear = ui->inputPBirthYear->text();
+    QString deathYear = ui->inputPDeathYear->text();
 
+    int currentId = tempEditID.toInt();
+
+    bool success =  ( _PService.editPersonsGender(currentId, convertQstringToChar(gender)),
+    _PService.editPersonsBirthYear(currentId, birthYear.toInt()),
+    _PService.editPersonsDeathYear(currentId, deathYear.toInt()),
+    _PService.editPersonsName(currentId, newName.toStdString()));
+
+    if(success)
+    {
+        ui->inputPName->setText("");
+        ui->inputPBirthYear->setText("");
+        ui->inputPDeathYear->setText("");
+        this->done(0);
+    }
+
+    return Persons;
 }
 
 char PersonsDialog::convertQstringToChar(QString str)
@@ -148,6 +178,7 @@ char PersonsDialog::convertQstringToChar(QString str)
     char charStr = stdString[0];
     return charStr;
 }
+
 bool PersonsDialog::checkIfSame(string name, char gender, int bY, int dY)
 {
     vector<Person> Persons;
@@ -163,5 +194,5 @@ bool PersonsDialog::checkIfSame(string name, char gender, int bY, int dY)
         }
     }
     return false;
-
 }
+

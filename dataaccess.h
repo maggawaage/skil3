@@ -17,13 +17,13 @@ public:
     bool addPerson(string name, char gender, int birthYear, int deathYear);
     bool addComputer(string name, string type, int buildYear);
     //laga að id í stað currentNa,e
-    void editPersonsName(string currentName, string newName);
-    void editComputersName(string currentName, string newName);
-    void editPersonsGender(string currentName, char gender);
-    void editPersonsBirthYear(string currentName, int birthYear);
-    void editPersonsDeathYear(string currentName, int deathYear);
-    void editComputerType(string currentName, string computerType);
-    void editComputerBuildYear(string currentName, int buildYear);
+    bool editPersonsName(int id, string newName);
+    bool editComputersName(int id, string newName);
+    bool editPersonsGender(int id, char gender);
+    bool editPersonsBirthYear(int id, int birthYear);
+    bool editPersonsDeathYear(int id, int deathYear);
+    bool editComputerType(int id, string computerType);
+    bool editComputerBuildYear(int id, int buildYear);
     void deletePerson(int id);
     void deleteComputer(int id);
 

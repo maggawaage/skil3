@@ -10,7 +10,6 @@
 #include <QDialog>
 #include <QTableWidget>
 #include <QLineEdit>
-
 #include <QAbstractItemView>
 
 namespace Ui {
@@ -32,12 +31,15 @@ public:
 private slots:
     void on_pushButtonAddPerson_clicked();
 
-    void on_pushButtonEditPerson_clicked();
+    vector<Person>  on_pushButtonEditPerson_clicked();
+
+    //void on_pushButtonEditPerson_objectNameChanged(const QString &objectName);
 
 private:
     Ui::PersonsDialog *ui;
     PersonService _PService;
     char convertQstringToChar(QString str);
+    QString tempEditID;
 };
 
 #endif // PERSONSDIALOG_H

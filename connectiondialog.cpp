@@ -45,7 +45,9 @@ void ConnectionDialog::tableIfShowComputers(int id)
     ui->linkedTable->setRowCount((int)LinkedComputers.size());
     ui->linkedTable->clearContents();
     ui->linkedTable->setColumnCount(3);
-    for(int row = 0; row < LinkedComputers.size(); row++)
+    ui->linkedTable->setColumnWidth(0, 170);
+    ui->linkedTable->setColumnWidth(1, 210);
+    for(size_t row = 0; row < LinkedComputers.size(); row++)
     {
 
         Computer CurrentComputer = LinkedComputers.at(row);
@@ -70,7 +72,9 @@ void ConnectionDialog::tableIfShowPersons(int id)
 
     ui->linkedTable->setRowCount((int)LinkedPersons.size());
     ui->linkedTable->clearContents();
-    for(int row = 0; row < LinkedPersons.size(); row++)
+    ui->linkedTable->setColumnWidth(0, 170);
+    ui->linkedTable->setColumnWidth(1, 210);
+    for(size_t row = 0; row < LinkedPersons.size(); row++)
     {
         Person CurrentPerson = LinkedPersons.at(row);
         QString name = QString::fromStdString(CurrentPerson.getName());
@@ -97,9 +101,9 @@ void ConnectionDialog::unlinkTableIfShowComputers(int id)
     //UnLinkedComputers.clear();
     UnLinkedComputers =_CService.getVectorFromDataAccess(UnLinkedComputers);
 
-    for (int i = 0; i < LinkedComputers.size() ; i++)
+    for (size_t i = 0; i < LinkedComputers.size() ; i++)
     {
-        for(int j = 0; j < UnLinkedComputers.size() ; j++)
+        for(size_t j = 0; j < UnLinkedComputers.size() ; j++)
         {
             if( ( LinkedComputers.at(i).getName() == UnLinkedComputers.at(j).getName() ) &
                  ( LinkedComputers.at(i).getType() == UnLinkedComputers.at(j).getType() )  &
@@ -113,7 +117,9 @@ void ConnectionDialog::unlinkTableIfShowComputers(int id)
     ui->unLinkedTable->setRowCount((int)UnLinkedComputers.size());
     ui->unLinkedTable->clearContents();
     ui->unLinkedTable->setColumnCount(3);
-    for(int row = 0; row < UnLinkedComputers.size(); row++)
+    ui->unLinkedTable->setColumnWidth(0, 170);
+    ui->unLinkedTable->setColumnWidth(1, 210);
+    for(size_t row = 0; row < UnLinkedComputers.size(); row++)
     {
 
         Computer CurrentComputer = UnLinkedComputers.at(row);
@@ -138,9 +144,9 @@ void ConnectionDialog::unlinkTableIfShowPersons(int id)
     UnLinkedPersons=_PService.getVectorFromDataAccess(UnLinkedPersons);
 
     qDebug() << "e";
-    for (int i = 0; i < LinkedPersons.size() ; i++)
+    for (size_t i = 0; i < LinkedPersons.size() ; i++)
     {
-        for(int j = 0; j < UnLinkedPersons.size() ; j++)
+        for(size_t j = 0; j < UnLinkedPersons.size() ; j++)
         {
             if( ( LinkedPersons.at(i).getName() == UnLinkedPersons.at(j).getName() ) &
                 ( LinkedPersons.at(i).getGender() == UnLinkedPersons.at(j).getGender() )  &
@@ -154,7 +160,10 @@ void ConnectionDialog::unlinkTableIfShowPersons(int id)
 
     ui->unLinkedTable->setRowCount((int)UnLinkedPersons.size());
     ui->unLinkedTable->clearContents();
-    for(int row = 0; row < UnLinkedPersons.size(); row++)
+    ui->unLinkedTable->setColumnWidth(0, 170);
+    ui->unLinkedTable->setColumnWidth(1, 210);
+
+    for(size_t row = 0; row < UnLinkedPersons.size(); row++)
     {
         Person CurrentPerson = UnLinkedPersons.at(row);
         QString name = QString::fromStdString(CurrentPerson.getName());
@@ -172,8 +181,6 @@ void ConnectionDialog::unlinkTableIfShowPersons(int id)
         _currentlyUnLinkedPersons = UnLinkedPersons;
 }
 
-
-
 QString ConnectionDialog::showGender(char input)
 {
     QString gender;
@@ -188,7 +195,6 @@ QString ConnectionDialog::showGender(char input)
     return gender;
 }
 
-
 void ConnectionDialog::on_linkedTable_clicked(const QModelIndex &index)
 {
     ui->unlinkButton->setEnabled(true);
@@ -201,7 +207,6 @@ void ConnectionDialog::on_unLinkedTable_clicked(const QModelIndex &index)
     ui->unlinkButton->setDisabled(true);
 }
 
-
 void ConnectionDialog::on_linkButton_clicked()
 {
     if(_PersonOrComputer == 1)
@@ -212,9 +217,7 @@ void ConnectionDialog::on_linkButton_clicked()
     int pId = _currentId;
      _PService.linkPersonToComputer(pId, cId);
 
-     ui->linkedTable->clear();
      tableIfShowComputers(pId);
-     ui->unLinkedTable->clear();
      unlinkTableIfShowComputers(pId);
      ui->linkButton->setDisabled(true);
     }
@@ -227,9 +230,7 @@ void ConnectionDialog::on_linkButton_clicked()
     int cId = _currentId;
      _PService.linkPersonToComputer(pId, cId);
 
-     ui->linkedTable->clear();
      tableIfShowPersons(cId);
-     ui->unLinkedTable->clear();
      unlinkTableIfShowPersons(cId);
      ui->linkButton->setDisabled(true);
     }
@@ -245,9 +246,7 @@ void ConnectionDialog::on_unlinkButton_clicked()
     int pId = _currentId;
      _PService.deleteConnection(pId, cId);
 
-     ui->linkedTable->clear();
      tableIfShowComputers(pId);
-     ui->unLinkedTable->clear();
      unlinkTableIfShowComputers(pId);
      ui->unlinkButton->setDisabled(true);
     }
@@ -260,9 +259,7 @@ void ConnectionDialog::on_unlinkButton_clicked()
     int cId = _currentId;
      _PService.deleteConnection(pId, cId);
 
-     ui->linkedTable->clear();
      tableIfShowPersons(cId);
-     ui->unLinkedTable->clear();
      unlinkTableIfShowPersons(cId);
      ui->unlinkButton->setDisabled(true);
     }

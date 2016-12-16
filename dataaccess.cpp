@@ -65,7 +65,6 @@ void DataAccess::deletePerson(int id)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
     query.prepare("DELETE FROM Persons WHERE ID = :Id");
-    qDebug() << id;
     query.bindValue(":Id", id);
     query.exec();
 }
@@ -87,76 +86,74 @@ bool DataAccess::addComputer(string name, string type, int buildYear)
     return false;
 }
 
-void DataAccess::editPersonsName(string currentName, string newName)
+bool DataAccess::editPersonsName(int id, string newName)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
-    query.prepare("UPDATE Persons SET Name = :name WHERE Name = :Name;");
+    query.prepare("UPDATE Persons SET Name = :name WHERE Name = :Id;");
 
     query.bindValue(":name", QString::fromStdString(newName));
-    query.bindValue(":Name",QString::fromStdString(currentName));
-    query.exec();
+    query.bindValue(":Id",id);
+    return query.exec();
 }
 
-void DataAccess::editComputersName(string currentName, string newName)
+bool DataAccess::editComputersName(int id, string newName)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
-    query.prepare("UPDATE Computers SET Name = :name WHERE Name = :Name;");
+    query.prepare("UPDATE Computers SET Name = :name WHERE Name = :Id;");
     query.bindValue(":name", QString::fromStdString(newName));
-    query.bindValue(":Name",QString::fromStdString(currentName));
-    query.exec();
+    query.bindValue(":Id",id);
+    return query.exec();
 }
 
-void DataAccess::editPersonsGender(string currentName, char gender)
+bool DataAccess::editPersonsGender(int id, char gender)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
-    query.prepare("UPDATE Persons SET Gender = :Gender WHERE Name = :Name;");
+    query.prepare("UPDATE Persons SET Gender = :Gender WHERE Name = :Id;");
     query.bindValue(":Gender",gender);
-    query.bindValue(":Name", QString::fromStdString(currentName));
-    query.exec();
+    query.bindValue(":Id", id);
+    return query.exec();
 }
 
-void DataAccess::editPersonsBirthYear(string currentName, int birthYear)
+bool  DataAccess::editPersonsBirthYear(int id, int birthYear)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
-    query.prepare("UPDATE Persons SET BirthYear = :BirthYear WHERE Name = :Name;");
+    query.prepare("UPDATE Persons SET BirthYear = :BirthYear WHERE Name = :Id;");
     query.bindValue(":BirthYear",birthYear);
-    query.bindValue(":Name", QString::fromStdString(currentName));
-    query.exec();
+    query.bindValue(":Id", id);
+    return query.exec();
 }
 
-void DataAccess::editPersonsDeathYear(string currentName, int deathYear)
+bool DataAccess::editPersonsDeathYear(int id, int deathYear)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
-    query.prepare("UPDATE Persons SET DeathYear = :DearthYear WHERE Name = :Name;");
+    query.prepare("UPDATE Persons SET DeathYear = :DeathYear WHERE Name = :Id;");
     query.bindValue(":DeathYear",deathYear);
-    query.bindValue(":Name", QString::fromStdString(currentName));
-    query.exec();
+    query.bindValue(":Id", id);
+    return query.exec();
 }
 
-void DataAccess::editComputerType(string currentName, string computerType)
+bool DataAccess::editComputerType(int id, string computerType)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
-    query.prepare("UPDATE Computers SET Type = :type WHERE Name = :Name;");
+    query.prepare("UPDATE Computers SET Type = :type WHERE Name = :Id;");
     query.bindValue(":type", QString::fromStdString(computerType));
-    query.bindValue(":Name", QString::fromStdString(currentName));
-    query.exec();
+    query.bindValue(":Id", id);
+    return query.exec();
 }
 
-void DataAccess::editComputerBuildYear(string currentName, int buildYear)
+bool DataAccess::editComputerBuildYear(int id, int buildYear)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
-    query.prepare("UPDATE Computers SET BuildYear = :buildYear WHERE Name = :Name;");
+    query.prepare("UPDATE Computers SET BuildYear = :buildYear WHERE Name = :Id;");
     query.bindValue(":buildYear",buildYear);
-    query.bindValue(":Name", QString::fromStdString(currentName));
-    query.exec();
+    query.bindValue(":Id", id);
+    return query.exec();
 }
-
 
 void DataAccess::deleteComputer(int id)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
     query.prepare("DELETE FROM Computers WHERE ID = :Id");
-    qDebug() << id;
     query.bindValue(":Id", id);
     query.exec();
 }

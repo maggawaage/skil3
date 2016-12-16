@@ -12,10 +12,10 @@ public:
     PersonService();
     vector<Person> getVectorFromDataAccess(vector<Person> Person);
     bool addPerson(string name, char gender, int birthYear, int deathYear);
-    void editPersonsName(string currentName, string newName);
-    void editPersonsGender(string currentName, char gender);
-    void editPersonsBirthYear(string currentName, int birthYear);
-    void editPersonsDeathYear(string currentName, int deathYear);
+    bool editPersonsName(int id, string newName);
+    bool editPersonsGender(int id, char gender);
+    bool editPersonsBirthYear(int id, int birthYear);
+    bool editPersonsDeathYear(int id, int deathYear);
     vector<Person> SearchName(vector <Person> list, string searchName);
 
     static vector<Person> Search(vector <Person> list, string searchString);

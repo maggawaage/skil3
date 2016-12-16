@@ -17,7 +17,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Computer Scientist and Notable Computers Linking Software</string>
   </property>
   <property name="windowIcon">
    <iconset resource="resources.qrc">
@@ -273,6 +273,7 @@
     <property name="title">
      <string>About</string>
     </property>
+    <addaction name="actionAbout_Program"/>
    </widget>
    <addaction name="menuAbout"/>
    <addaction name="menuShow"/>
@@ -280,6 +281,11 @@
   <action name="actionGo_to_link">
    <property name="text">
     <string>Go to link</string>
+   </property>
+  </action>
+  <action name="actionAbout_Program">
+   <property name="text">
+    <string>About Program</string>
    </property>
   </action>
  </widget>
