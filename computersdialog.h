@@ -16,16 +16,21 @@ class ComputersDialog : public QDialog
 public:
     explicit ComputersDialog(QWidget *parent = 0);
     ~ComputersDialog();
+
     bool onlyNumbers(QString string);
     void setComputer(Computer computer);
     bool checkIfSame(string name, string type, int bY);
 
-private slots:
-    void on_pushButtonAddComputer_clicked();
+    void setEditComputer(bool value);
+    void setAddComputer(bool value);
 
+private slots:
+
+    void on_pushButtonAddComputer_clicked();
     vector<Computer> on_pushButtonEditComputer_clicked();
 
 private:
+
     Ui::ComputersDialog *ui;
     ComputerService _CService;
     QString tempEditName;

@@ -5,6 +5,7 @@ DataAccess::DataAccess()
     _runningDB = QSqlDatabase::database();
 }
 
+//FILL VECTOR FOR PERSONS
 vector<Person> DataAccess::fillVector(vector<Person>famousComputerphiles)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
@@ -28,6 +29,7 @@ vector<Person> DataAccess::fillVector(vector<Person>famousComputerphiles)
     return famousComputerphiles;
 }
 
+//FILL VECTOR FOR COMPUTERS
 vector<Computer> DataAccess::fillVector(vector<Computer>famousComputers)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
@@ -48,6 +50,7 @@ vector<Computer> DataAccess::fillVector(vector<Computer>famousComputers)
     return famousComputers;
 }
 
+//SQL FUNCTION FOR ADDING A PERSON
 bool DataAccess::addPerson(string name, char gender, int birthYear, int deathYear)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
@@ -61,6 +64,7 @@ bool DataAccess::addPerson(string name, char gender, int birthYear, int deathYea
        return query.exec();
 }
 
+//SQL FUNCTION FOR DELETING A PERSON
 void DataAccess::deletePerson(int id)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
@@ -69,23 +73,20 @@ void DataAccess::deletePerson(int id)
     query.exec();
 }
 
+//SQL FUNCTION FOR ADDING A COMPUTER
 bool DataAccess::addComputer(string name, string type, int buildYear)
 {
-    while(true)
-    {
-        QSqlQuery query = QSqlQuery(_runningDB);
-        query.prepare("INSERT INTO Computers (Name, Type, BuildYear) "
-                      "VALUES (?, ?, ?)");
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.prepare("INSERT INTO Computers (Name, Type, BuildYear) "
+                  "VALUES (?, ?, ?)");
+    query.addBindValue(QString::fromStdString(name));
+    query.addBindValue(QString::fromStdString(type));
+    query.addBindValue(buildYear);
+    return query.exec();
 
-        query.addBindValue(QString::fromStdString(name));
-        query.addBindValue(QString::fromStdString(type));
-        query.addBindValue(buildYear);
-        query.exec();
-        return true;
-    }
-    return false;
 }
 
+//SQL FUNCITON FOR EDITING A PERSON'S NAME
 bool DataAccess::editPersonsName(string currentName, string newName)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
@@ -96,15 +97,7 @@ bool DataAccess::editPersonsName(string currentName, string newName)
     return query.exec();
 }
 
-bool DataAccess::editComputersName(string currentName, string newName)
-{
-    QSqlQuery query = QSqlQuery(_runningDB);
-    query.prepare("UPDATE Computers SET Name = :name WHERE Name = :Name;");
-    query.bindValue(":name", QString::fromStdString(newName));
-    query.bindValue(":Name",QString::fromStdString(currentName));
-    return query.exec();
-}
-
+//SQL FUNCTION FOR EDITING A PERSON'S GENDER
 bool DataAccess::editPersonsGender(string currentName, char gender)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
@@ -114,6 +107,7 @@ bool DataAccess::editPersonsGender(string currentName, char gender)
     return query.exec();
 }
 
+//SQL FUNCTION FOR EDITING A PERSON'S BIRTH YEAR
 bool  DataAccess::editPersonsBirthYear(string currentName, int birthYear)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
@@ -123,6 +117,7 @@ bool  DataAccess::editPersonsBirthYear(string currentName, int birthYear)
     return query.exec();
 }
 
+//SQL FUNCTION FOR EDITING A PERSON'S DEATH YEAR
 bool DataAccess::editPersonsDeathYear(string currentName, int deathYear)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
@@ -132,6 +127,17 @@ bool DataAccess::editPersonsDeathYear(string currentName, int deathYear)
     return query.exec();
 }
 
+//SQL FUNCTION FOR EDITING A COMPUTER'S NAME
+bool DataAccess::editComputersName(string currentName, string newName)
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.prepare("UPDATE Computers SET Name = :name WHERE Name = :Name;");
+    query.bindValue(":name", QString::fromStdString(newName));
+    query.bindValue(":Name",QString::fromStdString(currentName));
+    return query.exec();
+}
+
+//SQL FUNCTION FOR EDITING THE TYPE OF A COMPUTER
 bool DataAccess::editComputerType(string currentName, string computerType)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
@@ -141,6 +147,7 @@ bool DataAccess::editComputerType(string currentName, string computerType)
     return query.exec();
 }
 
+//SQL FUNCTION FOR EDITING A COMPUTER'S BUILD YEAR
 bool DataAccess::editComputerBuildYear(string currentName, int buildYear)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
@@ -150,7 +157,7 @@ bool DataAccess::editComputerBuildYear(string currentName, int buildYear)
     return query.exec();
 }
 
-
+//SQL FUNCTION FOR DELETING A COMPUTER
 void DataAccess::deleteComputer(int id)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
@@ -159,8 +166,7 @@ void DataAccess::deleteComputer(int id)
     query.exec();
 }
 
-//LINKS
-
+//CONNECTING TO SQL DATABASE, TABLE FOR PERSONS
 vector<Person> DataAccess::parsePersonLine(QSqlQuery& query)
 {
     vector<Person> readToVec;
@@ -176,6 +182,7 @@ vector<Person> DataAccess::parsePersonLine(QSqlQuery& query)
     return readToVec;
 }
 
+//CONNECTION TO SQL DATABASE, TABLE FOR COMPUTERS
 vector<Computer> DataAccess::parseComputerLine(QSqlQuery& query)
 {
     vector<Computer> readToVec;
@@ -190,6 +197,7 @@ vector<Computer> DataAccess::parseComputerLine(QSqlQuery& query)
     return readToVec;
 }
 
+//SQL FUNCTION FOR CONNECTIONG COMPUTERS TO PERSONS
 vector<Person> DataAccess::getPersonsConnectedToComputers(int id)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
@@ -199,6 +207,7 @@ vector<Person> DataAccess::getPersonsConnectedToComputers(int id)
     return parsePersonLine(query);
 }
 
+//SQL FUNCTION FOR CONNECTING PERSONS TO COMPUTERS
 vector<Computer> DataAccess::getComputersConnectedToPersons(int id)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
@@ -207,7 +216,8 @@ vector<Computer> DataAccess::getComputersConnectedToPersons(int id)
     query.exec();
     return parseComputerLine(query);
 }
-//
+
+//SQL FUNCTION FOR DELETING COMPUTER FROM PERSON
 void DataAccess::deleteConnectionComputer(int ComputerID)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
@@ -216,6 +226,7 @@ void DataAccess::deleteConnectionComputer(int ComputerID)
     query.exec();
 }
 
+//SQL FUNCTION FOR DELETING PERSON FROM COMPUTER
 void DataAccess::deleteConnectionPerson(int PersonID)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
@@ -224,6 +235,7 @@ void DataAccess::deleteConnectionPerson(int PersonID)
     query.exec();
 }
 
+//SQL FUNCTION FOR DELETING CONNECTIONS FROM CONNECTING TABLE
 void DataAccess::deleteConnection(int PersonID, int ComputerID)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
@@ -233,6 +245,7 @@ void DataAccess::deleteConnection(int PersonID, int ComputerID)
     query.exec();
 }
 
+//SQL FUNCTION FOR CONNECTING PERSON TO COMPUTER
 void DataAccess::linkPersonToComputer(int PersonID, int ComputerID)
 {
     QSqlQuery query = QSqlQuery(_runningDB);

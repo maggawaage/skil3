@@ -11,11 +11,16 @@ public:
     ComputerService();
 
     vector<Computer> getVectorFromDataAccess(vector<Computer> Computer);
+
+    //ADD COMPUTER
     bool addComputer(string name, string type, int buildYear);
+
+    //EDIT COMPUTER
     bool editComputersName(string currentName, string newName);
     bool editComputersType(string currentName, string type);
     bool editComputersBuildYear(string currentName, int buildYear);
 
+    //SEARCH COMPUTER
     static vector<Computer> Search(vector <Computer> list, string searchString);
     void deleteComputer(int id);
 
@@ -24,6 +29,7 @@ public:
     void deleteConnectionComputer(int id);
 
 private:
+
     DataAccess _access;
 
 

@@ -21,10 +21,13 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
     vector<Person> displayPersons(string string);
     vector<Computer> displayComputers(string string);
+
     QString showGender(char input);
 
 private slots:
@@ -61,6 +64,7 @@ private slots:
     void on_actionAbout_Program_triggered(bool checked);
 
 private:
+
     Ui::MainWindow *ui;
     vector<Person> _currentlyDisplayedPersons;
     vector<Computer> _currentlyDisplayedComputers;

@@ -6,11 +6,6 @@
 
 using namespace std;
 
-//TODO LIST:
-//Fá gender til að virka
-//Fá edit fall til að uppfærast í gagnagrunni
-//Virkja edit takka
-
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -27,6 +22,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+//DISPLAY TABLE OF PERSONS FROM DATABASE
 vector<Person> MainWindow::displayPersons(string string)
 {
     vector<Person> Persons;
@@ -43,7 +39,6 @@ vector<Person> MainWindow::displayPersons(string string)
     {
 
         Person CurrentPerson = Persons.at(row);
-        //QString Id = QString::number(CurrentPerson.getId());
         QString name = QString::fromStdString(CurrentPerson.getName());
         char ge = CurrentPerson.getGender();
         gender = showGender(ge);
@@ -76,6 +71,7 @@ QString MainWindow::showGender(char input)
     return gender;
 }
 
+//DISPLAY TABLE OF COMPUTERS FROM DATABASE
 vector<Computer> MainWindow::displayComputers(string string)
 {
     vector<Computer> Computers;
@@ -92,7 +88,6 @@ vector<Computer> MainWindow::displayComputers(string string)
     {
 
         Computer CurrentComputer = Computers.at(row);
-        //QString Id = QString::number(CurrentComputer.getId());
         QString name = QString::fromStdString(CurrentComputer.getName());
         QString type = QString::fromStdString(CurrentComputer.getType());
         QString buildYear = QString::number(CurrentComputer.getBuildYear());
@@ -108,6 +103,7 @@ vector<Computer> MainWindow::displayComputers(string string)
 
 }
 
+//FUNCTION OF TABS, IF TAB 0 IS CHOSEN USER RECEIVES THE PERSON'S TABLE, OTHERWISE HE/SHE RECEIVES THE COMPUTER'S TABLE
 void MainWindow::on_Tabs_tabBarClicked(int index)
 {
     //Person
@@ -128,23 +124,25 @@ void MainWindow::on_Tabs_tabBarClicked(int index)
     }
 }
 
+//ENABLE DELETE AND CONNECTIONS BUTTONS BY SELECTION AN ITEM ON TABLE
 void MainWindow::on_personsTable_clicked(const QModelIndex &index)
 {
     ui->pushButtonDeletePerson->setEnabled(true);
     ui->pushButtonPersConnection->setEnabled(true);
 }
 
+//ENABLE DELETE AND CONNECTIONS BUTTONS BY SELECTION AN ITEM ON TABLE
 void MainWindow::on_computersTable_clicked(const QModelIndex &index)
 {
-    //ui->pushButtonEditComputer->setEnabled(true);
     ui->pushButtonDeleteComputer->setEnabled(true);
     ui->pushButtonComConnection->setEnabled(true);
 }
 
+//OPENS A NEW AND CLEAN WINDOW SO USER CAN ADD A NEW PERSON INTO DATABASE
 void MainWindow::on_pushButtonAddPerson_clicked()
 {
     PersonsDialog AddPersonsDialog;
-
+    AddPersonsDialog.setAddPerson(true);
     int addPersonReturnValue = AddPersonsDialog.exec();
 
     if(addPersonReturnValue == 0)
@@ -155,13 +153,15 @@ void MainWindow::on_pushButtonAddPerson_clicked()
     }
     else
     {
-        //qDebug() << "error";
+        ui->statusBar->showMessage("Not successful!", 2000);
     }
 }
 
+//OPENS A NEW AND CLEAN WINDOW SO USER CAN ADD A NEW COMPUTER INTO DATABASE
 void MainWindow::on_pushButtonAddComp_clicked()
 {
     ComputersDialog AddComputersDialog;
+    AddComputersDialog.setAddComputer(true);
     int addComputerReturnValue = AddComputersDialog.exec();
 
     if(addComputerReturnValue == 0)
@@ -172,16 +172,16 @@ void MainWindow::on_pushButtonAddComp_clicked()
     }
     else
     {
-        //errormessage
+        ui->statusBar->showMessage("Not successful!", 2000);
     }
 }
 
+//OPENS EDIT MODE IN A NEW WINDOW, SO THAT USER CAN EDIT INFORMATION ABOUT THE PERSON THEY CLICKED ON
 void MainWindow::on_personsTable_doubleClicked(const QModelIndex &index)
 {
     PersonsDialog editPersonsDialog;
     vector<Person> Persons;
     Persons = _PService.getVectorFromDataAccess(Persons);
-    //ui->personsTable->clearContents();
 
     Person person;
     string name = ui->personsTable->item(index.row(),0)->text().toStdString();
@@ -195,19 +195,12 @@ void MainWindow::on_personsTable_doubleClicked(const QModelIndex &index)
     person.setDeathYear(deathYear);
 
     editPersonsDialog.setPerson(person);
+    editPersonsDialog.setEditPerson(true);
     editPersonsDialog.exec();
-
-    //QString newName = ui->inputPName->text();
-    //ui->personsTable->setItem(index.row(),0,)->text.toStdString();
-
-    //_editConnection.on_pushButtonEditPerson_clicked();
-
-    //displayPersons();
-    //gera í personsdialog
-    //kalla á takkafallið?
 
 }
 
+//OPENS EDIT MODE IN A NEW WINDOW, SO THAT USER CAN EDIT INFORMATION ABOUT THE PERSON THEY CLICKED ON
 void MainWindow::on_computersTable_doubleClicked(const QModelIndex &index)
 {
     ComputersDialog editComputersDialog;
@@ -221,13 +214,12 @@ void MainWindow::on_computersTable_doubleClicked(const QModelIndex &index)
     computer.setBuildYear(buildYear);
 
     editComputersDialog.setComputer(computer);
+    editComputersDialog.setEditComputer(true);
     editComputersDialog.exec();
-
-    //kalla á takkafallið ?
-
 
 }
 
+//OPENS CONNECTION MODE IN A NEW WINDOW, SO THAT USER CAN ADD OR DELETE CONNECTIONS
 void MainWindow::on_pushButtonPersConnection_clicked()
 {
     int currentPersonIndex = ui->personsTable->currentIndex().row();
@@ -238,6 +230,7 @@ void MainWindow::on_pushButtonPersConnection_clicked()
     _Connection.exec();
 }
 
+//OPENS CONNECTION MODE IN A NEW WINDOW, SO THAT USER CAN ADD OR DELETE CONNECTIONS
 void MainWindow::on_pushButtonComConnection_clicked()
 {
     int currentComputerIndex = ui->computersTable->currentIndex().row();
@@ -248,6 +241,7 @@ void MainWindow::on_pushButtonComConnection_clicked()
     _Connection.exec();
 }
 
+//SEARCH WINDOW FOR COMPUTERS
 void MainWindow::on_inputSearchComp_textChanged(const QString &arg1)
 {
     ui->pushButtonComConnection->setDisabled(true);
@@ -256,6 +250,7 @@ void MainWindow::on_inputSearchComp_textChanged(const QString &arg1)
     displayComputers(search);
 }
 
+//SEARCH WINDOW FOR PERSONS
 void MainWindow::on_inputSearchPersons_textChanged(const QString &arg1)
 {
     ui->pushButtonPersConnection->setDisabled(true);
@@ -264,6 +259,7 @@ void MainWindow::on_inputSearchPersons_textChanged(const QString &arg1)
     displayPersons(search);
 }
 
+//LINK TO GITHUB OF PROJECT
 void MainWindow::on_actionGo_to_link_triggered()
 {
     #ifdef _WIN32
@@ -277,6 +273,7 @@ void MainWindow::on_actionGo_to_link_triggered()
     #endif
 }
 
+//DELETE PERSON WHEN BUTTON IS PUSHED
 void MainWindow::on_pushButtonDeletePerson_clicked()
 {
     int currentPersonIndex = ui->personsTable->currentIndex().row();
@@ -292,6 +289,7 @@ void MainWindow::on_pushButtonDeletePerson_clicked()
 
 }
 
+//DELETE COMPUTER WHEN BUTTON IS PUSHED
 void MainWindow::on_pushButtonDeleteComputer_clicked()
 {
     int currentComputerIndex = ui->computersTable->currentIndex().row();

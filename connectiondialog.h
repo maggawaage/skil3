@@ -16,13 +16,20 @@ class ConnectionDialog : public QDialog
     Q_OBJECT
 
 public:
+
     explicit ConnectionDialog(QWidget *parent = 0);
     ~ConnectionDialog();
+
     void PersonOrComputer(int type, int id);
+
+    //CONNECT
     void tableIfShowComputers(int personId);
     void tableIfShowPersons(int computerId);
+
+    //DISCONNECT TABLE
     void unlinkTableIfShowPersons(int computerId);
     void unlinkTableIfShowComputers(int computerId);
+
     QString showGender(char input);
      void test(QString id);
 
@@ -36,9 +43,8 @@ private slots:
 
     void on_linkButton_clicked();
 
-
-
 private:
+
     Ui::ConnectionDialog *ui;
     //0 is person and 1 is computer
     int _PersonOrComputer;

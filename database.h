@@ -9,10 +9,12 @@ using namespace std;
 class Database
 {
 public:
+
     Database();
     void quit();
 
 private:
+
     QSqlDatabase _db;
 
 };

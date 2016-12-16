@@ -10,12 +10,12 @@ vector<Person> PersonService::getVectorFromDataAccess(vector<Person> person)
     return _access.fillVector(person);
 }
 
+
 bool PersonService::addPerson(string name, char gender, int birthYear, int deathYear)
 {
      return _access.addPerson(name, gender, birthYear, deathYear);
 }
 
-//Edit
 bool PersonService::editPersonsName(string currentName, string newName)
 {
     return _access.editPersonsName(currentName, newName);
@@ -36,7 +36,6 @@ bool PersonService::editPersonsDeathYear(string currentName, int deathYear)
     return _access.editPersonsDeathYear(currentName, deathYear);
 }
 
-//Search
 vector<Person> PersonService::Search(vector <Person> list, string searchString)
 {
     vector <Person> newList;
@@ -65,13 +64,11 @@ vector<Person> PersonService::Search(vector <Person> list, string searchString)
     return newList;
 }
 
-//Delete
 void PersonService::deletePerson(int id)
 {
     _access.deletePerson(id);
 }
 
-//LINKS
 vector<Computer> PersonService::getComputersConnectedToPerson(int personId)
 {
     return _access.getComputersConnectedToPersons(personId);

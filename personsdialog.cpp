@@ -15,6 +15,7 @@ PersonsDialog::~PersonsDialog()
     delete ui;
 }
 
+//SENDS INFORMATION TO DATABASE WHEN USER PUSHED ADD BUTTON
 void PersonsDialog::on_pushButtonAddPerson_clicked()
 {
     vector<Person> Persons;
@@ -40,43 +41,42 @@ void PersonsDialog::on_pushButtonAddPerson_clicked()
 
     if(deathYear < birthYear && deathYear != 0)
     {
-        //errormessage
         ui->labelErrorPersonDY->setText("<span style='color: red'>You cannot die before you are born</span>");
         return;
     }
+
     if(checkIfSame(name.toStdString(), convertQstringToChar(gender), birthYear.toInt(), deathYear.toInt()))
     {
-        //errormessage
         ui->labelErrorPersonName->setText("<span style='color: red'>This person already exists</span>");
         return;
     }
+
     if(name.isEmpty())
     {
-        //errormessage
         ui->labelErrorPersonName->setText("<span style='color: red'>Name cannot be empty</span>");
         return;
     }
+
     if(birthYear.isEmpty())
     {
-        //errormessage
         ui->labelErrorPersonBY->setText("<span style='color: red'>Birth year cannot be empty</span>");
         return;
     }
+
     else if(!onlyNumbers(birthYear))
     {
-        //errormessage
         ui->labelErrorPersonBY->setText("<span style='color: red'>You can only enter numbers</span>");
         return;
     }
+
     if(deathYear.isEmpty())
     {
-        //errormessage
         ui->labelErrorPersonDY->setText("<span style='color: red'>Death year cannot be empty</span>");
         return;
     }
+
     else if(!onlyNumbers(deathYear))
     {
-        //errormessage
         ui->labelErrorPersonDY->setText("<span style='color: red'>You can only enter numbers</span>");
         return;
     }
@@ -107,6 +107,7 @@ QString PersonsDialog::showGender(char input)
     return gender;
 }
 
+//GET INFORMATION OF PERSON FOR EDIT
 void PersonsDialog::setPerson(Person person)
 {
     QString name = QString::fromStdString(person.getName());
@@ -130,9 +131,9 @@ bool PersonsDialog::onlyNumbers(QString string)
     return true;
 }
 
+//UPDATES INFORMATION IN DATABASE WHEN USER EDITS AND PUSHED THE EDIT BUTTON
 vector<Person> PersonsDialog::on_pushButtonEditPerson_clicked()
 {
-    //Uppfæra upplýsingar sem notandi breytti
     vector<Person> Persons;
     Persons = _PService.getVectorFromDataAccess(Persons);
 
@@ -168,10 +169,11 @@ vector<Person> PersonsDialog::on_pushButtonEditPerson_clicked()
     return Persons;
 }
 
+//CONVERT QSTRING TO CHAR
 char PersonsDialog::convertQstringToChar(QString str)
 {
-    //We did not find any easy way to convert a Qstring to char,
-    //so we convert it first to std string, and then to char.
+    //WE DID NOT FIND ANY EASY WAY TO CONVERT A QSTRING TO CHAR,
+    //SO WE CONVERT IT FIRST TO STD STRING AND THEN TO CHAR
     string stdString = str.toStdString();
     char charStr = stdString[0];
     return charStr;
@@ -192,5 +194,35 @@ bool PersonsDialog::checkIfSame(string name, char gender, int bY, int dY)
         }
     }
     return false;
+}
+
+//ENABLE/DISABLE EDIT AND ADD WHEN SO THAT THEY CAN ONLY BE ENABLED ONE AT A TIME
+void PersonsDialog::setEditPerson(bool value)
+{
+    if(value)
+    {
+        ui->pushButtonEditPerson->setEnabled(true);
+        ui->pushButtonAddPerson->setEnabled(false);
+    }
+    else
+    {
+        ui->pushButtonEditPerson->setEnabled(false);
+        ui->pushButtonAddPerson->setEnabled(true);
+    }
+}
+
+//ENABLE/DISABLE EDIT AND ADD WHEN SO THAT THEY CAN ONLY BE ENABLED ONE AT A TIME
+void PersonsDialog::setAddPerson(bool value)
+{
+    if(value)
+    {
+        ui->pushButtonAddPerson->setEnabled(true);
+        ui->pushButtonEditPerson->setEnabled(false);
+    }
+    else
+    {
+        ui->pushButtonAddPerson->setEnabled(false);
+        ui->pushButtonEditPerson->setEnabled(true);
+    }
 }
 

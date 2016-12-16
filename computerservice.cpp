@@ -12,12 +12,7 @@ vector<Computer> ComputerService::getVectorFromDataAccess(vector<Computer> Compu
 
 bool ComputerService::addComputer(string name, string type, int buildYear)
 {
-    while(true)
-    {
-        _access.addComputer(name, type, buildYear );
-        return true;
-    }
-    return false;
+    return _access.addComputer(name, type, buildYear );
 }
 
 bool ComputerService::editComputersName(string currentName, string newName)
@@ -67,7 +62,7 @@ void ComputerService::deleteComputer(int id)
     _access.deleteComputer(id);
 }
 
-///LINKS
+//LINKS
 vector<Person> ComputerService::getPersonsConnectedToComputer(int id)
 {
     return _access.getPersonsConnectedToComputers(id);

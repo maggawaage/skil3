@@ -8,23 +8,28 @@ using namespace std;
 class Person
 {
 public:
+
     Person();
     Person(int id, string name, char gender, int birthYear, int deathYear);
 
+    //GET INFORMATION FOR PERSON
     int getId() const;
     string getName() const;
     char getGender() const;
     int getBirthYear() const;
     int getDeathYear() const;
 
+    //SET INFORMATION FOR PERSON
     void setId(int id);
     void setName(string name);
     void setGender(char gender);
     void setBirthYear(int birthYear);
     void setDeathYear(int deathYear);
+
     static bool checkIfSame(vector<Person> Persons, string name);
 
 private:
+
     int _id;
     string _name;
     char _gender;

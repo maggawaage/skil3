@@ -13,9 +13,9 @@ ComputersDialog::~ComputersDialog()
     delete ui;
 }
 
+//OPEN NEW, CLEAN WINDOW IF USER CLICKES ADD BUTTON, ERROR MESSAGES IF USER INPUTS WRONG INFORMATION
 void ComputersDialog::on_pushButtonAddComputer_clicked()
 {
-    //TODO:
     vector<Computer> Computers;
     Computers = _CService.getVectorFromDataAccess(Computers);
     QString name = ui->inputCName->text();
@@ -24,31 +24,30 @@ void ComputersDialog::on_pushButtonAddComputer_clicked()
 
     if(checkIfSame(name.toStdString(), type.toStdString(), buildYear.toInt()))
     {
-        //errormessage
         ui->labelErrorComputerName->setText("<span style='color: red'>This computer already exists</span>");
         return;
     }
+
     if(name.isEmpty())
     {
-        //errormessage
         ui->labelErrorComputerName->setText("<span style='color: red'>Name cannot be empty</span>");
         return;
     }
+
     if(type.isEmpty())
     {
-        //errormessage
         ui->labelErrorComputerType->setText("<span style='color: red'>Type cannot be empty</span>");
         return;
     }
+
     if(buildYear.isEmpty())
     {
-        //errormessage
         ui->labelErrorComputerBY->setText("<span style='color: red'>Build year cannot be empty</span>");
         return;
     }
+
     else if(!onlyNumbers(buildYear))
     {
-        //errormessage
         ui->labelErrorComputerBY->setText("<span style='color: red'>You can only enter numbers</span>");
         return;
     }
@@ -62,13 +61,10 @@ void ComputersDialog::on_pushButtonAddComputer_clicked()
         ui->inputCBuildYear->setText("");
         this->done(0);
     }
-    else
-    {
-        //error message
-        //this->done(-1);
-    }
+
 }
 
+//UPDATES INFORMATION WHEN USER EDITS PARTICULAR COMPUTER
 vector<Computer> ComputersDialog::on_pushButtonEditComputer_clicked()
 {
     vector<Computer> Computers;
@@ -105,6 +101,7 @@ bool ComputersDialog::onlyNumbers(QString string)
     return true;
 }
 
+//SET INFORMATION FOR EDIT FUNCTION
 void ComputersDialog::setComputer(Computer computer)
 {
     QString name = QString::fromStdString(computer.getName());
@@ -132,4 +129,34 @@ bool ComputersDialog::checkIfSame(string name, string type, int bY)
     }
     return false;
 
+}
+
+//ENABLE/DISABLE ADD AND EDIT BUTTONS, DEPENDING ON WHICH FUNCTION IS IN USE AT THE MOMENT
+void ComputersDialog::setEditComputer(bool value)
+{
+    if(value)
+    {
+        ui->pushButtonEditComputer->setEnabled(true);
+        ui->pushButtonAddComputer->setEnabled(false);
+    }
+    else
+    {
+        ui->pushButtonEditComputer->setEnabled(false);
+        ui->pushButtonAddComputer->setEnabled(true);
+    }
+}
+
+//ENABLE/DISABLE ADD AND EDIT BUTTONS, DEPENDING ON WHICH FUNCTION IS IN USE AT THE MOMENT
+void ComputersDialog::setAddComputer(bool value)
+{
+    if(value)
+    {
+        ui->pushButtonAddComputer->setEnabled(true);
+        ui->pushButtonEditComputer->setEnabled(false);
+    }
+    else
+    {
+        ui->pushButtonAddComputer->setEnabled(false);
+        ui->pushButtonEditComputer->setEnabled(true);
+    }
 }
