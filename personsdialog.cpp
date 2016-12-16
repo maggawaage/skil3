@@ -106,6 +106,7 @@ QString PersonsDialog::showGender(char input)
 
     return gender;
 }
+
 void PersonsDialog::setPerson(Person person)
 {
     QString name = QString::fromStdString(person.getName());
@@ -118,6 +119,7 @@ void PersonsDialog::setPerson(Person person)
     ui->inputPBirthYear->setText(birthYear);
     ui->inputPDeathYear->setText(deathYear);
 }
+
 bool PersonsDialog::onlyNumbers(QString string)
 {
     for(int i = 0; i < string.size(); i++)
@@ -176,6 +178,7 @@ char PersonsDialog::convertQstringToChar(QString str)
     char charStr = stdString[0];
     return charStr;
 }
+
 bool PersonsDialog::checkIfSame(string name, char gender, int bY, int dY)
 {
     vector<Person> Persons;
@@ -193,8 +196,8 @@ bool PersonsDialog::checkIfSame(string name, char gender, int bY, int dY)
     return false;
 }
 
-void PersonsDialog::on_pushButtonEditPerson_objectNameChanged(const QString &objectName)
+/*void PersonsDialog::on_pushButtonEditPerson_objectNameChanged(const QString &objectName)
 {
     ui->pushButtonEditPerson->setEnabled(true);
 
-}
+}*/

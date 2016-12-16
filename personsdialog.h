@@ -33,7 +33,7 @@ private slots:
 
     vector<Person>  on_pushButtonEditPerson_clicked();
 
-    void on_pushButtonEditPerson_objectNameChanged(const QString &objectName);
+    //void on_pushButtonEditPerson_objectNameChanged(const QString &objectName);
 
 private:
     Ui::PersonsDialog *ui;

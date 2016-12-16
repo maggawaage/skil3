@@ -12,9 +12,9 @@ public:
 
     vector<Computer> getVectorFromDataAccess(vector<Computer> Computer);
     bool addComputer(string name, string type, int buildYear);
-    void editComputersName(string currentName, string newName);
-    void editComputersType(string currentName, string type);
-    void editComputersBuildYear(string currentName, int buildYear);
+    bool editComputersName(string currentName, string newName);
+    bool editComputersType(string currentName, string type);
+    bool editComputersBuildYear(string currentName, int buildYear);
 
     static vector<Computer> Search(vector <Computer> list, string searchString);
     void deleteComputer(int id);

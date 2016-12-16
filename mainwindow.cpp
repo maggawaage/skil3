@@ -337,7 +337,7 @@ void MainWindow::on_pushButtonDeletePerson_clicked()
     _PService.deletePerson(currentPeronIndexID);
     _PService.deleteConnectionPerson(currentPeronIndexID);
 
-    ui->personsTable->clear();
+    //ui->personsTable->clear();
     displayPersons();
 }
 
@@ -348,6 +348,6 @@ void MainWindow::on_pushButtonDeleteComputer_clicked()
     _CService.deleteComputer(currentComputerIndexID);
     _CService.deleteConnectionComputer(currentComputerIndexID);
 
-    ui->computersTable->clear();
+    //ui->computersTable->clear();
     displayComputers();
 }
