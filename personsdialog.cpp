@@ -38,6 +38,12 @@ void PersonsDialog::on_pushButtonAddPerson_clicked()
     ui->labelErrorPersonBY->setText("");
     ui->labelErrorPersonDY->setText("");
 
+    if(deathYear < birthYear)
+    {
+        //errormessage
+        ui->labelErrorPersonDY->setText("<span style='color: red'>You cannot die before you are born</span>");
+        return;
+    }
     if(checkIfSame(name.toStdString(), convertQstringToChar(gender), birthYear.toInt(), deathYear.toInt()))
     {
         //errormessage
@@ -75,9 +81,6 @@ void PersonsDialog::on_pushButtonAddPerson_clicked()
         return;
     }
 
-    //bæta við bool falli sem tjekkar hvort allt se eins
-
-
     bool success = _PService.addPerson(name.toStdString(), convertQstringToChar(gender), birthYear.toInt(), deathYear.toInt());
 
     if(success)
@@ -86,11 +89,6 @@ void PersonsDialog::on_pushButtonAddPerson_clicked()
         ui->inputPBirthYear->setText("");
         ui->inputPDeathYear->setText("");
         this->done(0);
-    }
-    else
-    {
-        //error message
-        //this->done(-1);
     }
 }
 
@@ -111,6 +109,7 @@ QString PersonsDialog::showGender(char input)
 void PersonsDialog::setPerson(Person person)
 {
     QString name = QString::fromStdString(person.getName());
+    tempEditName = name;
     char ge = person.getGender();
     QString gender = showGender(ge);
     QString birthYear = QString::number(person.getBirthYear());
@@ -118,8 +117,6 @@ void PersonsDialog::setPerson(Person person)
     ui->inputPName->setText(name);
     ui->inputPBirthYear->setText(birthYear);
     ui->inputPDeathYear->setText(deathYear);
-    //færa if else hér til að tékka villur
-
 }
 bool PersonsDialog::onlyNumbers(QString string)
 {
@@ -137,7 +134,7 @@ vector<Person> PersonsDialog::on_pushButtonEditPerson_clicked()
     vector<Person> Persons;
     Persons = _PService.getVectorFromDataAccess(Persons);
 
-    /*QString newName = ui->inputPName->text();
+    QString newName = ui->inputPName->text();
     QString gender;
     if(ui->radioButtonFemale->isChecked())
     {
@@ -153,12 +150,20 @@ vector<Person> PersonsDialog::on_pushButtonEditPerson_clicked()
     QString deathYear = ui->inputPDeathYear->text();
 
 
-    string currentName = "";
+    string currentName = tempEditName.toStdString();
 
-    _PService.editPersonsName(currentName, newName);
-    _PService.editPersonsGender(currentName, gender);
-    _PService.editPersonsBirthYear(currentName, birthYear);
-    _PService.editPersonsDeathYear(currentName, deathYear);*/
+    bool success =  (_PService.editPersonsName(currentName, newName.toStdString()),
+    _PService.editPersonsGender(currentName, convertQstringToChar(gender)),
+    _PService.editPersonsBirthYear(currentName, birthYear.toInt()),
+    _PService.editPersonsDeathYear(currentName, deathYear.toInt()));
+
+    if(success)
+    {
+        ui->inputPName->setText("");
+        ui->inputPBirthYear->setText("");
+        ui->inputPDeathYear->setText("");
+        this->done(0);
+    }
 
     return Persons;
 }

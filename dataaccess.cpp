@@ -86,17 +86,15 @@ bool DataAccess::addComputer(string name, string type, int buildYear)
     }
     return false;
 }
-
-void DataAccess::editPersonsName(string currentName, string newName)
+bool DataAccess::editPersonsName(string currentName, string newName)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
     query.prepare("UPDATE Persons SET Name = :name WHERE Name = :Name;");
 
     query.bindValue(":name", QString::fromStdString(newName));
     query.bindValue(":Name",QString::fromStdString(currentName));
-    query.exec();
+    return query.exec();
 }
-
 void DataAccess::editComputersName(string currentName, string newName)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
@@ -106,31 +104,31 @@ void DataAccess::editComputersName(string currentName, string newName)
     query.exec();
 }
 
-void DataAccess::editPersonsGender(string currentName, char gender)
+bool DataAccess::editPersonsGender(string currentName, char gender)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
     query.prepare("UPDATE Persons SET Gender = :Gender WHERE Name = :Name;");
     query.bindValue(":Gender",gender);
     query.bindValue(":Name", QString::fromStdString(currentName));
-    query.exec();
+    return query.exec();
 }
 
-void DataAccess::editPersonsBirthYear(string currentName, int birthYear)
+bool  DataAccess::editPersonsBirthYear(string currentName, int birthYear)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
     query.prepare("UPDATE Persons SET BirthYear = :BirthYear WHERE Name = :Name;");
     query.bindValue(":BirthYear",birthYear);
     query.bindValue(":Name", QString::fromStdString(currentName));
-    query.exec();
+    return query.exec();
 }
 
-void DataAccess::editPersonsDeathYear(string currentName, int deathYear)
+bool DataAccess::editPersonsDeathYear(string currentName, int deathYear)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
     query.prepare("UPDATE Persons SET DeathYear = :DearthYear WHERE Name = :Name;");
     query.bindValue(":DeathYear",deathYear);
     query.bindValue(":Name", QString::fromStdString(currentName));
-    query.exec();
+    return query.exec();
 }
 
 void DataAccess::editComputerType(string currentName, string computerType)

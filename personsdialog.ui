@@ -46,7 +46,7 @@ font: 18pt &quot;.SF NS Text&quot;;</string>
   <widget class="QLabel" name="labelPName">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>10</x>
      <y>70</y>
      <width>40</width>
      <height>16</height>
