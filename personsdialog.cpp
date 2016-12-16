@@ -31,11 +31,13 @@ void PersonsDialog::on_pushButtonAddPerson_clicked()
         ui->radioButtonMale->text() = 'M';
         gender = 'M';
     }
+
     QString birthYear = ui->inputPBirthYear->text();
     QString deathYear = ui->inputPDeathYear->text();
     ui->labelErrorPersonName->setText("");
     ui->labelErrorPersonBY->setText("");
     ui->labelErrorPersonDY->setText("");
+
     if(checkIfSame(name.toStdString(), convertQstringToChar(gender), birthYear.toInt(), deathYear.toInt()))
     {
         //errormessage
@@ -129,15 +131,36 @@ bool PersonsDialog::onlyNumbers(QString string)
     return true;
 }
 
-void PersonsDialog::on_pushButtonEditPerson_clicked()
+vector<Person> PersonsDialog::on_pushButtonEditPerson_clicked()
 {
     //Uppfæra upplýsingar sem notandi breytti
     vector<Person> Persons;
     Persons = _PService.getVectorFromDataAccess(Persons);
-    string newName, currentName;
+
+    /*QString newName = ui->inputPName->text();
+    QString gender;
+    if(ui->radioButtonFemale->isChecked())
+    {
+        ui->radioButtonFemale->text() = 'F';
+        gender = 'F';
+    }
+    else
+    {
+        ui->radioButtonMale->text() = 'M';
+        gender = 'M';
+    }
+    QString birthYear = ui->inputPBirthYear->text();
+    QString deathYear = ui->inputPDeathYear->text();
+
+
+    string currentName = "";
 
     _PService.editPersonsName(currentName, newName);
+    _PService.editPersonsGender(currentName, gender);
+    _PService.editPersonsBirthYear(currentName, birthYear);
+    _PService.editPersonsDeathYear(currentName, deathYear);*/
 
+    return Persons;
 }
 
 char PersonsDialog::convertQstringToChar(QString str)
@@ -163,5 +186,10 @@ bool PersonsDialog::checkIfSame(string name, char gender, int bY, int dY)
         }
     }
     return false;
+}
+
+void PersonsDialog::on_pushButtonEditPerson_objectNameChanged(const QString &objectName)
+{
+    ui->pushButtonEditPerson->setEnabled(true);
 
 }

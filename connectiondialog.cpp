@@ -45,6 +45,8 @@ void ConnectionDialog::tableIfShowComputers(int id)
     ui->linkedTable->setRowCount((int)LinkedComputers.size());
     ui->linkedTable->clearContents();
     ui->linkedTable->setColumnCount(3);
+    ui->linkedTable->setColumnWidth(0, 170);
+    ui->linkedTable->setColumnWidth(1, 210);
     for(size_t row = 0; row < LinkedComputers.size(); row++)
     {
 
@@ -70,6 +72,8 @@ void ConnectionDialog::tableIfShowPersons(int id)
 
     ui->linkedTable->setRowCount((int)LinkedPersons.size());
     ui->linkedTable->clearContents();
+    ui->linkedTable->setColumnWidth(0, 170);
+    ui->linkedTable->setColumnWidth(1, 210);
     for(size_t row = 0; row < LinkedPersons.size(); row++)
     {
         Person CurrentPerson = LinkedPersons.at(row);
@@ -113,6 +117,8 @@ void ConnectionDialog::unlinkTableIfShowComputers(int id)
     ui->unLinkedTable->setRowCount((int)UnLinkedComputers.size());
     ui->unLinkedTable->clearContents();
     ui->unLinkedTable->setColumnCount(3);
+    ui->unLinkedTable->setColumnWidth(0, 170);
+    ui->unLinkedTable->setColumnWidth(1, 210);
     for(size_t row = 0; row < UnLinkedComputers.size(); row++)
     {
 
@@ -154,6 +160,9 @@ void ConnectionDialog::unlinkTableIfShowPersons(int id)
 
     ui->unLinkedTable->setRowCount((int)UnLinkedPersons.size());
     ui->unLinkedTable->clearContents();
+    ui->unLinkedTable->setColumnWidth(0, 170);
+    ui->unLinkedTable->setColumnWidth(1, 210);
+
     for(size_t row = 0; row < UnLinkedPersons.size(); row++)
     {
         Person CurrentPerson = UnLinkedPersons.at(row);
@@ -172,8 +181,6 @@ void ConnectionDialog::unlinkTableIfShowPersons(int id)
         _currentlyUnLinkedPersons = UnLinkedPersons;
 }
 
-
-
 QString ConnectionDialog::showGender(char input)
 {
     QString gender;
@@ -188,7 +195,6 @@ QString ConnectionDialog::showGender(char input)
     return gender;
 }
 
-
 void ConnectionDialog::on_linkedTable_clicked(const QModelIndex &index)
 {
     ui->unlinkButton->setEnabled(true);
@@ -200,7 +206,6 @@ void ConnectionDialog::on_unLinkedTable_clicked(const QModelIndex &index)
     ui->linkButton->setEnabled(true);
     ui->unlinkButton->setDisabled(true);
 }
-
 
 void ConnectionDialog::on_linkButton_clicked()
 {

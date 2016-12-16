@@ -166,60 +166,6 @@ vector<Computer> MainWindow::displaySearchComputers(string string)
 
 }
 
-
-void MainWindow::displayPersonsVector(vector<Person> printPersons, int x)
-{
-    cout << "\n";
-    //Couts ID if you want
-    if (x == 1)
-    {
-        cout << "ID" << "\t";
-    }
-    cout << "Name"<< "\t\t\t" << "Gender" << "\t" << "Birth year";
-    cout.width(15);
-    cout <<"Year of death";
-    cout.width(15);
-    cout <<"Age when died" << endl;;
-    cout <<"========================================================================\n";
-
-    for(size_t i = 0; i < printPersons.size(); i++)
-    {
-        //Couts ID number if you want
-        cout.setf(ios::left);
-        if (x == 1)
-        {
-            cout.width(8);
-            cout << i+1;
-        }
-        cout.width(24);
-        cout << printPersons[i].getName();
-        if(printPersons[i].getGender()=='m')
-        {
-            cout.width(8);
-            cout << "Male";
-        }
-        else
-        {
-            cout.width(8);
-            cout << "Female";
-        }
-        cout.width(12);
-        cout << printPersons[i].getBirthYear();
-        if (!(printPersons[i].getDeathYear() == 0))
-        {
-            cout.width(15);
-            cout << printPersons[i].getDeathYear()
-                 << (printPersons[i].getDeathYear() - printPersons[i].getBirthYear()) << endl;;
-        }
-        else
-        {
-            cout.width(15);
-            cout << '-'
-                 << "-\n";
-        }
-    }
-}
-
 void MainWindow::on_Tabs_tabBarClicked(int index)
 {
     //Person
@@ -240,7 +186,6 @@ void MainWindow::on_Tabs_tabBarClicked(int index)
 
 void MainWindow::on_personsTable_clicked(const QModelIndex &index)
 {
-    //ui->pushButtonEditPerson->setEnabled(true);
     ui->pushButtonDeletePerson->setEnabled(true);
     ui->pushButtonPersConnection->setEnabled(true);
 }
@@ -293,8 +238,6 @@ void MainWindow::on_personsTable_doubleClicked(const QModelIndex &index)
     Persons = _PService.getVectorFromDataAccess(Persons);
     //ui->personsTable->clearContents();
 
-    //ui->personsTable->selectionModel()->selection().indexes().at(0)
-    //QModelIndex index = ui->personsTable->selectionModel()->selection().indexes().at(0);
     Person person;
     string name = ui->personsTable->item(index.row(),0)->text().toStdString();
     char gender = ui->personsTable->item(index.row(),1)->text().toDouble();
@@ -308,6 +251,11 @@ void MainWindow::on_personsTable_doubleClicked(const QModelIndex &index)
 
     editPersonsDialog.setPerson(person);
     editPersonsDialog.exec();
+
+    //QString newName = ui->inputPName->text();
+    //ui->personsTable->setItem(index.row(),0,)->text.toStdString();
+
+    //_editConnection.on_pushButtonEditPerson_clicked();
 
     //displayPersons();
     //gera í personsdialog
@@ -335,17 +283,6 @@ void MainWindow::on_computersTable_doubleClicked(const QModelIndex &index)
 
 }
 
-/*
-void MainWindow::on_pushButtonDeletePerson_clicked()
-{
-    //TODO:
-}
-
-void MainWindow::on_pushButtonDeleteComputer_clicked()
-{
-    //TODO:
-}
-*/
 void MainWindow::on_pushButtonPersConnection_clicked()
 {
     int currentPersonIndex = ui->personsTable->currentIndex().row();
@@ -365,30 +302,20 @@ void MainWindow::on_pushButtonComConnection_clicked()
     _Connection.setModal(true);
     _Connection.exec();
 }
-/*
-
-void MainWindow::on_inputSearchPersons_textChanged(const QString &arg1)
-{
-   //TODO:
-}
-
-*/
-
 
 void MainWindow::on_inputSearchComp_textChanged(const QString &arg1)
 {
-    string a = arg1.toStdString();
+    string search = arg1.toStdString();
 
-    displaySearchComputers(a);
+    displaySearchComputers(search);
 }
 
 void MainWindow::on_inputSearchPersons_textChanged(const QString &arg1)
 {
-    string a = arg1.toStdString();
+    string search = arg1.toStdString();
 
-    displaySearchPersons(a);
+    displaySearchPersons(search);
 }
-
 
 void MainWindow::on_actionGo_to_link_triggered()
 {
